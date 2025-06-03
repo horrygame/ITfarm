@@ -93,10 +93,6 @@
             box-shadow: 0 5px 15px rgba(247, 37, 133, 0.4);
         }
         
-        .btn-logout {
-            background: linear-gradient(135deg, #ff4757, #ff6b81);
-        }
-        
         .stats {
             display: flex;
             gap: 20px;
@@ -282,109 +278,6 @@
             background-color: var(--legendary);
         }
         
-        .auth-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
-        
-        .auth-box {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 20px;
-            padding: 40px;
-            width: 100%;
-            max-width: 450px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
-            text-align: center;
-        }
-        
-        .auth-logo {
-            font-size: 4rem;
-            margin-bottom: 20px;
-            color: var(--primary);
-            text-shadow: 0 0 10px rgba(76, 201, 240, 0.7);
-        }
-        
-        .auth-title {
-            color: white;
-            margin-bottom: 30px;
-            font-weight: 500;
-            font-size: 1.8rem;
-        }
-        
-        .input-group {
-            margin-bottom: 20px;
-        }
-        
-        .input-group input {
-            width: 100%;
-            padding: 15px;
-            border: none;
-            border-radius: 50px;
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            font-size: 16px;
-            outline: none;
-            transition: all 0.3s;
-        }
-        
-        .input-group input::placeholder {
-            color: rgba(255, 255, 255, 0.7);
-        }
-        
-        .input-group input:focus {
-            background: rgba(255, 255, 255, 0.2);
-            box-shadow: 0 0 10px rgba(76, 201, 240, 0.5);
-        }
-        
-        .auth-btn {
-            width: 100%;
-            padding: 15px;
-            border: none;
-            border-radius: 50px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-            margin-top: 10px;
-        }
-        
-        .auth-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(76, 201, 240, 0.4);
-        }
-        
-        .auth-links {
-            margin-top: 25px;
-            color: rgba(255, 255, 255, 0.7);
-        }
-        
-        .auth-link {
-            color: var(--primary);
-            text-decoration: none;
-            transition: all 0.3s;
-            font-weight: 500;
-        }
-        
-        .auth-link:hover {
-            text-decoration: underline;
-        }
-        
-        .error {
-            color: var(--danger);
-            margin-top: 15px;
-            font-size: 14px;
-            padding: 10px;
-            border-radius: 10px;
-            background: rgba(248, 113, 113, 0.1);
-        }
-        
         .ready {
             animation: pulse 2s infinite;
         }
@@ -514,7 +407,7 @@
             border-left-color: var(--danger);
         }
 
-        /* Новые стили для системы сохранения */
+        /* Стили для системы сохранения */
         .save-controls {
             display: flex;
             gap: 10px;
@@ -644,48 +537,15 @@
     </style>
 </head>
 <body>
-    <div id="auth-container" class="auth-container">
-        <div class="auth-box">
-            <div class="auth-logo">🚜</div>
-            <h1 class="auth-title">IT Ферма</h1>
-            
-            <div id="auth-form">
-                <div class="input-group">
-                    <input type="text" id="username" placeholder="Имя пользователя" required>
-                </div>
-                
-                <div class="input-group">
-                    <input type="password" id="password" placeholder="Пароль" required>
-                </div>
-                
-                <div class="input-group" id="confirm-password-group" style="display: none;">
-                    <input type="password" id="confirm-password" placeholder="Подтвердите пароль" required>
-                </div>
-                
-                <button id="auth-btn" class="auth-btn">Войти</button>
-                
-                <div id="auth-error" class="error" style="display: none;"></div>
-                
-                <div class="auth-links">
-                    <span id="auth-toggle-text">Нет аккаунта?</span>
-                    <a href="#" id="auth-toggle-link" class="auth-link">Зарегистрироваться</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="game-container" class="container" style="display: none;">
+    <div class="container">
         <div class="user-header">
             <h1>🚜 IT Ферма</h1>
             <div class="user-info">
-                <div class="user-avatar" id="user-avatar">👨‍🌾</div>
-                <div>
-                    <div id="username-display"></div>
-                    <div class="save-controls">
-                        <button class="btn" onclick="showExportModal()">Экспорт</button>
-                        <button class="btn" onclick="showAchievementsModal()">Достижения</button>
-                        <button class="btn btn-logout" onclick="logout()">Выйти</button>
-                    </div>
+                <div class="user-avatar">👨‍🌾</div>
+                <div class="save-controls">
+                    <button class="btn" onclick="showExportModal()">Экспорт</button>
+                    <button class="btn" onclick="showAchievementsModal()">Достижения</button>
+                    <button class="btn" onclick="showImportModal()">Импорт</button>
                 </div>
             </div>
         </div>
@@ -752,6 +612,19 @@
             <div class="modal-buttons">
                 <button class="modal-btn" onclick="copyExportData()">Копировать</button>
                 <button class="modal-btn modal-close" onclick="closeExportModal()">Закрыть</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно импорта -->
+    <div id="importModal" class="modal">
+        <div class="modal-content">
+            <h2 class="modal-title">Импорт сохранения</h2>
+            <p>Вставьте код сохранения в поле ниже:</p>
+            <textarea id="importData" class="save-textarea" placeholder="Вставьте сюда код сохранения..."></textarea>
+            <div class="modal-buttons">
+                <button class="modal-btn" onclick="loadGameData()">Загрузить</button>
+                <button class="modal-btn modal-close" onclick="closeImportModal()">Закрыть</button>
             </div>
         </div>
     </div>
@@ -946,7 +819,6 @@
 
         // Состояние игры
         let gameState = {
-            username: "",
             money: 100,
             inventory: {
                 "common_laptop_seed": 5,
@@ -961,8 +833,7 @@
                 ready: false
             })),
             achievements: {},
-            purchasedFields: 0, // Количество купленных полей
-            isRegistered: false
+            purchasedFields: 0 // Количество купленных полей
         };
 
         // Инициализация достижений
@@ -978,18 +849,6 @@
         }
 
         // DOM элементы
-        const authContainer = document.getElementById('auth-container');
-        const gameContainer = document.getElementById('game-container');
-        const usernameInput = document.getElementById('username');
-        const passwordInput = document.getElementById('password');
-        const confirmPasswordGroup = document.getElementById('confirm-password-group');
-        const confirmPasswordInput = document.getElementById('confirm-password');
-        const authBtn = document.getElementById('auth-btn');
-        const authError = document.getElementById('auth-error');
-        const authToggleText = document.getElementById('auth-toggle-text');
-        const authToggleLink = document.getElementById('auth-toggle-link');
-        const usernameDisplay = document.getElementById('username-display');
-        const userAvatar = document.getElementById('user-avatar');
         const moneyEl = document.getElementById('money');
         const fieldCountEl = document.getElementById('field-count');
         const maxFieldsEl = document.getElementById('max-fields');
@@ -1004,12 +863,13 @@
         const seedNotification = document.getElementById('seedNotification');
         const notificationContent = document.getElementById('notification-content');
         const exportModal = document.getElementById('exportModal');
+        const importModal = document.getElementById('importModal');
         const achievementsModal = document.getElementById('achievementsModal');
         const achievementsContainer = document.getElementById('achievements-container');
         const exportDataEl = document.getElementById('exportData');
+        const importDataEl = document.getElementById('importData');
 
         let currentFieldId = null;
-        let isRegisterMode = false;
         let growthIntervals = {};
 
         // Инициализация игры
@@ -1019,16 +879,17 @@
             if (savedGame) {
                 try {
                     const parsed = JSON.parse(savedGame);
-                    if (parsed.isRegistered) {
-                        gameState = parsed;
-                        initAchievements();
-                        showGameInterface();
-                        startGrowthIntervals();
-                    }
+                    gameState = parsed;
+                    initAchievements();
+                    renderGame();
+                    startGrowthIntervals();
                 } catch (e) {
                     console.error('Ошибка загрузки игры:', e);
                     localStorage.removeItem('it_farm_game');
                 }
+            } else {
+                initAchievements();
+                renderGame();
             }
             
             setupEventListeners();
@@ -1036,8 +897,6 @@
 
         // Настройка обработчиков событий
         function setupEventListeners() {
-            authBtn.addEventListener('click', handleAuth);
-            authToggleLink.addEventListener('click', toggleAuthMode);
             closeModalBtn.addEventListener('click', () => {
                 plantModal.style.display = 'none';
             });
@@ -1051,136 +910,12 @@
             // Закрытие модальных окон при клике вне контента
             document.addEventListener('click', (e) => {
                 if (e.target === exportModal) closeExportModal();
+                if (e.target === importModal) closeImportModal();
                 if (e.target === achievementsModal) closeAchievementsModal();
             });
             
             // Покупка поля
             fieldPurchaseEl.addEventListener('click', buyField);
-        }
-
-        // Переключение между входом и регистрацией
-        function toggleAuthMode(e) {
-            e.preventDefault();
-            isRegisterMode = !isRegisterMode;
-            
-            if (isRegisterMode) {
-                authBtn.textContent = 'Зарегистрироваться';
-                authToggleText.textContent = 'Уже есть аккаунт?';
-                authToggleLink.textContent = 'Войти';
-                confirmPasswordGroup.style.display = 'block';
-            } else {
-                authBtn.textContent = 'Войти';
-                authToggleText.textContent = 'Нет аккаунта?';
-                authToggleLink.textContent = 'Зарегистрироваться';
-                confirmPasswordGroup.style.display = 'none';
-            }
-            
-            authError.style.display = 'none';
-        }
-
-        // Обработка аутентификации
-        function handleAuth() {
-            const username = usernameInput.value.trim();
-            const password = passwordInput.value.trim();
-            const confirmPassword = confirmPasswordInput.value.trim();
-            
-            if (!username || !password) {
-                showAuthError('Заполните все поля');
-                return;
-            }
-            
-            if (isRegisterMode) {
-                if (password !== confirmPassword) {
-                    showAuthError('Пароли не совпадают');
-                    return;
-                }
-                
-                if (password.length < 4) {
-                    showAuthError('Пароль должен быть не менее 4 символов');
-                    return;
-                }
-                
-                if (username.length < 3) {
-                    showAuthError('Имя пользователя должно быть не менее 3 символов');
-                    return;
-                }
-                
-                registerUser(username);
-            } else {
-                loginUser(username);
-            }
-        }
-
-        // Показать ошибку аутентификации
-        function showAuthError(message) {
-            authError.textContent = message;
-            authError.style.display = 'block';
-        }
-
-        // Регистрация пользователя
-        function registerUser(username) {
-            gameState.username = username;
-            gameState.isRegistered = true;
-            initAchievements();
-            saveGameState();
-            showGameInterface();
-        }
-
-        // Вход пользователя
-        function loginUser(username) {
-            const savedGame = localStorage.getItem('it_farm_game');
-            
-            if (savedGame) {
-                try {
-                    const parsed = JSON.parse(savedGame);
-                    if (parsed.username === username && parsed.isRegistered) {
-                        gameState = parsed;
-                        initAchievements();
-                        showGameInterface();
-                        startGrowthIntervals();
-                        return;
-                    }
-                } catch (e) {
-                    console.error('Ошибка входа:', e);
-                }
-            }
-            
-            showAuthError('Пользователь не найден');
-        }
-
-        // Выход из системы
-        function logout() {
-            gameState.isRegistered = false;
-            saveGameState();
-            hideGameInterface();
-        }
-
-        // Показать игровой интерфейс
-        function showGameInterface() {
-            authContainer.style.display = 'none';
-            gameContainer.style.display = 'block';
-            usernameDisplay.textContent = gameState.username;
-            userAvatar.textContent = gameState.username.substring(0, 2).toUpperCase();
-            renderGame();
-            startGrowthIntervals();
-        }
-
-        // Скрыть игровой интерфейс
-        function hideGameInterface() {
-            authContainer.style.display = 'flex';
-            gameContainer.style.display = 'none';
-            stopGrowthIntervals();
-            
-            // Сброс полей формы
-            usernameInput.value = '';
-            passwordInput.value = '';
-            confirmPasswordInput.value = '';
-            authError.style.display = 'none';
-        }
-
-        // Сохранить состояние игры
-        function saveGameState() {
-            localStorage.setItem('it_farm_game', JSON.stringify(gameState));
         }
 
         // Рендер игры
@@ -1449,13 +1184,6 @@
             gameState.inventory[seedItem] += seedCount;
             
             // Обновляем достижения
-            if (!gameState.achievements[field.type]) {
-                gameState.achievements[field.type] = {
-                    count: 0,
-                    medalEarned: false
-                };
-            }
-            
             gameState.achievements[field.type].count++;
             
             // Проверяем, достигнута ли медаль
@@ -1700,6 +1428,11 @@
         // Система сохранения
         // ====================
         
+        // Сохранить состояние игры
+        function saveGameState() {
+            localStorage.setItem('it_farm_game', JSON.stringify(gameState));
+        }
+        
         // Показать модальное окно экспорта
         function showExportModal() {
             // Генерируем код сохранения
@@ -1713,13 +1446,63 @@
             exportModal.style.display = 'none';
         }
         
+        // Показать модальное окно импорта
+        function showImportModal() {
+            importDataEl.value = '';
+            importModal.style.display = 'flex';
+        }
+        
+        // Закрыть модальное окно импорта
+        function closeImportModal() {
+            importModal.style.display = 'none';
+        }
+        
         // Сгенерировать код сохранения
         function generateSaveCode() {
             const saveData = {
-                version: 2, // Увеличиваем версию из-за изменений в структуре
+                version: 2,
                 state: gameState
             };
             return btoa(encodeURIComponent(JSON.stringify(saveData)));
+        }
+        
+        // Загрузить игру из кода
+        function loadGameData() {
+            const saveCode = importDataEl.value.trim();
+            
+            if (!saveCode) {
+                showNotification('Введите код сохранения', 'error');
+                return;
+            }
+            
+            try {
+                // Декодируем данные
+                const decoded = JSON.parse(decodeURIComponent(atob(saveCode)));
+                
+                // Проверяем версию
+                if (decoded.version !== 2) {
+                    showNotification('Неверная версия сохранения', 'error');
+                    return;
+                }
+                
+                // Загружаем состояние
+                gameState = decoded.state;
+                
+                // Сохраняем в localStorage
+                saveGameState();
+                
+                // Перезагружаем интерфейс
+                renderGame();
+                startGrowthIntervals();
+                
+                // Закрываем модальное окно
+                closeImportModal();
+                
+                showNotification('Игра успешно загружена!', 'success');
+            } catch (e) {
+                console.error('Ошибка загрузки:', e);
+                showNotification('Неверный формат сохранения', 'error');
+            }
         }
         
         // Скопировать код сохранения в буфер обмена
