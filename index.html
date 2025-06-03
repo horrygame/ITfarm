@@ -14,6 +14,10 @@
             --success: #4ade80;
             --warning: #facc15;
             --danger: #f87171;
+            --common: #a0aec0;
+            --rare: #4299e1;
+            --epic: #9f7aea;
+            --legendary: #f6ad55;
         }
         
         * {
@@ -182,11 +186,6 @@
             text-align: center;
         }
         
-        .inventory-item-icon {
-            font-size: 2rem;
-            margin-bottom: 10px;
-        }
-        
         .shop {
             background: rgba(0, 20, 40, 0.8);
             padding: 20px;
@@ -211,6 +210,7 @@
             padding: 20px;
             width: 250px;
             transition: all 0.3s;
+            position: relative;
         }
         
         .seed-pack:hover {
@@ -240,6 +240,32 @@
             font-size: 1.5rem;
             margin: 15px 0;
             font-weight: bold;
+        }
+        
+        .rarity {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .common-rarity {
+            background-color: var(--common);
+        }
+        
+        .rare-rarity {
+            background-color: var(--rare);
+        }
+        
+        .epic-rarity {
+            background-color: var(--epic);
+        }
+        
+        .legendary-rarity {
+            background-color: var(--legendary);
         }
         
         .auth-container {
@@ -625,29 +651,103 @@
     <script>
         // Конфигурация игры
         const PLANTS = {
+            // Common
             "common_laptop": {
                 "name": "Ноутбук",
                 "growth_time": 15,
                 "reward": 20,
-                "seed": "common_laptop_seed"
+                "seed": "common_laptop_seed",
+                "rarity": "common"
             },
+            "it_student": {
+                "name": "IT ученик",
+                "growth_time": 20,
+                "reward": 25,
+                "seed": "it_student_seed",
+                "rarity": "common"
+            },
+            "led": {
+                "name": "Светодиод",
+                "growth_time": 10,
+                "reward": 15,
+                "seed": "led_seed",
+                "rarity": "common"
+            },
+            
+            // Rare
             "gaming_pc": {
                 "name": "Игровой ПК",
                 "growth_time": 30,
                 "reward": 50,
-                "seed": "gaming_pc_seed"
+                "seed": "gaming_pc_seed",
+                "rarity": "rare"
+            },
+            "it_graduate": {
+                "name": "IT выпускник",
+                "growth_time": 35,
+                "reward": 60,
+                "seed": "it_graduate_seed",
+                "rarity": "rare"
+            },
+            "printer": {
+                "name": "Принтер",
+                "growth_time": 25,
+                "reward": 45,
+                "seed": "printer_seed",
+                "rarity": "rare"
+            },
+            "gear": {
+                "name": "Шестеренка",
+                "growth_time": 20,
+                "reward": 40,
+                "seed": "gear_seed",
+                "rarity": "rare"
+            },
+            
+            // Epic
+            "powerful_pc": {
+                "name": "Мощный ПК",
+                "growth_time": 60,
+                "reward": 150,
+                "seed": "powerful_pc_seed",
+                "rarity": "epic"
             },
             "junior_dev": {
                 "name": "Джуниор",
-                "growth_time": 45,
-                "reward": 100,
-                "seed": "junior_dev_seed"
+                "growth_time": 70,
+                "reward": 180,
+                "seed": "junior_dev_seed",
+                "rarity": "epic"
+            },
+            "sensor": {
+                "name": "Датчик",
+                "growth_time": 50,
+                "reward": 120,
+                "seed": "sensor_seed",
+                "rarity": "epic"
+            },
+            
+            // Legendary
+            "weak_pc": {
+                "name": "Слабый ПК",
+                "growth_time": 90,
+                "reward": 300,
+                "seed": "weak_pc_seed",
+                "rarity": "legendary"
+            },
+            "coffee": {
+                "name": "Кофе",
+                "growth_time": 120,
+                "reward": 500,
+                "seed": "coffee_seed",
+                "rarity": "legendary"
             },
             "senior_dev": {
                 "name": "Сеньор",
-                "growth_time": 60,
-                "reward": 300,
-                "seed": "senior_dev_seed"
+                "growth_time": 100,
+                "reward": 400,
+                "seed": "senior_dev_seed",
+                "rarity": "legendary"
             }
         };
 
@@ -655,18 +755,62 @@
             {
                 "name": "Начинающий",
                 "price": 50,
+                "rarity": "common",
                 "drops": {
-                    "common_laptop": 0.7,
-                    "gaming_pc": 0.3
+                    "common_laptop": 0.5,
+                    "it_student": 0.3,
+                    "led": 0.2
                 }
             },
             {
                 "name": "Профессионал",
                 "price": 200,
+                "rarity": "rare",
                 "drops": {
-                    "gaming_pc": 0.5,
-                    "junior_dev": 0.4,
-                    "senior_dev": 0.1
+                    "gaming_pc": 0.4,
+                    "it_graduate": 0.3,
+                    "printer": 0.2,
+                    "gear": 0.1
+                }
+            },
+            {
+                "name": "Эксперт",
+                "price": 500,
+                "rarity": "epic",
+                "drops": {
+                    "powerful_pc": 0.5,
+                    "junior_dev": 0.3,
+                    "sensor": 0.2
+                }
+            },
+            {
+                "name": "Легендарный",
+                "price": 1500,
+                "rarity": "legendary",
+                "drops": {
+                    "weak_pc": 0.4,
+                    "coffee": 0.3,
+                    "senior_dev": 0.3
+                }
+            },
+            {
+                "name": "Микс",
+                "price": 800,
+                "rarity": "mixed",
+                "drops": {
+                    "common_laptop": 0.2,
+                    "it_student": 0.15,
+                    "led": 0.15,
+                    "gaming_pc": 0.15,
+                    "it_graduate": 0.1,
+                    "printer": 0.1,
+                    "gear": 0.05,
+                    "powerful_pc": 0.05,
+                    "junior_dev": 0.03,
+                    "sensor": 0.02,
+                    "weak_pc": 0.01,
+                    "coffee": 0.01,
+                    "senior_dev": 0.01
                 }
             }
         ];
@@ -676,7 +820,9 @@
             username: "",
             money: 100,
             inventory: {
-                "common_laptop_seed": 5
+                "common_laptop_seed": 5,
+                "it_student_seed": 3,
+                "led_seed": 4
             },
             fields: Array(4).fill().map((_, i) => ({
                 id: i + 1,
@@ -897,6 +1043,11 @@
                 
                 const itemEl = document.createElement('div');
                 itemEl.className = 'inventory-item';
+                
+                // Добавляем цвет редкости
+                const rarity = PLANTS[itemName]?.rarity || 'common';
+                itemEl.style.borderLeft = `5px solid var(--${rarity})`;
+                
                 itemEl.innerHTML = `
                     <div class="inventory-item-icon">${getPlantEmoji(itemName)}</div>
                     <div>${itemDisplay}</div>
@@ -924,6 +1075,9 @@
                     `;
                     info = plant.name;
                     if (!field.ready) info += ` (${Math.round(field.growth)}%)`;
+                    
+                    // Добавляем цвет редкости
+                    fieldEl.style.borderColor = `var(--${plant.rarity})`;
                 }
                 
                 fieldEl.innerHTML = `
@@ -958,7 +1112,14 @@
                     `;
                 }
                 
+                // Добавляем бейдж редкости
+                let rarityBadge = '';
+                if (pack.rarity) {
+                    rarityBadge = `<div class="rarity ${pack.rarity}-rarity">${pack.rarity}</div>`;
+                }
+                
                 packEl.innerHTML = `
+                    ${rarityBadge}
                     <h3>${pack.name}</h3>
                     <div class="seed-list">${seedsHTML}</div>
                     <div class="seed-price">${pack.price} 💰</div>
@@ -973,14 +1134,26 @@
         // Получить эмодзи для растения
         function getPlantEmoji(type) {
             const emojis = {
+                // Common
                 'common_laptop': '💻',
+                'it_student': '👨‍🎓',
+                'led': '💡',
+                
+                // Rare
                 'gaming_pc': '🖥️',
+                'it_graduate': '🎓',
+                'printer': '🖨️',
+                'gear': '⚙️',
+                
+                // Epic
+                'powerful_pc': '💻🔥',
                 'junior_dev': '👨‍💻',
-                'senior_dev': '👴‍💻',
-                'common_laptop_seed': '💻🌱',
-                'gaming_pc_seed': '🖥️🌱',
-                'junior_dev_seed': '👨‍💻🌱',
-                'senior_dev_seed': '👴‍💻🌱'
+                'sensor': '📡',
+                
+                // Legendary
+                'weak_pc': '💻🪫',
+                'coffee': '☕',
+                'senior_dev': '👴‍💻'
             };
             return emojis[type] || '🌱';
         }
@@ -1000,10 +1173,21 @@
                 return;
             }
             
+            // Сортируем по редкости
+            seedTypes.sort((a, b) => {
+                const rarityOrder = {common: 0, rare: 1, epic: 2, legendary: 3};
+                return rarityOrder[PLANTS[b].rarity] - rarityOrder[PLANTS[a].rarity];
+            });
+            
             // Заполняем модальное окно
             seedTypes.forEach(seedType => {
                 const seedOption = document.createElement('div');
                 seedOption.className = 'seed-option';
+                
+                // Добавляем цвет редкости
+                const rarity = PLANTS[seedType].rarity;
+                seedOption.style.borderLeft = `5px solid var(--${rarity})`;
+                
                 seedOption.innerHTML = `
                     <div class="seed-emoji">${getPlantEmoji(seedType)}</div>
                     <div>${PLANTS[seedType].name}</div>
@@ -1066,9 +1250,20 @@
             // Получаем награду
             gameState.money += plant.reward;
             
-            // Добавляем 2-3 семян этого же растения
+            // Добавляем семена этого же растения (количество зависит от редкости)
             const seedItem = plant.seed;
-            const seedCount = Math.floor(Math.random() * 2) + 2; // 2 или 3
+            const baseSeedCount = {
+                "common": 2,
+                "rare": 1,
+                "epic": 1,
+                "legendary": 1
+            };
+            
+            let seedCount = baseSeedCount[plant.rarity];
+            // Шанс дополнительных семян для редких растений
+            if (plant.rarity !== "common" && Math.random() > 0.7) {
+                seedCount++;
+            }
             
             if (!gameState.inventory[seedItem]) {
                 gameState.inventory[seedItem] = 0;
