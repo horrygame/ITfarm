@@ -105,11 +105,12 @@
             border-radius: 15px;
             font-size: 1.2rem;
             margin-bottom: 20px;
+            flex-wrap: wrap;
         }
         
         .farm {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             gap: 25px;
             margin-bottom: 30px;
         }
@@ -190,12 +191,25 @@
             background: rgba(0, 20, 40, 0.8);
             padding: 20px;
             border-radius: 15px;
+            margin-bottom: 30px;
         }
         
         .shop h2 {
             margin-top: 0;
             color: var(--primary);
             margin-bottom: 15px;
+        }
+        
+        .shop-section {
+            margin-bottom: 30px;
+        }
+        
+        .shop-section-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
         }
         
         .seed-packs {
@@ -406,6 +420,8 @@
             width: 90%;
             max-width: 500px;
             box-shadow: 0 0 30px rgba(76, 201, 240, 0.5);
+            max-height: 90vh;
+            overflow-y: auto;
         }
         
         .modal-title {
@@ -517,6 +533,93 @@
             resize: none;
         }
         
+        /* Стили для достижений */
+        .achievements-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .achievement-card {
+            background: rgba(0, 30, 60, 0.8);
+            border-radius: 15px;
+            padding: 15px;
+            text-align: center;
+            border: 2px solid var(--common);
+            transition: all 0.3s;
+        }
+        
+        .achievement-card.unlocked {
+            border-color: var(--legendary);
+            background: rgba(246, 173, 85, 0.2);
+            box-shadow: 0 0 15px rgba(246, 173, 85, 0.5);
+        }
+        
+        .achievement-emoji {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+        
+        .achievement-title {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+        
+        .achievement-progress {
+            height: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+        
+        .achievement-progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: width 0.5s;
+        }
+        
+        .achievement-count {
+            font-size: 0.9rem;
+            color: var(--warning);
+        }
+        
+        .medal {
+            font-size: 2rem;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+        
+        /* Покупка полей */
+        .field-purchase {
+            background: rgba(0, 40, 80, 0.7);
+            border: 2px dashed var(--primary);
+            border-radius: 15px;
+            height: 180px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .field-purchase:hover {
+            background: rgba(0, 60, 120, 0.7);
+        }
+        
+        .field-purchase-icon {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+        
+        .field-purchase-price {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        
         @media (max-width: 768px) {
             .farm {
                 grid-template-columns: repeat(2, 1fr);
@@ -532,6 +635,10 @@
             
             .save-controls {
                 flex-direction: column;
+            }
+            
+            .achievements-container {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
     </style>
@@ -576,7 +683,7 @@
                     <div id="username-display"></div>
                     <div class="save-controls">
                         <button class="btn" onclick="showExportModal()">Экспорт</button>
-                        <button class="btn" onclick="showImportModal()">Импорт</button>
+                        <button class="btn" onclick="showAchievementsModal()">Достижения</button>
                         <button class="btn btn-logout" onclick="logout()">Выйти</button>
                     </div>
                 </div>
@@ -585,6 +692,7 @@
         
         <div class="stats">
             <div class="money">💰 Деньги: <span id="money">100</span></div>
+            <div class="fields">🧺 Поля: <span id="field-count">4</span>/<span id="max-fields">12</span></div>
         </div>
         
         <div class="farm" id="fields-container">
@@ -599,9 +707,26 @@
         </div>
         
         <div class="shop">
-            <h2>🏪 Магазин семян</h2>
-            <div class="seed-packs" id="seed-packs-container">
-                <!-- Пакеты семян будут здесь -->
+            <h2>🏪 Магазин</h2>
+            
+            <div class="shop-section">
+                <div class="shop-section-title">
+                    <span>🌱 Семена</span>
+                </div>
+                <div class="seed-packs" id="seed-packs-container">
+                    <!-- Пакеты семян будут здесь -->
+                </div>
+            </div>
+            
+            <div class="shop-section">
+                <div class="shop-section-title">
+                    <span>🧺 Новые поля</span>
+                </div>
+                <div class="field-purchase" id="field-purchase">
+                    <div class="field-purchase-icon">➕</div>
+                    <div>Купить поле</div>
+                    <div class="field-purchase-price" id="field-price">1000 💰</div>
+                </div>
             </div>
         </div>
     </div>
@@ -631,15 +756,16 @@
         </div>
     </div>
 
-    <!-- Модальное окно импорта -->
-    <div id="importModal" class="modal">
+    <!-- Модальное окно достижений -->
+    <div id="achievementsModal" class="modal">
         <div class="modal-content">
-            <h2 class="modal-title">Импорт сохранения</h2>
-            <p>Вставьте код сохранения в поле ниже:</p>
-            <textarea id="importData" class="save-textarea" placeholder="Вставьте сюда код сохранения..."></textarea>
+            <h2 class="modal-title">🏆 Достижения</h2>
+            <p>Соберите культуру 1 000 000 раз, чтобы получить золотую медаль!</p>
+            <div class="achievements-container" id="achievements-container">
+                <!-- Достижения будут здесь -->
+            </div>
             <div class="modal-buttons">
-                <button class="modal-btn" onclick="loadGameData()">Загрузить</button>
-                <button class="modal-btn modal-close" onclick="closeImportModal()">Закрыть</button>
+                <button class="modal-btn modal-close" onclick="closeAchievementsModal()">Закрыть</button>
             </div>
         </div>
     </div>
@@ -815,6 +941,9 @@
             }
         ];
 
+        // Цена покупки новых полей
+        const FIELD_PRICES = [1000, 2500, 5000, 10000, 20000, 50000, 100000, 200000];
+
         // Состояние игры
         let gameState = {
             username: "",
@@ -831,8 +960,22 @@
                 growth: 0,
                 ready: false
             })),
+            achievements: {},
+            purchasedFields: 0, // Количество купленных полей
             isRegistered: false
         };
+
+        // Инициализация достижений
+        function initAchievements() {
+            for (const plantKey in PLANTS) {
+                if (!gameState.achievements[plantKey]) {
+                    gameState.achievements[plantKey] = {
+                        count: 0,
+                        medalEarned: false
+                    };
+                }
+            }
+        }
 
         // DOM элементы
         const authContainer = document.getElementById('auth-container');
@@ -848,18 +991,22 @@
         const usernameDisplay = document.getElementById('username-display');
         const userAvatar = document.getElementById('user-avatar');
         const moneyEl = document.getElementById('money');
+        const fieldCountEl = document.getElementById('field-count');
+        const maxFieldsEl = document.getElementById('max-fields');
         const inventoryList = document.getElementById('inventory-list');
         const fieldsContainer = document.getElementById('fields-container');
         const seedPacksContainer = document.getElementById('seed-packs-container');
+        const fieldPurchaseEl = document.getElementById('field-purchase');
+        const fieldPriceEl = document.getElementById('field-price');
         const plantModal = document.getElementById('plantModal');
         const seedOptionsEl = document.getElementById('seed-options');
         const closeModalBtn = document.getElementById('closeModal');
         const seedNotification = document.getElementById('seedNotification');
         const notificationContent = document.getElementById('notification-content');
         const exportModal = document.getElementById('exportModal');
-        const importModal = document.getElementById('importModal');
+        const achievementsModal = document.getElementById('achievementsModal');
+        const achievementsContainer = document.getElementById('achievements-container');
         const exportDataEl = document.getElementById('exportData');
-        const importDataEl = document.getElementById('importData');
 
         let currentFieldId = null;
         let isRegisterMode = false;
@@ -874,6 +1021,7 @@
                     const parsed = JSON.parse(savedGame);
                     if (parsed.isRegistered) {
                         gameState = parsed;
+                        initAchievements();
                         showGameInterface();
                         startGrowthIntervals();
                     }
@@ -903,8 +1051,11 @@
             // Закрытие модальных окон при клике вне контента
             document.addEventListener('click', (e) => {
                 if (e.target === exportModal) closeExportModal();
-                if (e.target === importModal) closeImportModal();
+                if (e.target === achievementsModal) closeAchievementsModal();
             });
+            
+            // Покупка поля
+            fieldPurchaseEl.addEventListener('click', buyField);
         }
 
         // Переключение между входом и регистрацией
@@ -970,6 +1121,7 @@
         function registerUser(username) {
             gameState.username = username;
             gameState.isRegistered = true;
+            initAchievements();
             saveGameState();
             showGameInterface();
         }
@@ -983,6 +1135,7 @@
                     const parsed = JSON.parse(savedGame);
                     if (parsed.username === username && parsed.isRegistered) {
                         gameState = parsed;
+                        initAchievements();
                         showGameInterface();
                         startGrowthIntervals();
                         return;
@@ -1034,6 +1187,18 @@
         function renderGame() {
             // Обновляем деньги
             moneyEl.textContent = gameState.money;
+            
+            // Обновляем информацию о полях
+            const totalFields = gameState.fields.length;
+            fieldCountEl.textContent = totalFields;
+            maxFieldsEl.textContent = 12;
+            
+            // Обновляем цену следующего поля
+            if (gameState.purchasedFields < FIELD_PRICES.length) {
+                fieldPriceEl.textContent = `${FIELD_PRICES[gameState.purchasedFields]} 💰`;
+            } else {
+                fieldPurchaseEl.style.display = 'none';
+            }
             
             // Рендерим инвентарь
             inventoryList.innerHTML = '';
@@ -1095,6 +1260,19 @@
                 
                 fieldsContainer.appendChild(fieldEl);
             });
+            
+            // Добавляем кнопку покупки поля, если есть доступные слоты
+            if (gameState.fields.length < 12 && gameState.purchasedFields < FIELD_PRICES.length) {
+                const fieldPurchase = document.createElement('div');
+                fieldPurchase.className = 'field-purchase';
+                fieldPurchase.innerHTML = `
+                    <div class="field-purchase-icon">➕</div>
+                    <div>Купить поле</div>
+                    <div class="field-purchase-price">${FIELD_PRICES[gameState.purchasedFields]} 💰</div>
+                `;
+                fieldPurchase.onclick = buyField;
+                fieldsContainer.appendChild(fieldPurchase);
+            }
             
             // Рендерим магазин
             seedPacksContainer.innerHTML = '';
@@ -1270,6 +1448,21 @@
             }
             gameState.inventory[seedItem] += seedCount;
             
+            // Обновляем достижения
+            if (!gameState.achievements[field.type]) {
+                gameState.achievements[field.type] = {
+                    count: 0,
+                    medalEarned: false
+                };
+            }
+            
+            gameState.achievements[field.type].count++;
+            
+            // Проверяем, достигнута ли медаль
+            if (gameState.achievements[field.type].count >= 1000000) {
+                gameState.achievements[field.type].medalEarned = true;
+            }
+            
             // Сбрасываем поле
             field.type = null;
             field.planted_at = null;
@@ -1337,6 +1530,46 @@
             
             showNotification(
                 `Куплен пакет "${pack.name}"!<br>Вы получили: ${PLANTS[seedType].name}`,
+                'success'
+            );
+        }
+
+        // Купить новое поле
+        function buyField() {
+            // Проверяем, можно ли купить еще поле
+            if (gameState.fields.length >= 12 || gameState.purchasedFields >= FIELD_PRICES.length) {
+                showNotification('Достигнуто максимальное количество полей!', 'error');
+                return;
+            }
+            
+            const price = FIELD_PRICES[gameState.purchasedFields];
+            
+            if (gameState.money < price) {
+                showNotification('Недостаточно денег!', 'error');
+                return;
+            }
+            
+            // Покупаем поле
+            gameState.money -= price;
+            gameState.purchasedFields++;
+            
+            // Добавляем новое поле
+            const newField = {
+                id: gameState.fields.length + 1,
+                type: null,
+                planted_at: null,
+                growth: 0,
+                ready: false
+            };
+            
+            gameState.fields.push(newField);
+            
+            // Сохраняем состояние
+            saveGameState();
+            renderGame();
+            
+            showNotification(
+                `Куплено новое поле!<br>Теперь у вас ${gameState.fields.length} полей`,
                 'success'
             );
         }
@@ -1423,6 +1656,47 @@
         }
 
         // ====================
+        // Система достижений
+        // ====================
+        
+        // Показать модальное окно достижений
+        function showAchievementsModal() {
+            achievementsContainer.innerHTML = '';
+            
+            for (const plantKey in PLANTS) {
+                const plant = PLANTS[plantKey];
+                const achievement = gameState.achievements[plantKey] || {
+                    count: 0,
+                    medalEarned: false
+                };
+                
+                const progress = Math.min(100, (achievement.count / 1000000) * 100);
+                
+                const achievementCard = document.createElement('div');
+                achievementCard.className = `achievement-card ${achievement.medalEarned ? 'unlocked' : ''}`;
+                
+                achievementCard.innerHTML = `
+                    ${achievement.medalEarned ? '<div class="medal">🏅</div>' : ''}
+                    <div class="achievement-emoji">${getPlantEmoji(plantKey)}</div>
+                    <div class="achievement-title">${plant.name}</div>
+                    <div class="achievement-progress">
+                        <div class="achievement-progress-bar" style="width: ${progress}%"></div>
+                    </div>
+                    <div class="achievement-count">${achievement.count.toLocaleString()}/1,000,000</div>
+                `;
+                
+                achievementsContainer.appendChild(achievementCard);
+            }
+            
+            achievementsModal.style.display = 'flex';
+        }
+        
+        // Закрыть модальное окно достижений
+        function closeAchievementsModal() {
+            achievementsModal.style.display = 'none';
+        }
+
+        // ====================
         // Система сохранения
         // ====================
         
@@ -1439,63 +1713,13 @@
             exportModal.style.display = 'none';
         }
         
-        // Показать модальное окно импорта
-        function showImportModal() {
-            importDataEl.value = '';
-            importModal.style.display = 'flex';
-        }
-        
-        // Закрыть модальное окно импорта
-        function closeImportModal() {
-            importModal.style.display = 'none';
-        }
-        
         // Сгенерировать код сохранения
         function generateSaveCode() {
             const saveData = {
-                version: 1,
+                version: 2, // Увеличиваем версию из-за изменений в структуре
                 state: gameState
             };
             return btoa(encodeURIComponent(JSON.stringify(saveData)));
-        }
-        
-        // Загрузить игру из кода
-        function loadGameData() {
-            const saveCode = importDataEl.value.trim();
-            
-            if (!saveCode) {
-                showNotification('Введите код сохранения', 'error');
-                return;
-            }
-            
-            try {
-                // Декодируем данные
-                const decoded = JSON.parse(decodeURIComponent(atob(saveCode)));
-                
-                // Проверяем версию
-                if (decoded.version !== 1) {
-                    showNotification('Неверная версия сохранения', 'error');
-                    return;
-                }
-                
-                // Загружаем состояние
-                gameState = decoded.state;
-                
-                // Сохраняем в localStorage
-                saveGameState();
-                
-                // Перезагружаем интерфейс
-                renderGame();
-                startGrowthIntervals();
-                
-                // Закрываем модальное окно
-                closeImportModal();
-                
-                showNotification('Игра успешно загружена!', 'success');
-            } catch (e) {
-                console.error('Ошибка загрузки:', e);
-                showNotification('Неверный формат сохранения', 'error');
-            }
         }
         
         // Скопировать код сохранения в буфер обмена
