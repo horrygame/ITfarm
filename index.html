@@ -15,13 +15,13 @@
             --warning: #facc15;
             --danger: #f87171;
         }
-
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
+        
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #1a2a6c, #b21f1f, #1a2a6c);
@@ -29,7 +29,7 @@
             min-height: 100vh;
             padding: 20px;
         }
-
+        
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -38,7 +38,7 @@
             padding: 20px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
-
+        
         .user-header {
             display: flex;
             justify-content: space-between;
@@ -47,19 +47,19 @@
             padding-bottom: 15px;
             border-bottom: 2px solid var(--primary);
         }
-
+        
         h1 {
             margin: 0;
             font-size: 2.5rem;
             text-shadow: 0 0 10px rgba(76, 201, 240, 0.7);
         }
-
+        
         .user-info {
             display: flex;
             align-items: center;
             gap: 15px;
         }
-
+        
         .user-avatar {
             width: 50px;
             height: 50px;
@@ -71,7 +71,7 @@
             font-size: 1.5rem;
             font-weight: bold;
         }
-
+        
         .btn {
             background: linear-gradient(135deg, var(--accent), #b5179e);
             color: white;
@@ -83,16 +83,16 @@
             transition: all 0.3s;
             font-size: 1rem;
         }
-
+        
         .btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(247, 37, 133, 0.4);
         }
-
+        
         .btn-logout {
             background: linear-gradient(135deg, #ff4757, #ff6b81);
         }
-
+        
         .stats {
             display: flex;
             gap: 20px;
@@ -102,14 +102,14 @@
             font-size: 1.2rem;
             margin-bottom: 20px;
         }
-
+        
         .farm {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 25px;
             margin-bottom: 30px;
         }
-
+        
         .field {
             background: rgba(0, 40, 80, 0.7);
             border: 3px solid var(--primary);
@@ -124,18 +124,18 @@
             transition: all 0.3s;
             cursor: pointer;
         }
-
+        
         .field:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(76, 201, 240, 0.3);
         }
-
+        
         .field-content {
             font-size: 4rem;
             text-align: center;
             z-index: 2;
         }
-
+        
         .field-info {
             position: absolute;
             bottom: 10px;
@@ -144,7 +144,7 @@
             padding: 3px 10px;
             border-radius: 10px;
         }
-
+        
         .growth-bar {
             position: absolute;
             bottom: 0;
@@ -154,26 +154,26 @@
             width: 0%;
             transition: width 0.5s;
         }
-
+        
         .inventory {
             background: rgba(0, 20, 40, 0.8);
             padding: 20px;
             border-radius: 15px;
             margin-bottom: 30px;
         }
-
+        
         .inventory h2 {
             margin-top: 0;
             color: var(--primary);
             margin-bottom: 15px;
         }
-
+        
         .inventory-items {
             display: flex;
             flex-wrap: wrap;
             gap: 15px;
         }
-
+        
         .inventory-item {
             background: rgba(76, 201, 240, 0.2);
             padding: 15px;
@@ -181,30 +181,30 @@
             min-width: 140px;
             text-align: center;
         }
-
+        
         .inventory-item-icon {
             font-size: 2rem;
             margin-bottom: 10px;
         }
-
+        
         .shop {
             background: rgba(0, 20, 40, 0.8);
             padding: 20px;
             border-radius: 15px;
         }
-
+        
         .shop h2 {
             margin-top: 0;
             color: var(--primary);
             margin-bottom: 15px;
         }
-
+        
         .seed-packs {
             display: flex;
             flex-wrap: wrap;
             gap: 20px;
         }
-
+        
         .seed-pack {
             background: linear-gradient(135deg, #3a0ca3, var(--secondary));
             border-radius: 15px;
@@ -212,36 +212,36 @@
             width: 250px;
             transition: all 0.3s;
         }
-
+        
         .seed-pack:hover {
             transform: scale(1.05);
             box-shadow: 0 5px 15px rgba(76, 201, 240, 0.4);
         }
-
+        
         .seed-pack h3 {
             margin-top: 0;
             color: var(--accent);
         }
-
+        
         .seed-list {
             margin: 15px 0;
             min-height: 100px;
         }
-
+        
         .seed-item {
             display: flex;
             justify-content: space-between;
             padding: 8px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
-
+        
         .seed-price {
             text-align: center;
             font-size: 1.5rem;
             margin: 15px 0;
             font-weight: bold;
         }
-
+        
         .auth-container {
             display: flex;
             justify-content: center;
@@ -249,7 +249,7 @@
             min-height: 100vh;
             padding: 20px;
         }
-
+        
         .auth-box {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
@@ -261,25 +261,25 @@
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
             text-align: center;
         }
-
+        
         .auth-logo {
             font-size: 4rem;
             margin-bottom: 20px;
             color: var(--primary);
             text-shadow: 0 0 10px rgba(76, 201, 240, 0.7);
         }
-
+        
         .auth-title {
             color: white;
             margin-bottom: 30px;
             font-weight: 500;
             font-size: 1.8rem;
         }
-
+        
         .input-group {
             margin-bottom: 20px;
         }
-
+        
         .input-group input {
             width: 100%;
             padding: 15px;
@@ -291,16 +291,16 @@
             outline: none;
             transition: all 0.3s;
         }
-
+        
         .input-group input::placeholder {
             color: rgba(255, 255, 255, 0.7);
         }
-
+        
         .input-group input:focus {
             background: rgba(255, 255, 255, 0.2);
             box-shadow: 0 0 10px rgba(76, 201, 240, 0.5);
         }
-
+        
         .auth-btn {
             width: 100%;
             padding: 15px;
@@ -314,28 +314,28 @@
             transition: all 0.3s;
             margin-top: 10px;
         }
-
+        
         .auth-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(76, 201, 240, 0.4);
         }
-
+        
         .auth-links {
             margin-top: 25px;
             color: rgba(255, 255, 255, 0.7);
         }
-
+        
         .auth-link {
             color: var(--primary);
             text-decoration: none;
             transition: all 0.3s;
             font-weight: 500;
         }
-
+        
         .auth-link:hover {
             text-decoration: underline;
         }
-
+        
         .error {
             color: var(--danger);
             margin-top: 15px;
@@ -344,22 +344,22 @@
             border-radius: 10px;
             background: rgba(248, 113, 113, 0.1);
         }
-
+        
         .ready {
             animation: pulse 2s infinite;
         }
-
+        
         @keyframes pulse {
             0% { box-shadow: 0 0 0 0 rgba(76, 201, 240, 0.7); }
             70% { box-shadow: 0 0 0 15px rgba(76, 201, 240, 0); }
             100% { box-shadow: 0 0 0 0 rgba(76, 201, 240, 0); }
         }
-
+        
         .empty-field {
             font-size: 3rem;
             opacity: 0.3;
         }
-
+        
         .modal {
             display: none;
             position: fixed;
@@ -372,7 +372,7 @@
             justify-content: center;
             align-items: center;
         }
-
+        
         .modal-content {
             background: var(--dark);
             padding: 30px;
@@ -381,7 +381,7 @@
             max-width: 500px;
             box-shadow: 0 0 30px rgba(76, 201, 240, 0.5);
         }
-
+        
         .modal-title {
             margin-top: 0;
             color: var(--primary);
@@ -389,14 +389,14 @@
             font-size: 1.5rem;
             margin-bottom: 20px;
         }
-
+        
         .seed-options {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
             gap: 15px;
             margin: 20px 0;
         }
-
+        
         .seed-option {
             background: rgba(76, 201, 240, 0.2);
             border: 2px solid var(--primary);
@@ -406,23 +406,23 @@
             cursor: pointer;
             transition: all 0.3s;
         }
-
+        
         .seed-option:hover {
             transform: scale(1.05);
             background: rgba(76, 201, 240, 0.4);
         }
-
+        
         .seed-emoji {
             font-size: 2.5rem;
             margin-bottom: 10px;
         }
-
+        
         .modal-buttons {
             display: flex;
             justify-content: center;
             margin-top: 20px;
         }
-
+        
         .modal-btn {
             padding: 12px 30px;
             margin: 0 10px;
@@ -434,12 +434,12 @@
             background: linear-gradient(135deg, var(--accent), #b5179e);
             color: white;
         }
-
+        
         .modal-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(247, 37, 133, 0.4);
         }
-
+        
         .notification {
             position: fixed;
             top: 20px;
@@ -454,35 +454,58 @@
             z-index: 1001;
             max-width: 350px;
         }
-
+        
         .notification.show {
             transform: translateX(0);
         }
-
+        
         .notification-content {
             font-size: 1rem;
             line-height: 1.5;
         }
-
+        
         .notification.success {
             border-left-color: var(--success);
         }
-
+        
         .notification.error {
             border-left-color: var(--danger);
         }
 
+        /* Новые стили для системы сохранения */
+        .save-controls {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .save-textarea {
+            width: 100%;
+            height: 150px;
+            margin: 15px 0;
+            padding: 15px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-family: monospace;
+            resize: none;
+        }
+        
         @media (max-width: 768px) {
             .farm {
                 grid-template-columns: repeat(2, 1fr);
             }
-
+            
             .seed-packs {
                 flex-direction: column;
             }
-
+            
             .seed-pack {
                 width: 100%;
+            }
+            
+            .save-controls {
+                flex-direction: column;
             }
         }
     </style>
@@ -492,24 +515,24 @@
         <div class="auth-box">
             <div class="auth-logo">🚜</div>
             <h1 class="auth-title">IT Ферма</h1>
-
+            
             <div id="auth-form">
                 <div class="input-group">
                     <input type="text" id="username" placeholder="Имя пользователя" required>
                 </div>
-
+                
                 <div class="input-group">
                     <input type="password" id="password" placeholder="Пароль" required>
                 </div>
-
+                
                 <div class="input-group" id="confirm-password-group" style="display: none;">
                     <input type="password" id="confirm-password" placeholder="Подтвердите пароль" required>
                 </div>
-
+                
                 <button id="auth-btn" class="auth-btn">Войти</button>
-
+                
                 <div id="auth-error" class="error" style="display: none;"></div>
-
+                
                 <div class="auth-links">
                     <span id="auth-toggle-text">Нет аккаунта?</span>
                     <a href="#" id="auth-toggle-link" class="auth-link">Зарегистрироваться</a>
@@ -525,26 +548,30 @@
                 <div class="user-avatar" id="user-avatar">👨‍🌾</div>
                 <div>
                     <div id="username-display"></div>
-                    <button class="btn btn-logout" onclick="logout()">Выйти</button>
+                    <div class="save-controls">
+                        <button class="btn" onclick="showExportModal()">Экспорт</button>
+                        <button class="btn" onclick="showImportModal()">Импорт</button>
+                        <button class="btn btn-logout" onclick="logout()">Выйти</button>
+                    </div>
                 </div>
             </div>
         </div>
-
+        
         <div class="stats">
             <div class="money">💰 Деньги: <span id="money">100</span></div>
         </div>
-
+        
         <div class="farm" id="fields-container">
             <!-- Поля будут здесь -->
         </div>
-
+        
         <div class="inventory">
             <h2>📦 Инвентарь</h2>
             <div class="inventory-items" id="inventory-list">
                 <!-- Инвентарь будет здесь -->
             </div>
         </div>
-
+        
         <div class="shop">
             <h2>🏪 Магазин семян</h2>
             <div class="seed-packs" id="seed-packs-container">
@@ -561,6 +588,32 @@
             </div>
             <div class="modal-buttons">
                 <button class="modal-btn modal-close" id="closeModal">Закрыть</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно экспорта -->
+    <div id="exportModal" class="modal">
+        <div class="modal-content">
+            <h2 class="modal-title">Экспорт сохранения</h2>
+            <p>Скопируйте этот код и сохраните его. Вы сможете использовать его для восстановления прогресса на другом устройстве.</p>
+            <textarea id="exportData" class="save-textarea" readonly></textarea>
+            <div class="modal-buttons">
+                <button class="modal-btn" onclick="copyExportData()">Копировать</button>
+                <button class="modal-btn modal-close" onclick="closeExportModal()">Закрыть</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно импорта -->
+    <div id="importModal" class="modal">
+        <div class="modal-content">
+            <h2 class="modal-title">Импорт сохранения</h2>
+            <p>Вставьте код сохранения в поле ниже:</p>
+            <textarea id="importData" class="save-textarea" placeholder="Вставьте сюда код сохранения..."></textarea>
+            <div class="modal-buttons">
+                <button class="modal-btn" onclick="loadGameData()">Загрузить</button>
+                <button class="modal-btn modal-close" onclick="closeImportModal()">Закрыть</button>
             </div>
         </div>
     </div>
@@ -638,7 +691,6 @@
         // DOM элементы
         const authContainer = document.getElementById('auth-container');
         const gameContainer = document.getElementById('game-container');
-        const authForm = document.getElementById('auth-form');
         const usernameInput = document.getElementById('username');
         const passwordInput = document.getElementById('password');
         const confirmPasswordGroup = document.getElementById('confirm-password-group');
@@ -658,6 +710,10 @@
         const closeModalBtn = document.getElementById('closeModal');
         const seedNotification = document.getElementById('seedNotification');
         const notificationContent = document.getElementById('notification-content');
+        const exportModal = document.getElementById('exportModal');
+        const importModal = document.getElementById('importModal');
+        const exportDataEl = document.getElementById('exportData');
+        const importDataEl = document.getElementById('importData');
 
         let currentFieldId = null;
         let isRegisterMode = false;
@@ -677,9 +733,10 @@
                     }
                 } catch (e) {
                     console.error('Ошибка загрузки игры:', e);
+                    localStorage.removeItem('it_farm_game');
                 }
             }
-
+            
             setupEventListeners();
         }
 
@@ -690,11 +747,17 @@
             closeModalBtn.addEventListener('click', () => {
                 plantModal.style.display = 'none';
             });
-
+            
             plantModal.addEventListener('click', (e) => {
                 if (e.target === plantModal) {
                     plantModal.style.display = 'none';
                 }
+            });
+            
+            // Закрытие модальных окон при клике вне контента
+            document.addEventListener('click', (e) => {
+                if (e.target === exportModal) closeExportModal();
+                if (e.target === importModal) closeImportModal();
             });
         }
 
@@ -702,7 +765,7 @@
         function toggleAuthMode(e) {
             e.preventDefault();
             isRegisterMode = !isRegisterMode;
-
+            
             if (isRegisterMode) {
                 authBtn.textContent = 'Зарегистрироваться';
                 authToggleText.textContent = 'Уже есть аккаунт?';
@@ -714,7 +777,7 @@
                 authToggleLink.textContent = 'Зарегистрироваться';
                 confirmPasswordGroup.style.display = 'none';
             }
-
+            
             authError.style.display = 'none';
         }
 
@@ -723,28 +786,28 @@
             const username = usernameInput.value.trim();
             const password = passwordInput.value.trim();
             const confirmPassword = confirmPasswordInput.value.trim();
-
+            
             if (!username || !password) {
                 showAuthError('Заполните все поля');
                 return;
             }
-
+            
             if (isRegisterMode) {
                 if (password !== confirmPassword) {
                     showAuthError('Пароли не совпадают');
                     return;
                 }
-
+                
                 if (password.length < 4) {
                     showAuthError('Пароль должен быть не менее 4 символов');
                     return;
                 }
-
+                
                 if (username.length < 3) {
                     showAuthError('Имя пользователя должно быть не менее 3 символов');
                     return;
                 }
-
+                
                 registerUser(username);
             } else {
                 loginUser(username);
@@ -768,7 +831,7 @@
         // Вход пользователя
         function loginUser(username) {
             const savedGame = localStorage.getItem('it_farm_game');
-
+            
             if (savedGame) {
                 try {
                     const parsed = JSON.parse(savedGame);
@@ -782,7 +845,7 @@
                     console.error('Ошибка входа:', e);
                 }
             }
-
+            
             showAuthError('Пользователь не найден');
         }
 
@@ -808,7 +871,7 @@
             authContainer.style.display = 'flex';
             gameContainer.style.display = 'none';
             stopGrowthIntervals();
-
+            
             // Сброс полей формы
             usernameInput.value = '';
             passwordInput.value = '';
@@ -825,13 +888,13 @@
         function renderGame() {
             // Обновляем деньги
             moneyEl.textContent = gameState.money;
-
+            
             // Рендерим инвентарь
             inventoryList.innerHTML = '';
             for (const [item, quantity] of Object.entries(gameState.inventory)) {
                 const itemName = item.replace('_seed', '');
                 const itemDisplay = PLANTS[itemName]?.name || itemName;
-
+                
                 const itemEl = document.createElement('div');
                 itemEl.className = 'inventory-item';
                 itemEl.innerHTML = `
@@ -841,17 +904,17 @@
                 `;
                 inventoryList.appendChild(itemEl);
             }
-
+            
             // Рендерим поля
             fieldsContainer.innerHTML = '';
             gameState.fields.forEach(field => {
                 const fieldEl = document.createElement('div');
                 fieldEl.className = 'field';
                 if (field.ready) fieldEl.classList.add('ready');
-
+                
                 let content = '<div class="empty-field">🟫</div>';
                 let info = 'Пустое поле';
-
+                
                 if (field.type) {
                     const plant = PLANTS[field.type];
                     content = `
@@ -862,29 +925,29 @@
                     info = plant.name;
                     if (!field.ready) info += ` (${Math.round(field.growth)}%)`;
                 }
-
+                
                 fieldEl.innerHTML = `
                     ${content}
                     <div class="field-info">${info}</div>
                     <div class="growth-bar" style="width: ${field.growth}%"></div>
                 `;
-
+                
                 // Обработчики событий
                 if (field.ready) {
                     fieldEl.onclick = () => harvestField(field.id);
                 } else if (!field.type) {
                     fieldEl.onclick = () => openPlantMenu(field.id);
                 }
-
+                
                 fieldsContainer.appendChild(fieldEl);
             });
-
+            
             // Рендерим магазин
             seedPacksContainer.innerHTML = '';
             SEED_PACKS.forEach((pack, index) => {
                 const packEl = document.createElement('div');
                 packEl.className = 'seed-pack';
-
+                
                 let seedsHTML = '';
                 for (const [seed, chance] of Object.entries(pack.drops)) {
                     seedsHTML += `
@@ -894,14 +957,14 @@
                         </div>
                     `;
                 }
-
+                
                 packEl.innerHTML = `
                     <h3>${pack.name}</h3>
                     <div class="seed-list">${seedsHTML}</div>
                     <div class="seed-price">${pack.price} 💰</div>
                     <button class="btn" data-pack="${index}">Купить</button>
                 `;
-
+                
                 packEl.querySelector('button').onclick = () => buySeedPack(index);
                 seedPacksContainer.appendChild(packEl);
             });
@@ -931,25 +994,25 @@
             const seedTypes = Object.entries(gameState.inventory)
                 .filter(([item, quantity]) => item.endsWith('_seed') && quantity > 0)
                 .map(([item]) => item.replace('_seed', ''));
-
+            
             if (seedTypes.length === 0) {
                 showNotification('Нет семян для посадки! Купите в магазине.', 'error');
                 return;
             }
-
+            
             // Заполняем модальное окно
             seedTypes.forEach(seedType => {
                 const seedOption = document.createElement('div');
                 seedOption.className = 'seed-option';
                 seedOption.innerHTML = `
                     <div class="seed-emoji">${getPlantEmoji(seedType)}</div>
-                    <div>${seedType.replace('_', ' ')}</div>
+                    <div>${PLANTS[seedType].name}</div>
                     <small>${gameState.inventory[seedType + '_seed']} шт.</small>
                 `;
                 seedOption.addEventListener('click', () => plantSelectedSeed(seedType));
                 seedOptionsEl.appendChild(seedOption);
             });
-
+            
             // Показываем модальное окно
             plantModal.style.display = 'flex';
         }
@@ -959,36 +1022,36 @@
             if (currentFieldId === null) return;
 
             const seedItem = seedType + "_seed";
-
+            
             // Проверяем наличие семян
             if (!gameState.inventory[seedItem] || gameState.inventory[seedItem] <= 0) {
                 showNotification('Недостаточно семян!', 'error');
                 return;
             }
-
+            
             // Находим поле
             const field = gameState.fields.find(f => f.id === currentFieldId);
             if (!field) return;
-
+            
             // Сажаем семя
             field.type = seedType;
             field.planted_at = Date.now();
             field.growth = 0;
             field.ready = false;
-
+            
             // Уменьшаем количество семян
             gameState.inventory[seedItem]--;
-
+            
             // Сохраняем состояние
             saveGameState();
             renderGame();
-
+            
             // Закрываем модальное окно
             plantModal.style.display = 'none';
-
+            
             // Запускаем рост
             startGrowthForField(field.id);
-
+            
             showNotification(`Посажено: ${PLANTS[seedType].name}!`, 'success');
         }
 
@@ -996,38 +1059,38 @@
         function harvestField(fieldId) {
             const field = gameState.fields.find(f => f.id === fieldId);
             if (!field || !field.type || !field.ready) return;
-
+            
             const plant = PLANTS[field.type];
             if (!plant) return;
-
+            
             // Получаем награду
             gameState.money += plant.reward;
-
+            
             // Добавляем 2-3 семян этого же растения
             const seedItem = plant.seed;
             const seedCount = Math.floor(Math.random() * 2) + 2; // 2 или 3
-
+            
             if (!gameState.inventory[seedItem]) {
                 gameState.inventory[seedItem] = 0;
             }
             gameState.inventory[seedItem] += seedCount;
-
+            
             // Сбрасываем поле
             field.type = null;
             field.planted_at = null;
             field.growth = 0;
             field.ready = false;
-
+            
             // Сохраняем состояние
             saveGameState();
             renderGame();
-
+            
             // Останавливаем интервал роста
             if (growthIntervals[fieldId]) {
                 clearInterval(growthIntervals[fieldId]);
                 delete growthIntervals[fieldId];
             }
-
+            
             showNotification(
                 `Урожай собран: ${plant.name}!<br>+${plant.reward} 💰<br>Получено ${seedCount} семян`,
                 'success'
@@ -1038,20 +1101,20 @@
         function buySeedPack(packIndex) {
             const pack = SEED_PACKS[packIndex];
             if (!pack) return;
-
+            
             if (gameState.money < pack.price) {
                 showNotification('Недостаточно денег!', 'error');
                 return;
             }
-
+            
             // Выбираем случайное семя
             const seeds = Object.keys(pack.drops);
             const weights = Object.values(pack.drops);
             const totalWeight = weights.reduce((sum, weight) => sum + weight, 0);
-
+            
             let random = Math.random() * totalWeight;
             let seedType = '';
-
+            
             for (let i = 0; i < seeds.length; i++) {
                 random -= weights[i];
                 if (random <= 0) {
@@ -1059,24 +1122,24 @@
                     break;
                 }
             }
-
+            
             if (!seedType) return;
-
+            
             const seedItem = seedType + "_seed";
-
+            
             // Покупаем пакет
             gameState.money -= pack.price;
-
+            
             // Добавляем семя
             if (!gameState.inventory[seedItem]) {
                 gameState.inventory[seedItem] = 0;
             }
             gameState.inventory[seedItem]++;
-
+            
             // Сохраняем состояние
             saveGameState();
             renderGame();
-
+            
             showNotification(
                 `Куплен пакет "${pack.name}"!<br>Вы получили: ${PLANTS[seedType].name}`,
                 'success'
@@ -1102,30 +1165,30 @@
         function startGrowthForField(fieldId) {
             const field = gameState.fields.find(f => f.id === fieldId);
             if (!field || !field.type || field.ready) return;
-
+            
             if (growthIntervals[fieldId]) {
                 clearInterval(growthIntervals[fieldId]);
             }
-
+            
             const plant = PLANTS[field.type];
             if (!plant) return;
-
+            
             const growthTime = plant.growth_time * 1000; // в миллисекундах
-
+            
             // Рассчитываем текущий прогресс
             const now = Date.now();
             const elapsed = now - field.planted_at;
             const progress = Math.min(100, (elapsed / growthTime) * 100);
-
+            
             field.growth = progress;
             field.ready = progress >= 100;
-
+            
             // Если уже готово, не запускаем интервал
             if (field.ready) {
                 renderGame();
                 return;
             }
-
+            
             // Запускаем интервал обновления роста
             growthIntervals[fieldId] = setInterval(() => {
                 const field = gameState.fields.find(f => f.id === fieldId);
@@ -1134,17 +1197,17 @@
                     delete growthIntervals[fieldId];
                     return;
                 }
-
+                
                 const now = Date.now();
                 const elapsed = now - field.planted_at;
                 const progress = Math.min(100, (elapsed / growthTime) * 100);
-
+                
                 field.growth = progress;
                 field.ready = progress >= 100;
-
+                
                 // Обновляем отображение
                 renderGame();
-
+                
                 // Если достигли 100%, останавливаем интервал
                 if (field.ready) {
                     clearInterval(growthIntervals[fieldId]);
@@ -1158,10 +1221,93 @@
             notificationContent.innerHTML = message;
             seedNotification.className = `notification ${type}`;
             seedNotification.classList.add('show');
-
+            
             setTimeout(() => {
                 seedNotification.classList.remove('show');
             }, 3000);
+        }
+
+        // ====================
+        // Система сохранения
+        // ====================
+        
+        // Показать модальное окно экспорта
+        function showExportModal() {
+            // Генерируем код сохранения
+            const saveData = generateSaveCode();
+            exportDataEl.value = saveData;
+            exportModal.style.display = 'flex';
+        }
+        
+        // Закрыть модальное окно экспорта
+        function closeExportModal() {
+            exportModal.style.display = 'none';
+        }
+        
+        // Показать модальное окно импорта
+        function showImportModal() {
+            importDataEl.value = '';
+            importModal.style.display = 'flex';
+        }
+        
+        // Закрыть модальное окно импорта
+        function closeImportModal() {
+            importModal.style.display = 'none';
+        }
+        
+        // Сгенерировать код сохранения
+        function generateSaveCode() {
+            const saveData = {
+                version: 1,
+                state: gameState
+            };
+            return btoa(encodeURIComponent(JSON.stringify(saveData)));
+        }
+        
+        // Загрузить игру из кода
+        function loadGameData() {
+            const saveCode = importDataEl.value.trim();
+            
+            if (!saveCode) {
+                showNotification('Введите код сохранения', 'error');
+                return;
+            }
+            
+            try {
+                // Декодируем данные
+                const decoded = JSON.parse(decodeURIComponent(atob(saveCode)));
+                
+                // Проверяем версию
+                if (decoded.version !== 1) {
+                    showNotification('Неверная версия сохранения', 'error');
+                    return;
+                }
+                
+                // Загружаем состояние
+                gameState = decoded.state;
+                
+                // Сохраняем в localStorage
+                saveGameState();
+                
+                // Перезагружаем интерфейс
+                renderGame();
+                startGrowthIntervals();
+                
+                // Закрываем модальное окно
+                closeImportModal();
+                
+                showNotification('Игра успешно загружена!', 'success');
+            } catch (e) {
+                console.error('Ошибка загрузки:', e);
+                showNotification('Неверный формат сохранения', 'error');
+            }
+        }
+        
+        // Скопировать код сохранения в буфер обмена
+        function copyExportData() {
+            exportDataEl.select();
+            document.execCommand('copy');
+            showNotification('Код сохранения скопирован!', 'success');
         }
 
         // Инициализация при загрузке
