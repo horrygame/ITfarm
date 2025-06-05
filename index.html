@@ -17,6 +17,7 @@
             --factory: #f59e0b;
             --school: #3b82f6;
             --assembly: #10b981;
+            --market: #a78bfa;
         }
         
         * {
@@ -136,8 +137,23 @@
         }
         
         .tab-btn.active {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
             box-shadow: 0 0 15px rgba(76, 201, 240, 0.5);
+        }
+        
+        .factory-btn.active {
+            background: linear-gradient(135deg, var(--factory), #d97706);
+        }
+        
+        .school-btn.active {
+            background: linear-gradient(135deg, var(--school), #1d4ed8);
+        }
+        
+        .assembly-btn.active {
+            background: linear-gradient(135deg, var(--assembly), #047857);
+        }
+        
+        .market-btn.active {
+            background: linear-gradient(135deg, var(--market), #7e22ce);
         }
         
         .tab-content {
@@ -173,6 +189,10 @@
         
         .assembly .location-header {
             border-color: var(--assembly);
+        }
+        
+        .market .location-header {
+            border-color: var(--market);
         }
         
         .location-title {
@@ -311,6 +331,110 @@
         
         .building-btn:hover:not(:disabled) {
             transform: translateY(-3px);
+        }
+        
+        .market-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .market-item {
+            background: rgba(0, 30, 60, 0.7);
+            border-radius: 15px;
+            padding: 20px;
+            border: 2px solid var(--market);
+            transition: all 0.3s;
+        }
+        
+        .market-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(167, 139, 250, 0.3);
+        }
+        
+        .market-icon {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        
+        .market-title {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+        .market-price {
+            text-align: center;
+            font-size: 1.5rem;
+            margin: 15px 0;
+            font-weight: bold;
+            color: var(--success);
+        }
+        
+        .price-trend {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            font-size: 1.2rem;
+        }
+        
+        .trend-up {
+            color: var(--success);
+        }
+        
+        .trend-down {
+            color: var(--danger);
+        }
+        
+        .trend-stable {
+            color: var(--warning);
+        }
+        
+        .market-quantity {
+            text-align: center;
+            margin: 10px 0;
+            font-size: 1.1rem;
+        }
+        
+        .market-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .sell-btn {
+            background: linear-gradient(135deg, var(--success), #16a34a);
+            color: white;
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .sell-btn:hover:not(:disabled) {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(22, 163, 74, 0.4);
+        }
+        
+        .sell-all-btn {
+            background: linear-gradient(135deg, var(--warning), #ca8a04);
+            color: white;
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .sell-all-btn:hover:not(:disabled) {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(202, 138, 4, 0.4);
         }
         
         .notification {
@@ -460,7 +584,7 @@
                 flex-direction: column;
             }
             
-            .buildings {
+            .buildings, .market-items {
                 grid-template-columns: 1fr;
             }
             
@@ -495,9 +619,10 @@
         </div>
         
         <div class="tabs">
-            <button class="tab-btn active" data-tab="factory">🏭 Завод</button>
-            <button class="tab-btn" data-tab="school">🏫 Училище</button>
-            <button class="tab-btn" data-tab="assembly">🔧 Сборка</button>
+            <button class="tab-btn factory-btn active" data-tab="factory">🏭 Завод</button>
+            <button class="tab-btn school-btn" data-tab="school">🏫 Училище</button>
+            <button class="tab-btn assembly-btn" data-tab="assembly">🔧 Сборка</button>
+            <button class="tab-btn market-btn" data-tab="market">🏪 Рынок</button>
         </div>
         
         <!-- Локация: Завод -->
@@ -535,10 +660,24 @@
                 <div class="location-title">Сборка</div>
             </div>
             <div class="location-description">
-                Используйте детали и специалистов для сборки IT-продуктов: ноутбуков, ПК, игровых систем и роботов. Продавайте их для получения прибыли.
+                Используйте детали и специалистов для сборки IT-продуктов: ноутбуков, ПК, игровых систем и роботов.
             </div>
             <div class="buildings" id="assembly-buildings">
                 <!-- Карточки филиалов будут добавлены через JS -->
+            </div>
+        </div>
+        
+        <!-- Локация: Рынок -->
+        <div id="market" class="tab-content market">
+            <div class="location-header">
+                <div class="location-icon">🏪</div>
+                <div class="location-title">Рынок</div>
+            </div>
+            <div class="location-description">
+                Продавайте собранные IT-продукты на рынке. Цены постоянно меняются в зависимости от спроса и предложения. Продавайте в удачное время, чтобы получить максимальную прибыль!
+            </div>
+            <div class="market-items" id="market-items">
+                <!-- Товары для продажи будут добавлены через JS -->
             </div>
         </div>
     </div>
@@ -598,7 +737,12 @@
             students: { name: "Ученики", icon: "👨‍🎓" },
             graduates: { name: "Выпускники", icon: "🎓" },
             juniors: { name: "Джуниоры", icon: "👨‍💻" },
-            seniors: { name: "Сеньоры", icon: "👴‍💻" }
+            seniors: { name: "Сеньоры", icon: "👴‍💻" },
+            laptops: { name: "Ноутбуки", icon: "💻" },
+            powerful_laptops: { name: "Мощные ноутбуки", icon: "💻🔥" },
+            pcs: { name: "ПК", icon: "🖥️" },
+            gaming_pcs: { name: "Игровые ПК", icon: "🖥️🎮" },
+            robots: { name: "Роботы", icon: "🤖" }
         };
 
         const BUILDINGS = {
@@ -682,7 +826,7 @@
                     description: "Собирает стандартные ноутбуки",
                     cost: { money: 5000 },
                     requirements: { gears: 3, leds: 2, chips: 4, students: 2 },
-                    production: { money: 2500 },
+                    production: { laptops: 1 },
                     time: 20
                 },
                 powerful_laptop_branch: {
@@ -691,7 +835,7 @@
                     description: "Собирает высокопроизводительные ноутбуки",
                     cost: { money: 10000 },
                     requirements: { gears: 5, leds: 3, chips: 8, graduates: 3 },
-                    production: { money: 6000 },
+                    production: { powerful_laptops: 1 },
                     time: 30
                 },
                 pc_branch: {
@@ -700,7 +844,7 @@
                     description: "Собирает настольные компьютеры",
                     cost: { money: 15000 },
                     requirements: { gears: 8, leds: 4, chips: 10, juniors: 2 },
-                    production: { money: 10000 },
+                    production: { pcs: 1 },
                     time: 40
                 },
                 gaming_pc_branch: {
@@ -709,7 +853,7 @@
                     description: "Собирает мощные игровые системы",
                     cost: { money: 25000 },
                     requirements: { gears: 12, leds: 6, chips: 15, sensors: 4, juniors: 4 },
-                    production: { money: 20000 },
+                    production: { gaming_pcs: 1 },
                     time: 50
                 },
                 robot_branch: {
@@ -718,18 +862,27 @@
                     description: "Собирает продвинутых IT-роботов",
                     cost: { money: 50000 },
                     requirements: { gears: 20, leds: 10, chips: 25, sensors: 10, seniors: 3 },
-                    production: { money: 50000 },
+                    production: { robots: 1 },
                     time: 60
                 }
             }
         };
+
+        const MARKET_ITEMS = [
+            { id: "laptops", name: "Ноутбук", icon: "💻", basePrice: 2500 },
+            { id: "powerful_laptops", name: "Мощный ноутбук", icon: "💻🔥", basePrice: 6000 },
+            { id: "pcs", name: "ПК", icon: "🖥️", basePrice: 10000 },
+            { id: "gaming_pcs", name: "Игровой ПК", icon: "🖥️🎮", basePrice: 20000 },
+            { id: "robots", name: "Робот", icon: "🤖", basePrice: 50000 }
+        ];
 
         const ACHIEVEMENTS = [
             { id: "first_production", name: "Первое производство", description: "Произведите первую деталь", icon: "🏭", goal: 1 },
             { id: "student_graduate", name: "Первый выпускник", description: "Обучите первого выпускника", icon: "🎓", goal: 1 },
             { id: "laptop_production", name: "Ноутбук своими руками", description: "Соберите первый ноутбук", icon: "💻", goal: 1 },
             { id: "millionaire", name: "Миллионер", description: "Заработайте 1,000,000 денег", icon: "💰", goal: 1000000 },
-            { id: "robot_master", name: "Мастер роботов", description: "Соберите 100 роботов", icon: "🤖", goal: 100 }
+            { id: "robot_master", name: "Мастер роботов", description: "Соберите 100 роботов", icon: "🤖", goal: 100 },
+            { id: "market_king", name: "Король рынка", description: "Продайте товаров на 500,000", icon: "👑", goal: 500000 }
         ];
 
         // Состояние игры
@@ -743,7 +896,12 @@
                 students: 0,
                 graduates: 0,
                 juniors: 0,
-                seniors: 0
+                seniors: 0,
+                laptops: 0,
+                powerful_laptops: 0,
+                pcs: 0,
+                gaming_pcs: 0,
+                robots: 0
             },
             buildings: {
                 // Завод
@@ -765,8 +923,16 @@
                 gaming_pc_branch: { count: 0, progress: 0 },
                 robot_branch: { count: 0, progress: 0 }
             },
+            market: {
+                laptops: { currentPrice: 2500, trend: 0 },
+                powerful_laptops: { currentPrice: 6000, trend: 0 },
+                pcs: { currentPrice: 10000, trend: 0 },
+                gaming_pcs: { currentPrice: 20000, trend: 0 },
+                robots: { currentPrice: 50000, trend: 0 }
+            },
             achievements: {},
-            lastUpdate: Date.now()
+            lastUpdate: Date.now(),
+            totalSales: 0
         };
 
         // DOM элементы
@@ -774,6 +940,7 @@
         const factoryBuildings = document.getElementById('factory-buildings');
         const schoolBuildings = document.getElementById('school-buildings');
         const assemblyBuildings = document.getElementById('assembly-buildings');
+        const marketItems = document.getElementById('market-items');
         const achievementsContainer = document.getElementById('achievements-container');
         const notification = document.getElementById('notification');
         const notificationContent = document.getElementById('notification-content');
@@ -785,6 +952,7 @@
         const tabButtons = document.querySelectorAll('.tab-btn');
 
         let productionInterval;
+        let marketInterval;
         let achievementsEarned = false;
 
         // Инициализация игры
@@ -798,6 +966,7 @@
                     initAchievements();
                     renderGame();
                     startProduction();
+                    startMarketFluctuations();
                 } catch (e) {
                     console.error('Ошибка загрузки игры:', e);
                     localStorage.removeItem('it_production_game');
@@ -806,6 +975,7 @@
                 initAchievements();
                 renderGame();
                 startProduction();
+                startMarketFluctuations();
             }
             
             setupEventListeners();
@@ -860,6 +1030,7 @@
             renderFactory();
             renderSchool();
             renderAssembly();
+            renderMarket();
             checkAchievements();
         }
 
@@ -911,6 +1082,49 @@
                 const buildingEl = createBuildingCard(buildingConfig, buildingState, buildingKey, 'assembly');
                 assemblyBuildings.appendChild(buildingEl);
             }
+        }
+
+        // Отображение рынка
+        function renderMarket() {
+            marketItems.innerHTML = '';
+            
+            MARKET_ITEMS.forEach(item => {
+                const marketState = gameState.market[item.id];
+                const quantity = gameState.resources[item.id];
+                
+                // Определение тренда цены
+                let trendIcon = '➖';
+                let trendClass = 'trend-stable';
+                
+                if (marketState.trend > 0) {
+                    trendIcon = '📈';
+                    trendClass = 'trend-up';
+                } else if (marketState.trend < 0) {
+                    trendIcon = '📉';
+                    trendClass = 'trend-down';
+                }
+                
+                const itemEl = document.createElement('div');
+                itemEl.className = 'market-item';
+                
+                itemEl.innerHTML = `
+                    <div class="market-icon">${item.icon}</div>
+                    <div class="market-title">${item.name}</div>
+                    <div class="market-price">${marketState.currentPrice.toLocaleString()} 💰</div>
+                    <div class="price-trend ${trendClass}">${trendIcon} ${marketState.trend > 0 ? '+' : ''}${marketState.trend}%</div>
+                    <div class="market-quantity">У вас: ${quantity.toLocaleString()} шт.</div>
+                    <div class="market-actions">
+                        <button class="sell-btn" onclick="sellProduct('${item.id}', 1)" ${quantity < 1 ? 'disabled' : ''}>
+                            Продать 1
+                        </button>
+                        <button class="sell-all-btn" onclick="sellProduct('${item.id}', 'all')" ${quantity < 1 ? 'disabled' : ''}>
+                            Продать все
+                        </button>
+                    </div>
+                `;
+                
+                marketItems.appendChild(itemEl);
+            });
         }
 
         // Создание карточки здания/станка/филиала
@@ -1060,6 +1274,45 @@
             showNotification(`Начато производство: ${config.name}!`, 'success');
         }
 
+        // Продажа товара на рынке
+        function sellProduct(productId, amount) {
+            const marketItem = gameState.market[productId];
+            const currentQuantity = gameState.resources[productId];
+            
+            // Определяем количество для продажи
+            let sellAmount = amount;
+            if (amount === 'all') {
+                sellAmount = currentQuantity;
+            }
+            
+            // Проверяем, есть ли товар
+            if (currentQuantity < sellAmount || sellAmount <= 0) {
+                showNotification('Недостаточно товара для продажи!', 'error');
+                return;
+            }
+            
+            // Рассчитываем выручку
+            const totalRevenue = Math.round(sellAmount * marketItem.currentPrice);
+            
+            // Уменьшаем количество товара
+            gameState.resources[productId] -= sellAmount;
+            
+            // Увеличиваем деньги
+            gameState.resources.money += totalRevenue;
+            
+            // Обновляем общий объем продаж
+            gameState.totalSales += totalRevenue;
+            
+            // Обновляем достижение "Король рынка"
+            updateAchievement('market_king', totalRevenue);
+            
+            // Обновляем интерфейс
+            saveGameState();
+            renderGame();
+            
+            showNotification(`Продано ${sellAmount} ${RESOURCES[productId].name} за ${totalRevenue.toLocaleString()} 💰!`, 'success');
+        }
+
         // Запуск производства
         function startProduction() {
             if (productionInterval) clearInterval(productionInterval);
@@ -1112,7 +1365,7 @@
                         if (state.progress <= 0) {
                             state.progress = 0;
                             
-                            // Добавляем деньги от продажи продукта
+                            // Добавляем произведенный товар
                             for (const [resource, amount] of Object.entries(config.production)) {
                                 gameState.resources[resource] += amount;
                             }
@@ -1124,7 +1377,7 @@
                                 updateAchievement('robot_master', 1);
                             }
                             
-                            showNotification(`Произведен и продан: ${config.name}!`, 'success');
+                            showNotification(`Произведен: ${config.name}!`, 'success');
                         }
                     }
                 }
@@ -1137,6 +1390,33 @@
                 saveGameState();
                 renderGame();
             }, 1000);
+        }
+
+        // Запуск колебаний рынка
+        function startMarketFluctuations() {
+            if (marketInterval) clearInterval(marketInterval);
+            
+            marketInterval = setInterval(() => {
+                // Обновляем цены на все товары
+                MARKET_ITEMS.forEach(item => {
+                    const marketState = gameState.market[item.id];
+                    
+                    // Генерируем случайное колебание от -10% до +15%
+                    const fluctuation = (Math.random() * 25 - 10) / 100;
+                    
+                    // Рассчитываем новую цену
+                    const newPrice = Math.round(marketState.currentPrice * (1 + fluctuation));
+                    
+                    // Устанавливаем новый тренд в процентах
+                    marketState.trend = Math.round(fluctuation * 100);
+                    
+                    // Убеждаемся, что цена не опустится ниже 10% от базовой
+                    marketState.currentPrice = Math.max(newPrice, item.basePrice * 0.1);
+                });
+                
+                saveGameState();
+                renderMarket();
+            }, 30000); // Обновление каждые 30 секунд
         }
 
         // Проверка достижений
@@ -1282,6 +1562,10 @@
                 
                 // Перезагружаем интерфейс
                 renderGame();
+                
+                // Перезапускаем интервалы
+                startProduction();
+                startMarketFluctuations();
                 
                 // Закрываем модальное окно
                 closeImportModal();
