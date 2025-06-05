@@ -1039,7 +1039,7 @@
             resourcesPanel.innerHTML = '';
             
             for (const [resourceKey, resource] of Object.entries(RESOURCES)) {
-                const value = gameState.resources[resourceKey];
+                const value = gameState.resources[resourceKey] || 0;
                 const resourceEl = document.createElement('div');
                 resourceEl.className = 'resource';
                 resourceEl.innerHTML = `
@@ -1090,7 +1090,7 @@
             
             MARKET_ITEMS.forEach(item => {
                 const marketState = gameState.market[item.id];
-                const quantity = gameState.resources[item.id];
+                const quantity = gameState.resources[item.id] || 0;
                 
                 // Определение тренда цены
                 let trendIcon = '➖';
@@ -1209,7 +1209,7 @@
         // Проверка, достаточно ли ресурсов
         function canAfford(cost) {
             for (const [resource, amount] of Object.entries(cost)) {
-                if (gameState.resources[resource] < amount) {
+                if ((gameState.resources[resource] || 0) < amount) {
                     return false;
                 }
             }
@@ -1241,7 +1241,7 @@
             
             // Списываем стоимость
             for (const [resource, amount] of Object.entries(config.cost)) {
-                gameState.resources[resource] -= amount;
+                gameState.resources[resource] = (gameState.resources[resource] || 0) - amount;
             }
             
             // Увеличиваем количество
@@ -1261,7 +1261,7 @@
             
             // Списываем стоимость
             for (const [resource, amount] of Object.entries(config.requirements)) {
-                gameState.resources[resource] -= amount;
+                gameState.resources[resource] = (gameState.resources[resource] || 0) - amount;
             }
             
             // Устанавливаем прогресс производства
@@ -1277,7 +1277,7 @@
         // Продажа товара на рынке
         function sellProduct(productId, amount) {
             const marketItem = gameState.market[productId];
-            const currentQuantity = gameState.resources[productId];
+            const currentQuantity = gameState.resources[productId] || 0;
             
             // Определяем количество для продажи
             let sellAmount = amount;
@@ -1298,7 +1298,7 @@
             gameState.resources[productId] -= sellAmount;
             
             // Увеличиваем деньги
-            gameState.resources.money += totalRevenue;
+            gameState.resources.money = (gameState.resources.money || 0) + totalRevenue;
             
             // Обновляем общий объем продаж
             gameState.totalSales += totalRevenue;
@@ -1333,7 +1333,7 @@
                             
                             // Добавляем произведенные ресурсы
                             for (const [resource, amount] of Object.entries(config.production)) {
-                                gameState.resources[resource] += amount * state.count;
+                                gameState.resources[resource] = (gameState.resources[resource] || 0) + amount * state.count;
                             }
                         }
                     }
@@ -1350,7 +1350,7 @@
                             
                             // Добавляем произведенных специалистов
                             for (const [resource, amount] of Object.entries(config.production)) {
-                                gameState.resources[resource] += amount * state.count;
+                                gameState.resources[resource] = (gameState.resources[resource] || 0) + amount * state.count;
                             }
                         }
                     }
@@ -1367,7 +1367,7 @@
                             
                             // Добавляем произведенный товар
                             for (const [resource, amount] of Object.entries(config.production)) {
-                                gameState.resources[resource] += amount;
+                                gameState.resources[resource] = (gameState.resources[resource] || 0) + amount;
                             }
                             
                             // Обновляем достижения
@@ -1383,7 +1383,7 @@
                 }
                 
                 // Обновляем достижение "Миллионер"
-                if (gameState.resources.money >= 1000000) {
+                if ((gameState.resources.money || 0) >= 1000000) {
                     updateAchievement('millionaire', 1000000);
                 }
                 
@@ -1422,12 +1422,12 @@
         // Проверка достижений
         function checkAchievements() {
             // Проверяем первое производство
-            if (gameState.resources.gears > 0 && !gameState.achievements.first_production.earned) {
+            if ((gameState.resources.gears || 0) > 0 && !gameState.achievements.first_production.earned) {
                 updateAchievement('first_production', 1);
             }
             
             // Проверяем первого выпускника
-            if (gameState.resources.graduates > 0 && !gameState.achievements.student_graduate.earned) {
+            if ((gameState.resources.graduates || 0) > 0 && !gameState.achievements.student_graduate.earned) {
                 updateAchievement('student_graduate', 1);
             }
         }
@@ -1435,12 +1435,17 @@
         // Обновление достижения
         function updateAchievement(achievementId, progress) {
             const achievement = gameState.achievements[achievementId];
+            if (!achievement) return;
+            
             achievement.progress += progress;
             
-            if (achievement.progress >= ACHIEVEMENTS.find(a => a.id === achievementId).goal && !achievement.earned) {
+            const achievementConfig = ACHIEVEMENTS.find(a => a.id === achievementId);
+            if (!achievementConfig) return;
+            
+            if (achievement.progress >= achievementConfig.goal && !achievement.earned) {
                 achievement.earned = true;
                 achievementsEarned = true;
-                showNotification(`Достижение получено: ${ACHIEVEMENTS.find(a => a.id === achievementId).name}!`, 'success');
+                showNotification(`Достижение получено: ${achievementConfig.name}!`, 'success');
             }
         }
 
@@ -1449,7 +1454,7 @@
             achievementsContainer.innerHTML = '';
             
             ACHIEVEMENTS.forEach(achievement => {
-                const achievementState = gameState.achievements[achievement.id];
+                const achievementState = gameState.achievements[achievement.id] || { progress: 0, earned: false };
                 const progress = Math.min(100, (achievementState.progress / achievement.goal) * 100);
                 
                 const card = document.createElement('div');
