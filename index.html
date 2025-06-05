@@ -12,7 +12,7 @@
             --dark: #1a2b3c;
             --light: #f8f9fa;
             --success: #4ade80;
-            --warning: #facc15
+            --warning: #facc15;
             --danger: #f87171;
             --factory: #f59e0b;
             --school: #3b82f6;
@@ -1155,26 +1155,37 @@
             const progressBar = progressPercent > 0 ? 
                 `<div class="progress-bar" style="height: 5px; background: var(--success); width: ${progressPercent}%; border-radius: 0 0 15px 15px; position: absolute; bottom: 0; left: 0;"></div>` : '';
             
-            // Кнопка покупки
+            // Кнопки действий
             let buyButton = '';
-            if (type !== 'assembly') {
+            let produceButton = '';
+            
+            if (type === 'assembly') {
+                if (state.count === 0) {
+                    // Кнопка покупки для филиала сборки
+                    const canBuy = canAfford(config.cost);
+                    buyButton = `
+                        <button class="building-btn buy-btn" ${!canBuy ? 'disabled' : ''}
+                            onclick="buyBuilding('${key}')">
+                            Купить (${formatCost(config.cost)})
+                        </button>
+                    `;
+                } else {
+                    // Кнопка производства для филиала сборки
+                    const canProduce = canAfford(config.requirements);
+                    produceButton = `
+                        <button class="building-btn produce-btn" ${!canProduce ? 'disabled' : ''}
+                            onclick="produceProduct('${key}')">
+                            Произвести (${formatCost(config.requirements)})
+                        </button>
+                    `;
+                }
+            } else {
+                // Кнопка покупки для завода и училища
                 const canBuy = canAfford(config.cost);
                 buyButton = `
                     <button class="building-btn buy-btn" ${!canBuy ? 'disabled' : ''}
                         onclick="buyBuilding('${key}')">
                         Купить (${formatCost(config.cost)})
-                    </button>
-                `;
-            }
-            
-            // Кнопка производства (для сборки)
-            let produceButton = '';
-            if (type === 'assembly' && state.count > 0) {
-                const canProduce = canAfford(config.requirements);
-                produceButton = `
-                    <button class="building-btn produce-btn" ${!canProduce ? 'disabled' : ''}
-                        onclick="produceProduct('${key}')">
-                        Произвести (${formatCost(config.requirements)})
                     </button>
                 `;
             }
