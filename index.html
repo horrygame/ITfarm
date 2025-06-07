@@ -19,6 +19,7 @@
             --assembly: #10b981;
             --market: #a78bfa;
             --reset: #ef4444;
+            --help: #8b5cf6;
         }
         
         * {
@@ -52,18 +53,25 @@
             margin-bottom: 20px;
             padding-bottom: 15px;
             border-bottom: 2px solid var(--primary);
+            flex-wrap: wrap;
+            gap: 15px;
         }
         
         h1 {
             margin: 0;
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             text-shadow: 0 0 10px rgba(76, 201, 240, 0.7);
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
         
         .user-info {
             display: flex;
             align-items: center;
             gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
         }
         
         .user-avatar {
@@ -88,6 +96,9 @@
             font-weight: bold;
             transition: all 0.3s;
             font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
         
         .btn:hover {
@@ -99,6 +110,10 @@
             background: linear-gradient(135deg, var(--reset), #b91c1c);
         }
         
+        .btn-help {
+            background: linear-gradient(135deg, var(--help), #7c3aed);
+        }
+        
         .stats {
             display: flex;
             flex-wrap: wrap;
@@ -108,6 +123,7 @@
             border-radius: 15px;
             font-size: 1.1rem;
             margin-bottom: 20px;
+            justify-content: center;
         }
         
         .resource {
@@ -117,6 +133,7 @@
             padding: 8px 15px;
             border-radius: 30px;
             background: rgba(255, 255, 255, 0.1);
+            min-width: 180px;
         }
         
         .tabs {
@@ -124,6 +141,7 @@
             gap: 10px;
             margin-bottom: 20px;
             flex-wrap: wrap;
+            justify-content: center;
         }
         
         .tab-btn {
@@ -139,6 +157,10 @@
             flex: 1;
             min-width: 120px;
             text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
         
         .tab-btn.active {
@@ -201,7 +223,7 @@
         }
         
         .location-title {
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: bold;
         }
         
@@ -210,6 +232,7 @@
             padding: 15px;
             border-radius: 15px;
             background: rgba(255, 255, 255, 0.1);
+            font-size: 1.1rem;
         }
         
         .buildings {
@@ -227,6 +250,8 @@
             position: relative;
             overflow: hidden;
             border: 2px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            flex-direction: column;
         }
         
         .factory .building-card {
@@ -253,9 +278,10 @@
         }
         
         .building-title {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             margin-bottom: 10px;
             text-align: center;
+            font-weight: bold;
         }
         
         .building-info {
@@ -264,6 +290,7 @@
             background: rgba(0, 0, 0, 0.3);
             border-radius: 10px;
             font-size: 0.95rem;
+            flex-grow: 1;
         }
         
         .building-stats {
@@ -288,6 +315,7 @@
             border-radius: 8px;
             background: rgba(0, 0, 0, 0.3);
             justify-content: center;
+            flex-wrap: wrap;
         }
         
         .building-requirements {
@@ -302,11 +330,13 @@
             display: flex;
             justify-content: space-between;
             padding: 5px 0;
+            align-items: center;
         }
         
         .building-actions {
             display: flex;
             gap: 10px;
+            margin-top: auto;
         }
         
         .building-btn {
@@ -317,6 +347,10 @@
             cursor: pointer;
             font-weight: bold;
             transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
         }
         
         .buy-btn {
@@ -350,6 +384,8 @@
             padding: 20px;
             border: 2px solid var(--market);
             transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
         }
         
         .market-item:hover {
@@ -364,14 +400,15 @@
         }
         
         .market-title {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             margin-bottom: 10px;
             text-align: center;
+            font-weight: bold;
         }
         
         .market-price {
             text-align: center;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             margin: 15px 0;
             font-weight: bold;
             color: var(--success);
@@ -381,7 +418,8 @@
             display: flex;
             justify-content: center;
             gap: 5px;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
         }
         
         .trend-up {
@@ -400,12 +438,15 @@
             text-align: center;
             margin: 10px 0;
             font-size: 1.1rem;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 8px;
+            border-radius: 8px;
         }
         
         .market-actions {
             display: flex;
             gap: 10px;
-            margin-top: 15px;
+            margin-top: auto;
         }
         
         .sell-btn {
@@ -418,6 +459,10 @@
             cursor: pointer;
             font-weight: bold;
             transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
         }
         
         .sell-btn:hover:not(:disabled) {
@@ -435,6 +480,10 @@
             cursor: pointer;
             font-weight: bold;
             transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
         }
         
         .sell-all-btn:hover:not(:disabled) {
@@ -492,7 +541,7 @@
             padding: 30px;
             border-radius: 20px;
             width: 90%;
-            max-width: 500px;
+            max-width: 600px;
             box-shadow: 0 0 30px rgba(76, 201, 240, 0.5);
             max-height: 90vh;
             overflow-y: auto;
@@ -502,8 +551,12 @@
             margin-top: 0;
             color: var(--primary);
             text-align: center;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
         
         .save-controls {
@@ -539,6 +592,7 @@
             text-align: center;
             border: 2px solid var(--success);
             transition: all 0.3s;
+            position: relative;
         }
         
         .achievement-card.unlocked {
@@ -556,6 +610,7 @@
             font-size: 1.1rem;
             margin-bottom: 5px;
             color: var(--primary);
+            font-weight: bold;
         }
         
         .achievement-progress {
@@ -584,6 +639,112 @@
             left: 10px;
         }
         
+        .tutorial-content {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .tutorial-step {
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .tutorial-step:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .step-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .step-content {
+            padding-left: 30px;
+            font-size: 1.05rem;
+        }
+        
+        .faq-container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+        }
+        
+        .faq-item {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .faq-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .faq-question {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            color: var(--primary);
+            font-weight: bold;
+        }
+        
+        .faq-answer {
+            padding-left: 30px;
+        }
+        
+        .progress-bar {
+            height: 5px;
+            background: var(--success);
+            border-radius: 0 0 15px 15px;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            transition: width 0.5s;
+        }
+        
+        .tooltip {
+            position: relative;
+            cursor: help;
+            display: inline-block;
+            border-bottom: 1px dotted var(--primary);
+        }
+        
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 250px;
+            background-color: var(--dark);
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 10px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.9rem;
+            border: 1px solid var(--primary);
+        }
+        
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+        
         @media (max-width: 768px) {
             .tabs {
                 flex-direction: column;
@@ -603,20 +764,35 @@
                 justify-content: center;
                 flex-wrap: wrap;
             }
+            
+            .modal-content {
+                padding: 15px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="user-header">
-            <h1>🏭 IT Производство</h1>
+            <h1><span>🏭</span> IT Производство</h1>
             <div class="user-info">
                 <div class="user-avatar">👨‍💼</div>
                 <div class="save-controls">
-                    <button class="btn" onclick="showAchievementsModal()">🏆 Достижения</button>
-                    <button class="btn" onclick="showExportModal()">💾 Экспорт</button>
-                    <button class="btn" onclick="showImportModal()">📥 Импорт</button>
-                    <button class="btn btn-reset" onclick="resetProgress()">🔄 Сбросить</button>
+                    <button class="btn btn-help" onclick="showHelpModal()">
+                        <span>❓</span> Помощь
+                    </button>
+                    <button class="btn" onclick="showAchievementsModal()">
+                        <span>🏆</span> Достижения
+                    </button>
+                    <button class="btn" onclick="showExportModal()">
+                        <span>💾</span> Экспорт
+                    </button>
+                    <button class="btn" onclick="showImportModal()">
+                        <span>📥</span> Импорт
+                    </button>
+                    <button class="btn btn-reset" onclick="resetProgress()">
+                        <span>🔄</span> Сбросить
+                    </button>
                 </div>
             </div>
         </div>
@@ -626,20 +802,28 @@
         </div>
         
         <div class="tabs">
-            <button class="tab-btn factory-btn active" data-tab="factory">🏭 Завод</button>
-            <button class="tab-btn school-btn" data-tab="school">🏫 Училище</button>
-            <button class="tab-btn assembly-btn" data-tab="assembly">🔧 Сборка</button>
-            <button class="tab-btn market-btn" data-tab="market">🏪 Рынок</button>
+            <button class="tab-btn factory-btn active" data-tab="factory">
+                <span>🏭</span> Завод
+            </button>
+            <button class="tab-btn school-btn" data-tab="school">
+                <span>🏫</span> Училище
+            </button>
+            <button class="tab-btn assembly-btn" data-tab="assembly">
+                <span>🔧</span> Сборка
+            </button>
+            <button class="tab-btn market-btn" data-tab="market">
+                <span>🏪</span> Рынок
+            </button>
         </div>
         
         <!-- Локация: Завод -->
         <div id="factory" class="tab-content active factory">
             <div class="location-header">
                 <div class="location-icon">🏭</div>
-                <div class="location-title">Завод</div>
+                <div class="location-title">Производство деталей</div>
             </div>
             <div class="location-description">
-                Здесь вы производите детали для сборки IT-продуктов. Покупайте станки для производства шестеренок, светодиодов, микросхем и датчиков.
+                Здесь вы производите детали для сборки IT-продуктов. Покупайте станки для производства шестеренок, светодиодов, микросхем и датчиков. Каждый станок автоматически производит ресурсы через определенное время.
             </div>
             <div class="buildings" id="factory-buildings">
                 <!-- Карточки станков будут добавлены через JS -->
@@ -650,10 +834,10 @@
         <div id="school" class="tab-content school">
             <div class="location-header">
                 <div class="location-icon">🏫</div>
-                <div class="location-title">Училище</div>
+                <div class="location-title">Обучение специалистов</div>
             </div>
             <div class="location-description">
-                Обучайте IT-специалистов: учеников, выпускников, джуниоров и сеньоров. Они необходимы для сборки сложных продуктов.
+                Обучайте IT-специалистов: учеников, выпускников, джуниоров и сеньоров. Они необходимы для сборки сложных продуктов. Каждое здание автоматически производит специалистов через определенное время.
             </div>
             <div class="buildings" id="school-buildings">
                 <!-- Карточки зданий будут добавлены через JS -->
@@ -664,10 +848,10 @@
         <div id="assembly" class="tab-content assembly">
             <div class="location-header">
                 <div class="location-icon">🔧</div>
-                <div class="location-title">Сборка</div>
+                <div class="location-title">Сборка продуктов</div>
             </div>
             <div class="location-description">
-                Используйте детали и специалистов для сборки IT-продуктов: ноутбуков, ПК, игровых систем и роботов.
+                Используйте детали и специалистов для сборки IT-продуктов: ноутбуков, ПК, игровых систем и роботов. Сначала купите филиал, затем используйте кнопку "Произвести" для запуска сборки.
             </div>
             <div class="buildings" id="assembly-buildings">
                 <!-- Карточки филиалов будут добавлены через JS -->
@@ -678,10 +862,10 @@
         <div id="market" class="tab-content market">
             <div class="location-header">
                 <div class="location-icon">🏪</div>
-                <div class="location-title">Рынок</div>
+                <div class="location-title">Продажа продукции</div>
             </div>
             <div class="location-description">
-                Продавайте собранные IT-продукты на рынке. Цены постоянно меняются в зависимости от спроса и предложения. Продавайте в удачное время, чтобы получить максимальную прибыль!
+                Продавайте собранные IT-продукты на рынке. Цены постоянно меняются в зависимости от спроса и предложения. Следите за трендом цены (📈 рост, 📉 падение) и продавайте в удачное время, чтобы получить максимальную прибыль!
             </div>
             <div class="market-items" id="market-items">
                 <!-- Товары для продажи будут добавлены через JS -->
@@ -692,12 +876,16 @@
     <!-- Модальное окно экспорта -->
     <div id="exportModal" class="modal">
         <div class="modal-content">
-            <h2 class="modal-title">Экспорт сохранения</h2>
+            <h2 class="modal-title"><span>💾</span> Экспорт сохранения</h2>
             <p>Скопируйте этот код и сохраните его. Вы сможете использовать его для восстановления прогресса на другом устройстве.</p>
             <textarea id="exportData" class="save-textarea" readonly></textarea>
             <div class="save-controls">
-                <button class="btn" onclick="copyExportData()">Копировать</button>
-                <button class="btn" onclick="closeExportModal()">Закрыть</button>
+                <button class="btn" onclick="copyExportData()">
+                    <span>📋</span> Копировать
+                </button>
+                <button class="btn" onclick="closeExportModal()">
+                    <span>✕</span> Закрыть
+                </button>
             </div>
         </div>
     </div>
@@ -705,12 +893,16 @@
     <!-- Модальное окно импорта -->
     <div id="importModal" class="modal">
         <div class="modal-content">
-            <h2 class="modal-title">Импорт сохранения</h2>
+            <h2 class="modal-title"><span>📥</span> Импорт сохранения</h2>
             <p>Вставьте код сохранения в поле ниже:</p>
             <textarea id="importData" class="save-textarea" placeholder="Вставьте сюда код сохранения..."></textarea>
             <div class="save-controls">
-                <button class="btn" onclick="loadGameData()">Загрузить</button>
-                <button class="btn" onclick="closeImportModal()">Закрыть</button>
+                <button class="btn" onclick="loadGameData()">
+                    <span>🔄</span> Загрузить
+                </button>
+                <button class="btn" onclick="closeImportModal()">
+                    <span>✕</span> Закрыть
+                </button>
             </div>
         </div>
     </div>
@@ -718,13 +910,144 @@
     <!-- Модальное окно достижений -->
     <div id="achievementsModal" class="modal">
         <div class="modal-content">
-            <h2 class="modal-title">🏆 Достижения</h2>
+            <h2 class="modal-title"><span>🏆</span> Достижения</h2>
             <p>Выполняйте производственные задачи, чтобы получать достижения!</p>
             <div class="achievements-container" id="achievements-container">
                 <!-- Достижения будут здесь -->
             </div>
             <div class="save-controls">
-                <button class="btn" onclick="closeAchievementsModal()">Закрыть</button>
+                <button class="btn" onclick="closeAchievementsModal()">
+                    <span>✕</span> Закрыть
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно помощи -->
+    <div id="helpModal" class="modal">
+        <div class="modal-content">
+            <h2 class="modal-title"><span>❓</span> Помощь по игре</h2>
+            
+            <div class="tabs">
+                <button class="tab-btn help-tab active" data-tab="tutorial">Обучение</button>
+                <button class="tab-btn help-tab" data-tab="faq">FAQ</button>
+            </div>
+            
+            <div id="tutorial" class="help-tab-content active">
+                <div class="tutorial-content">
+                    <div class="tutorial-step">
+                        <div class="step-title">
+                            <span>🎯</span> Цель игры
+                        </div>
+                        <div class="step-content">
+                            <p>Создайте успешное IT-производство! Производите детали, обучайте специалистов, собирайте продукты и продавайте их на рынке для получения прибыли.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="tutorial-step">
+                        <div class="step-title">
+                            <span>🏭</span> Производство деталей
+                        </div>
+                        <div class="step-content">
+                            <p>На вкладке "Завод" покупайте станки для производства деталей. Каждый станок автоматически производит ресурсы через определенное время.</p>
+                            <p>Начните с покупки станка шестеренок, чтобы производить базовые детали.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="tutorial-step">
+                        <div class="step-title">
+                            <span>🏫</span> Обучение специалистов
+                        </div>
+                        <div class="step-content">
+                            <p>На вкладке "Училище" покупайте здания для обучения специалистов. Каждое здание автоматически производит специалистов через определенное время.</p>
+                            <p>Для обучения выпускников вам понадобятся ученики, для джуниоров - выпускники и т.д.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="tutorial-step">
+                        <div class="step-title">
+                            <span>🔧</span> Сборка продуктов
+                        </div>
+                        <div class="step-content">
+                            <p>На вкладке "Сборка" покупайте филиалы для производства IT-продуктов. После покупки филиала используйте кнопку "Произвести" для запуска сборки.</p>
+                            <p>Для сборки каждого продукта требуются определенные детали и специалисты.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="tutorial-step">
+                        <div class="step-title">
+                            <span>🏪</span> Продажа продукции
+                        </div>
+                        <div class="step-content">
+                            <p>На вкладке "Рынок" продавайте собранные продукты. Цены постоянно меняются - следите за трендом (📈 рост, 📉 падение).</p>
+                            <p>Продавайте товары, когда цена высока, чтобы максимизировать прибыль!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="faq" class="help-tab-content">
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>❓</span> Как начать игру?
+                        </div>
+                        <div class="faq-answer">
+                            <p>Начните с вкладки "Завод". Купите станок шестеренок, который будет автоматически производить шестеренки. Используйте их для покупки других станков и зданий.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>❓</span> Почему я не могу купить здание?
+                        </div>
+                        <div class="faq-answer">
+                            <p>Для покупки здания вам не хватает одного или нескольких ресурсов. Проверьте стоимость здания в его описании и убедитесь, что у вас достаточно всех необходимых ресурсов.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>❓</span> Как производить товары?
+                        </div>
+                        <div class="faq-answer">
+                            <p>1. Перейдите на вкладку "Сборка"<br>2. Купите филиал для нужного товара<br>3. Нажмите кнопку "Произвести"<br>4. Дождитесь завершения производства</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>❓</span> Когда лучше продавать товары?
+                        </div>
+                        <div class="faq-answer">
+                            <p>Следите за трендом цены на рынке. Зеленый тренд (📈) означает рост цены, красный (📉) - падение. Старайтесь продавать товары, когда цена высока и растет.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>❓</span> Как сохранить прогресс?
+                        </div>
+                        <div class="faq-answer">
+                            <p>Игра автоматически сохраняется в вашем браузере. Для ручного сохранения или переноса прогресса используйте:<br>1. "Экспорт" - сохраните код игры<br>2. "Импорт" - загрузите сохранение с помощью кода</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>❓</span> Что такое достижения?
+                        </div>
+                        <div class="faq-answer">
+                            <p>Достижения - это награды за выполнение определенных задач в игре (например, производство первого товара или заработок миллиона). Открывайте их для дополнительного удовольствия от игры!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="save-controls">
+                <button class="btn" onclick="closeHelpModal()">
+                    <span>✕</span> Закрыть
+                </button>
             </div>
         </div>
     </div>
@@ -758,7 +1081,7 @@
                 gear_machine: {
                     name: "Станок шестеренок",
                     icon: "⚙️",
-                    description: "Производит шестеренки для механических частей",
+                    description: "Производит шестеренки для механических частей. Автоматически производит 1 шестеренку каждые 10 секунд.",
                     cost: { money: 500 },
                     production: { gears: 1 },
                     time: 10 // секунд
@@ -766,7 +1089,7 @@
                 led_machine: {
                     name: "Станок светодиодов",
                     icon: "💡",
-                    description: "Производит светодиоды для подсветки",
+                    description: "Производит светодиоды для подсветки. Автоматически производит 1 светодиод каждые 12 секунд.",
                     cost: { money: 800 },
                     production: { leds: 1 },
                     time: 12
@@ -774,7 +1097,7 @@
                 chip_machine: {
                     name: "Станок микросхем",
                     icon: "🔌",
-                    description: "Производит микросхемы для электронных устройств",
+                    description: "Производит микросхемы для электронных устройств. Автоматически производит 1 микросхему каждые 15 секунд.",
                     cost: { money: 1200 },
                     production: { chips: 1 },
                     time: 15
@@ -782,7 +1105,7 @@
                 sensor_machine: {
                     name: "Станок датчиков",
                     icon: "📡",
-                    description: "Производит датчики для умных устройств",
+                    description: "Производит датчики для умных устройств. Автоматически производит 1 датчик каждые 20 секунд.",
                     cost: { money: 2000 },
                     production: { sensors: 1 },
                     time: 20
@@ -794,7 +1117,7 @@
                 student_building: {
                     name: "Здание учеников",
                     icon: "👨‍🎓",
-                    description: "Обучает новых IT-учеников",
+                    description: "Обучает новых IT-учеников. Автоматически производит 1 ученика каждые 15 секунд.",
                     cost: { money: 1500 },
                     production: { students: 1 },
                     time: 15
@@ -802,7 +1125,7 @@
                 graduate_building: {
                     name: "Здание выпускников",
                     icon: "🎓",
-                    description: "Выпускает квалифицированных IT-специалистов",
+                    description: "Выпускает квалифицированных IT-специалистов. Автоматически производит 1 выпускника каждые 20 секунд.",
                     cost: { money: 3000, students: 2 },
                     production: { graduates: 1 },
                     time: 20
@@ -810,7 +1133,7 @@
                 junior_building: {
                     name: "Здание джуниоров",
                     icon: "👨‍💻",
-                    description: "Готовит джуниор-разработчиков",
+                    description: "Готовит джуниор-разработчиков. Автоматически производит 1 джуниора каждые 25 секунд.",
                     cost: { money: 6000, graduates: 3 },
                     production: { juniors: 1 },
                     time: 25
@@ -818,7 +1141,7 @@
                 senior_building: {
                     name: "Здание сеньоров",
                     icon: "👴‍💻",
-                    description: "Обучает опытных IT-сеньоров",
+                    description: "Обучает опытных IT-сеньоров. Автоматически производит 1 сеньора каждые 30 секунд.",
                     cost: { money: 12000, juniors: 2 },
                     production: { seniors: 1 },
                     time: 30
@@ -830,7 +1153,7 @@
                 laptop_branch: {
                     name: "Филиал ноутбуков",
                     icon: "💻",
-                    description: "Собирает стандартные ноутбуки",
+                    description: "Собирает стандартные ноутбуки. Каждое производство занимает 20 секунд.",
                     cost: { money: 5000 },
                     requirements: { gears: 3, leds: 2, chips: 4, students: 2 },
                     production: { laptops: 1 },
@@ -839,7 +1162,7 @@
                 powerful_laptop_branch: {
                     name: "Филиал мощных ноутбуков",
                     icon: "💻🔥",
-                    description: "Собирает высокопроизводительные ноутбуки",
+                    description: "Собирает высокопроизводительные ноутбуки. Каждое производство занимает 30 секунд.",
                     cost: { money: 10000 },
                     requirements: { gears: 5, leds: 3, chips: 8, graduates: 3 },
                     production: { powerful_laptops: 1 },
@@ -848,7 +1171,7 @@
                 pc_branch: {
                     name: "Филиал ПК",
                     icon: "🖥️",
-                    description: "Собирает настольные компьютеры",
+                    description: "Собирает настольные компьютеры. Каждое производство занимает 40 секунд.",
                     cost: { money: 15000 },
                     requirements: { gears: 8, leds: 4, chips: 10, juniors: 2 },
                     production: { pcs: 1 },
@@ -857,7 +1180,7 @@
                 gaming_pc_branch: {
                     name: "Филиал игровых ПК",
                     icon: "🖥️🎮",
-                    description: "Собирает мощные игровые системы",
+                    description: "Собирает мощные игровые системы. Каждое производство занимает 50 секунд.",
                     cost: { money: 25000 },
                     requirements: { gears: 12, leds: 6, chips: 15, sensors: 4, juniors: 4 },
                     production: { gaming_pcs: 1 },
@@ -866,7 +1189,7 @@
                 robot_branch: {
                     name: "Филиал роботов",
                     icon: "🤖",
-                    description: "Собирает продвинутых IT-роботов",
+                    description: "Собирает продвинутых IT-роботов. Каждое производство занимает 60 секунд.",
                     cost: { money: 50000 },
                     requirements: { gears: 20, leds: 10, chips: 25, sensors: 10, seniors: 3 },
                     production: { robots: 1 },
@@ -895,7 +1218,7 @@
         // Начальное состояние игры
         const INITIAL_STATE = {
             resources: {
-                money: 8000,
+                money: 5000,
                 gears: 0,
                 leds: 0,
                 chips: 0,
@@ -939,7 +1262,8 @@
             },
             achievements: {},
             lastUpdate: Date.now(),
-            totalSales: 0
+            totalSales: 0,
+            tutorialCompleted: false
         };
 
         // Состояние игры
@@ -957,9 +1281,11 @@
         const exportModal = document.getElementById('exportModal');
         const importModal = document.getElementById('importModal');
         const achievementsModal = document.getElementById('achievementsModal');
+        const helpModal = document.getElementById('helpModal');
         const exportDataEl = document.getElementById('exportData');
         const importDataEl = document.getElementById('importData');
         const tabButtons = document.querySelectorAll('.tab-btn');
+        const helpTabs = document.querySelectorAll('.help-tab');
 
         let productionInterval;
         let marketInterval;
@@ -987,6 +1313,15 @@
             }
             
             setupEventListeners();
+            
+            // Показываем обучение при первом запуске
+            if (!gameState.tutorialCompleted) {
+                setTimeout(() => {
+                    showHelpModal();
+                    gameState.tutorialCompleted = true;
+                    saveGameState();
+                }, 1000);
+            }
         }
 
         // Сброс состояния игры
@@ -1034,11 +1369,33 @@
                 });
             });
             
+            // Переключение вкладок помощи
+            helpTabs.forEach(button => {
+                button.addEventListener('click', () => {
+                    const tabId = button.dataset.tab;
+                    
+                    // Убрать активный класс у всех кнопок
+                    helpTabs.forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    
+                    // Скрыть все вкладки помощи
+                    document.querySelectorAll('.help-tab-content').forEach(tab => {
+                        tab.classList.remove('active');
+                    });
+                    
+                    // Показать выбранную вкладку
+                    document.getElementById(tabId).classList.add('active');
+                    button.classList.add('active');
+                });
+            });
+            
             // Закрытие модальных окон при клике вне контента
             document.addEventListener('click', (e) => {
                 if (e.target === exportModal) closeExportModal();
                 if (e.target === importModal) closeImportModal();
                 if (e.target === achievementsModal) closeAchievementsModal();
+                if (e.target === helpModal) closeHelpModal();
             });
         }
 
@@ -1113,13 +1470,16 @@
                 // Определение тренда цены
                 let trendIcon = '➖';
                 let trendClass = 'trend-stable';
+                let trendText = 'Стабильно';
                 
                 if (marketState.trend > 0) {
                     trendIcon = '📈';
                     trendClass = 'trend-up';
+                    trendText = `Рост +${marketState.trend}%`;
                 } else if (marketState.trend < 0) {
                     trendIcon = '📉';
                     trendClass = 'trend-down';
+                    trendText = `Падение ${marketState.trend}%`;
                 }
                 
                 const itemEl = document.createElement('div');
@@ -1128,15 +1488,15 @@
                 itemEl.innerHTML = `
                     <div class="market-icon">${item.icon}</div>
                     <div class="market-title">${item.name}</div>
-                    <div class="market-price">${marketState.currentPrice.toLocaleString()} 💰</div>
-                    <div class="price-trend ${trendClass}">${trendIcon} ${marketState.trend > 0 ? '+' : ''}${marketState.trend}%</div>
+                    <div class="market-price">${marketState.currentPrice.toLocaleString()} <span class="tooltip">💰<span class="tooltiptext">Текущая цена за единицу</span></span></div>
+                    <div class="price-trend ${trendClass}">${trendIcon} ${trendText}</div>
                     <div class="market-quantity">У вас: ${quantity.toLocaleString()} шт.</div>
                     <div class="market-actions">
                         <button class="sell-btn" onclick="sellProduct('${item.id}', 1)" ${quantity < 1 ? 'disabled' : ''}>
-                            Продать 1
+                            <span>💰</span> Продать 1
                         </button>
                         <button class="sell-all-btn" onclick="sellProduct('${item.id}', 'all')" ${quantity < 1 ? 'disabled' : ''}>
-                            Продать все
+                            <span>💵</span> Продать все
                         </button>
                     </div>
                 `;
@@ -1151,9 +1511,9 @@
             card.className = 'building-card';
             
             // Отображение прогресса производства
-            const progressPercent = (state.progress / config.time) * 100;
+            const progressPercent = state.progress > 0 ? (state.progress / config.time) * 100 : 0;
             const progressBar = progressPercent > 0 ? 
-                `<div class="progress-bar" style="height: 5px; background: var(--success); width: ${progressPercent}%; border-radius: 0 0 15px 15px; position: absolute; bottom: 0; left: 0;"></div>` : '';
+                `<div class="progress-bar" style="width: ${progressPercent}%"></div>` : '';
             
             // Кнопки действий
             let buyButton = '';
@@ -1166,7 +1526,7 @@
                     buyButton = `
                         <button class="building-btn buy-btn" ${!canBuy ? 'disabled' : ''}
                             onclick="buyBuilding('${key}')">
-                            Купить (${formatCost(config.cost)})
+                            <span>🏭</span> Купить (${formatCost(config.cost)})
                         </button>
                     `;
                 } else {
@@ -1175,7 +1535,7 @@
                     produceButton = `
                         <button class="building-btn produce-btn" ${!canProduce ? 'disabled' : ''}
                             onclick="produceProduct('${key}')">
-                            Произвести (${formatCost(config.requirements)})
+                            <span>⚙️</span> Произвести (${formatCost(config.requirements)})
                         </button>
                     `;
                 }
@@ -1185,14 +1545,14 @@
                 buyButton = `
                     <button class="building-btn buy-btn" ${!canBuy ? 'disabled' : ''}
                         onclick="buyBuilding('${key}')">
-                        Купить (${formatCost(config.cost)})
+                        <span>🏭</span> Купить (${formatCost(config.cost)})
                     </button>
                 `;
             }
             
             // Требования для сборки
             let requirements = '';
-            if (type === 'assembly') {
+            if (type === 'assembly' && state.count > 0) {
                 requirements = `
                     <div class="building-requirements">
                         <strong>Требуется для производства:</strong>
@@ -1202,6 +1562,18 @@
                                 <span>${amount}</span>
                             </div>
                         `).join('')}
+                    </div>
+                `;
+            }
+            
+            // Статус производства
+            let productionStatus = '';
+            if (state.progress > 0) {
+                const timeLeft = Math.ceil(state.progress);
+                productionStatus = `
+                    <div class="building-stats">
+                        <div>Производство:</div>
+                        <div>${timeLeft} сек</div>
                     </div>
                 `;
             }
@@ -1223,6 +1595,7 @@
                 </div>
                 ` : ''}
                 
+                ${productionStatus}
                 ${requirements}
                 
                 <div class="building-actions">
@@ -1364,6 +1737,11 @@
                             for (const [resource, amount] of Object.entries(config.production)) {
                                 gameState.resources[resource] = (gameState.resources[resource] || 0) + amount * state.count;
                             }
+                            
+                            // Обновляем достижение "Первое производство"
+                            if (key === 'gear_machine' && gameState.resources.gears > 0 && !gameState.achievements.first_production.earned) {
+                                updateAchievement('first_production', 1);
+                            }
                         }
                     }
                 }
@@ -1380,6 +1758,11 @@
                             // Добавляем произведенных специалистов
                             for (const [resource, amount] of Object.entries(config.production)) {
                                 gameState.resources[resource] = (gameState.resources[resource] || 0) + amount * state.count;
+                            }
+                            
+                            // Обновляем достижение "Первый выпускник"
+                            if (key === 'graduate_building' && gameState.resources.graduates > 0 && !gameState.achievements.student_graduate.earned) {
+                                updateAchievement('student_graduate', 1);
                             }
                         }
                     }
@@ -1450,14 +1833,9 @@
 
         // Проверка достижений
         function checkAchievements() {
-            // Проверяем первое производство
-            if ((gameState.resources.gears || 0) > 0 && !gameState.achievements.first_production.earned) {
-                updateAchievement('first_production', 1);
-            }
-            
-            // Проверяем первого выпускника
-            if ((gameState.resources.graduates || 0) > 0 && !gameState.achievements.student_graduate.earned) {
-                updateAchievement('student_graduate', 1);
+            // Обновляем достижение "Король рынка"
+            if (gameState.totalSales >= 500000 && !gameState.achievements.market_king.earned) {
+                updateAchievement('market_king', 500000);
             }
         }
 
@@ -1558,6 +1936,16 @@
         // Закрыть модальное окно достижений
         function closeAchievementsModal() {
             achievementsModal.style.display = 'none';
+        }
+        
+        // Показать модальное окно помощи
+        function showHelpModal() {
+            helpModal.style.display = 'flex';
+        }
+        
+        // Закрыть модальное окно помощи
+        function closeHelpModal() {
+            helpModal.style.display = 'none';
         }
         
         // Сгенерировать код сохранения
