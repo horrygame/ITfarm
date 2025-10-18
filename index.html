@@ -1,2009 +1,1098 @@
-
-            --warning: #facc15;
-            --danger: #f87171;
-            --factory: #f59e0b;
-            --school: #3b82f6;
-            --assembly: #10b981;
-            --market: #a78bfa;
-            --reset: #ef4444;
-            --help: #8b5cf6;
-        }
-        
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Программирование Робота</title>
+    <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Times New Roman', serif;
         }
         
         body {
-            background: linear-gradient(135deg, #1a2a6c, #2c3e50, #1a2a6c);
-            color: var(--light);
-            min-height: 100vh;
-            padding: 20px;
-            line-height: 1.6;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: rgba(0, 0, 30, 0.8);
-            border-radius: 20px;
-            padding: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        }
-        
-        .user-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid var(--primary);
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-        
-        h1 {
-            margin: 0;
-            font-size: 2.2rem;
-            text-shadow: 0 0 10px rgba(76, 201, 240, 0.7);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .user-info {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        
-        .user-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--secondary), var(--primary));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-        
-        .btn {
-            background: linear-gradient(135deg, var(--accent), #b5179e);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s;
-            font-size: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(247, 37, 133, 0.4);
-        }
-        
-        .btn-reset {
-            background: linear-gradient(135deg, var(--reset), #b91c1c);
-        }
-        
-        .btn-help {
-            background: linear-gradient(135deg, var(--help), #7c3aed);
-        }
-        
-        .stats {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            background: rgba(0, 20, 40, 0.8);
-            padding: 15px;
-            border-radius: 15px;
-            font-size: 1.1rem;
-            margin-bottom: 20px;
-            justify-content: center;
-        }
-        
-        .resource {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 15px;
-            border-radius: 30px;
-            background: rgba(255, 255, 255, 0.1);
-            min-width: 180px;
-        }
-        
-        .tabs {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        
-        .tab-btn {
-            padding: 12px 25px;
-            border-radius: 50px;
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            border: none;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s;
-            font-size: 1.1rem;
-            flex: 1;
-            min-width: 120px;
-            text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-        
-        .tab-btn.active {
-            box-shadow: 0 0 15px rgba(76, 201, 240, 0.5);
-        }
-        
-        .factory-btn.active {
-            background: linear-gradient(135deg, var(--factory), #d97706);
-        }
-        
-        .school-btn.active {
-            background: linear-gradient(135deg, var(--school), #1d4ed8);
-        }
-        
-        .assembly-btn.active {
-            background: linear-gradient(135deg, var(--assembly), #047857);
-        }
-        
-        .market-btn.active {
-            background: linear-gradient(135deg, var(--market), #7e22ce);
-        }
-        
-        .tab-content {
-            display: none;
-        }
-        
-        .tab-content.active {
-            display: block;
-            animation: fadeIn 0.5s ease;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .location-header {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid;
-        }
-        
-        .factory .location-header {
-            border-color: var(--factory);
-        }
-        
-        .school .location-header {
-            border-color: var(--school);
-        }
-        
-        .assembly .location-header {
-            border-color: var(--assembly);
-        }
-        
-        .market .location-header {
-            border-color: var(--market);
-        }
-        
-        .location-title {
-            font-size: 1.8rem;
-            font-weight: bold;
-        }
-        
-        .location-description {
-            margin-bottom: 20px;
-            padding: 15px;
-            border-radius: 15px;
-            background: rgba(255, 255, 255, 0.1);
-            font-size: 1.1rem;
-        }
-        
-        .buildings {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-        
-        .building-card {
-            background: rgba(0, 30, 60, 0.7);
-            border-radius: 15px;
-            padding: 20px;
-            transition: all 0.3s;
-            position: relative;
+            background: linear-gradient(135deg, #3e2723, #5d4037);
+            color: #f5e8c8;
             overflow: hidden;
-            border: 2px solid rgba(255, 255, 255, 0.1);
+            height: 100vh;
             display: flex;
-            flex-direction: column;
-        }
-        
-        .factory .building-card {
-            border-color: var(--factory);
-        }
-        
-        .school .building-card {
-            border-color: var(--school);
-        }
-        
-        .assembly .building-card {
-            border-color: var(--assembly);
-        }
-        
-        .building-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(76, 201, 240, 0.3);
-        }
-        
-        .building-icon {
-            font-size: 3.5rem;
-            text-align: center;
-            margin-bottom: 15px;
-        }
-        
-        .building-title {
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-            text-align: center;
-            font-weight: bold;
-        }
-        
-        .building-info {
-            margin-bottom: 15px;
-            padding: 10px;
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 10px;
-            font-size: 0.95rem;
-            flex-grow: 1;
-        }
-        
-        .building-stats {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 15px;
-            font-size: 0.9rem;
-        }
-        
-        .building-count {
-            font-weight: bold;
-            font-size: 1.2rem;
-            color: var(--primary);
-        }
-        
-        .building-cost {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            margin-bottom: 15px;
-            padding: 8px;
-            border-radius: 8px;
-            background: rgba(0, 0, 0, 0.3);
             justify-content: center;
-            flex-wrap: wrap;
-        }
-        
-        .building-requirements {
-            margin: 15px 0;
-            padding: 10px;
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 10px;
-            font-size: 0.9rem;
-        }
-        
-        .requirement-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 5px 0;
             align-items: center;
         }
         
-        .building-actions {
-            display: flex;
-            gap: 10px;
-            margin-top: auto;
+        #game-container {
+            position: relative;
+            width: 1200px;
+            height: 800px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
+            border-radius: 5px;
+            overflow: hidden;
+            border: 8px solid #5d4037;
         }
         
-        .building-btn {
-            flex: 1;
-            padding: 10px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 5px;
-        }
-        
-        .buy-btn {
-            background: linear-gradient(135deg, var(--success), #16a34a);
-            color: white;
-        }
-        
-        .produce-btn {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-        }
-        
-        .building-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-        
-        .building-btn:hover:not(:disabled) {
-            transform: translateY(-3px);
-        }
-        
-        .market-items {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-        }
-        
-        .market-item {
-            background: rgba(0, 30, 60, 0.7);
-            border-radius: 15px;
-            padding: 20px;
-            border: 2px solid var(--market);
-            transition: all 0.3s;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .market-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(167, 139, 250, 0.3);
-        }
-        
-        .market-icon {
-            font-size: 3rem;
-            text-align: center;
-            margin-bottom: 15px;
-        }
-        
-        .market-title {
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-            text-align: center;
-            font-weight: bold;
-        }
-        
-        .market-price {
-            text-align: center;
-            font-size: 1.4rem;
-            margin: 15px 0;
-            font-weight: bold;
-            color: var(--success);
-        }
-        
-        .price-trend {
-            display: flex;
-            justify-content: center;
-            gap: 5px;
-            font-size: 1.1rem;
-            margin-bottom: 10px;
-        }
-        
-        .trend-up {
-            color: var(--success);
-        }
-        
-        .trend-down {
-            color: var(--danger);
-        }
-        
-        .trend-stable {
-            color: var(--warning);
-        }
-        
-        .market-quantity {
-            text-align: center;
-            margin: 10px 0;
-            font-size: 1.1rem;
-            background: rgba(0, 0, 0, 0.3);
-            padding: 8px;
-            border-radius: 8px;
-        }
-        
-        .market-actions {
-            display: flex;
-            gap: 10px;
-            margin-top: auto;
-        }
-        
-        .sell-btn {
-            background: linear-gradient(135deg, var(--success), #16a34a);
-            color: white;
-            flex: 1;
-            padding: 10px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 5px;
-        }
-        
-        .sell-btn:hover:not(:disabled) {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(22, 163, 74, 0.4);
-        }
-        
-        .sell-all-btn {
-            background: linear-gradient(135deg, var(--warning), #ca8a04);
-            color: white;
-            flex: 1;
-            padding: 10px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 5px;
-        }
-        
-        .sell-all-btn:hover:not(:disabled) {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(202, 138, 4, 0.4);
-        }
-        
-        .notification {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: rgba(0, 40, 80, 0.9);
-            border-left: 5px solid var(--primary);
-            padding: 15px 25px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            transform: translateX(100%);
-            transition: transform 0.5s ease-in-out;
-            z-index: 1001;
-            max-width: 350px;
-        }
-        
-        .notification.show {
-            transform: translateX(0);
-        }
-        
-        .notification-content {
-            font-size: 1rem;
-            line-height: 1.5;
-        }
-        
-        .notification.success {
-            border-left-color: var(--success);
-        }
-        
-        .notification.error {
-            border-left-color: var(--danger);
-        }
-        
-        .modal {
-            display: none;
-            position: fixed;
+        #game-canvas {
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 1000;
+        }
+        
+        .screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
+            background: rgba(61, 43, 31, 0.95);
+            z-index: 10;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" opacity="0.1"><rect fill="%235d4037" width="100" height="100"/><path d="M0,0 L100,100 M100,0 L0,100" stroke="%233e2723" stroke-width="2"/></svg>');
         }
         
-        .modal-content {
-            background: var(--dark);
-            padding: 30px;
-            border-radius: 20px;
-            width: 90%;
-            max-width: 600px;
-            box-shadow: 0 0 30px rgba(76, 201, 240, 0.5);
-            max-height: 90vh;
-            overflow-y: auto;
+        .hidden {
+            display: none;
         }
         
-        .modal-title {
-            margin-top: 0;
-            color: var(--primary);
-            text-align: center;
-            font-size: 1.8rem;
+        h1 {
+            font-size: 64px;
+            color: #d7ccc8;
             margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
+            text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
+            text-align: center;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-bottom: 3px solid #8d6e63;
+            padding-bottom: 10px;
         }
         
-        .save-controls {
+        h2 {
+            font-size: 48px;
+            color: #d7ccc8;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        p {
+            font-size: 24px;
+            margin-bottom: 40px;
+            text-align: center;
+            max-width: 80%;
+            line-height: 1.5;
+            color: #efebe9;
+        }
+        
+        .button {
+            background: linear-gradient(to bottom, #8d6e63, #6d4c41);
+            color: #fff;
+            border: none;
+            padding: 15px 30px;
+            font-size: 22px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            min-width: 250px;
+            text-align: center;
+            border: 2px solid #5d4037;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        
+        .button:hover {
+            background: linear-gradient(to bottom, #a1887f, #8d6e63);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6);
+        }
+        
+        .button:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .button:disabled {
+            background: linear-gradient(to bottom, #795548, #5d4037);
+            cursor: not-allowed;
+            transform: none;
+            color: #bcaaa4;
+        }
+        
+        .menu-buttons {
             display: flex;
-            gap: 10px;
-            margin-top: 10px;
             flex-wrap: wrap;
             justify-content: center;
+            max-width: 600px;
         }
         
-        .save-textarea {
-            width: 100%;
-            height: 150px;
-            margin: 15px 0;
-            padding: 15px;
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            font-family: monospace;
-            resize: none;
-        }
-        
-        .achievements-container {
+        .card-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            max-height: 600px;
+            overflow-y: auto;
+            padding: 20px;
+            width: 90%;
         }
         
-        .achievement-card {
-            background: rgba(0, 30, 60, 0.8);
-            border-radius: 15px;
-            padding: 15px;
-            text-align: center;
-            border: 2px solid var(--success);
-            transition: all 0.3s;
-            position: relative;
-        }
-        
-        .achievement-card.unlocked {
-            border-color: var(--warning);
-            background: rgba(246, 173, 85, 0.2);
-            box-shadow: 0 0 15px rgba(246, 173, 85, 0.5);
-        }
-        
-        .achievement-emoji {
-            font-size: 3rem;
-            margin-bottom: 10px;
-        }
-        
-        .achievement-title {
-            font-size: 1.1rem;
-            margin-bottom: 5px;
-            color: var(--primary);
-            font-weight: bold;
-        }
-        
-        .achievement-progress {
-            height: 10px;
-            background: rgba(255, 255, 255, 0.1);
+        .level-card {
+            background: rgba(93, 64, 55, 0.8);
             border-radius: 5px;
-            margin: 10px 0;
-            overflow: hidden;
-        }
-        
-        .achievement-progress-bar {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            transition: width 0.5s;
-        }
-        
-        .achievement-count {
-            font-size: 0.9rem;
-            color: var(--warning);
-        }
-        
-        .medal {
-            font-size: 2rem;
-            position: absolute;
-            top: 10px;
-            left: 10px;
-        }
-        
-        .tutorial-content {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
             padding: 20px;
-            margin-bottom: 20px;
-        }
-        
-        .tutorial-step {
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .tutorial-step:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
-        }
-        
-        .step-title {
+            width: 300px;
+            height: 200px;
             display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 10px;
-            font-size: 1.3rem;
+            border: 2px solid #8d6e63;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+        
+        .level-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .level-number {
+            font-size: 36px;
+            color: #ffd54f;
             margin-bottom: 10px;
-            color: var(--primary);
         }
         
-        .step-content {
-            padding-left: 30px;
-            font-size: 1.05rem;
+        .level-title {
+            font-size: 24px;
+            color: #f5e8c8;
+            margin-bottom: 10px;
+            text-align: center;
         }
         
-        .faq-container {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 20px;
+        .level-description {
+            font-size: 16px;
+            color: #efebe9;
+            text-align: center;
+            line-height: 1.4;
         }
         
-        .faq-item {
+        .parchment {
+            background: #f5e8c8;
+            color: #5d4037;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            border: 1px solid #8d6e63;
+            max-width: 90%;
             margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         }
         
-        .faq-item:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
+        .game-ui {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            z-index: 5;
         }
         
-        .faq-question {
+        .ui-panel {
+            background: rgba(93, 64, 55, 0.8);
+            padding: 10px 20px;
+            border-radius: 5px;
             display: flex;
             align-items: center;
             gap: 10px;
-            font-size: 1.2rem;
-            margin-bottom: 8px;
-            color: var(--primary);
-            font-weight: bold;
+            font-size: 20px;
+            border: 2px solid #8d6e63;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            color: #f5e8c8;
         }
         
-        .faq-answer {
-            padding-left: 30px;
+        .game-result {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(61, 43, 31, 0.95);
+            padding: 40px;
+            border-radius: 5px;
+            text-align: center;
+            z-index: 20;
+            border: 3px solid #8d6e63;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+            width: 500px;
         }
         
-        .progress-bar {
-            height: 5px;
-            background: var(--success);
-            border-radius: 0 0 15px 15px;
+        .programming-area {
             position: absolute;
             bottom: 0;
             left: 0;
-            transition: width 0.5s;
+            width: 100%;
+            height: 200px;
+            background: rgba(93, 64, 55, 0.9);
+            display: flex;
+            flex-direction: column;
+            padding: 15px;
+            border-top: 3px solid #8d6e63;
         }
         
-        .tooltip {
-            position: relative;
-            cursor: help;
-            display: inline-block;
-            border-bottom: 1px dotted var(--primary);
+        .commands-panel {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            overflow-x: auto;
+            padding: 5px;
         }
         
-        .tooltip .tooltiptext {
-            visibility: hidden;
-            width: 250px;
-            background-color: var(--dark);
+        .command {
+            background: linear-gradient(to bottom, #8d6e63, #6d4c41);
             color: #fff;
+            border: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            border: 2px solid #5d4037;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+            font-weight: bold;
+            min-width: 180px;
             text-align: center;
-            border-radius: 6px;
+        }
+        
+        .command:hover {
+            background: linear-gradient(to bottom, #a1887f, #8d6e63);
+        }
+        
+        .program-panel {
+            flex-grow: 1;
+            background: rgba(121, 85, 72, 0.7);
+            border-radius: 5px;
             padding: 10px;
-            position: absolute;
-            z-index: 1;
-            bottom: 125%;
-            left: 50%;
-            transform: translateX(-50%);
-            opacity: 0;
-            transition: opacity 0.3s;
-            font-size: 0.9rem;
-            border: 1px solid var(--primary);
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            border: 2px solid #8d6e63;
         }
         
-        .tooltip:hover .tooltiptext {
-            visibility: visible;
-            opacity: 1;
+        .program-slot {
+            width: 100px;
+            height: 60px;
+            background: rgba(93, 64, 55, 0.5);
+            border: 2px dashed #8d6e63;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #bcaaa4;
+            font-size: 14px;
         }
         
-        @media (max-width: 768px) {
-            .tabs {
-                flex-direction: column;
-            }
-            
-            .buildings, .market-items {
-                grid-template-columns: 1fr;
-            }
-            
-            .user-header {
-                flex-direction: column;
-                gap: 15px;
-                text-align: center;
-            }
-            
-            .user-info {
-                justify-content: center;
-                flex-wrap: wrap;
-            }
-            
-            .modal-content {
-                padding: 15px;
-            }
+        .program-slot.filled {
+            background: rgba(141, 110, 99, 0.7);
+            border: 2px solid #5d4037;
+            color: #f5e8c8;
+        }
+        
+        .controls-panel {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .tutorial-content {
+            max-height: 500px;
+            overflow-y: auto;
+            padding: 20px;
+            width: 90%;
+            text-align: left;
+        }
+        
+        .tutorial-section {
+            margin-bottom: 30px;
+        }
+        
+        .tutorial-section h3 {
+            color: #ffd54f;
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+        
+        .tutorial-section p {
+            text-align: left;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        .tutorial-section ul {
+            margin-left: 30px;
+            margin-bottom: 15px;
+        }
+        
+        .tutorial-section li {
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        
+        .code-example {
+            background: #5d4037;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            margin: 10px 0;
+            border-left: 4px solid #ffd54f;
+        }
+        
+        .medieval-border {
+            border: 8px solid transparent;
+            border-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M0,0 L100,0 L100,100 L0,100 Z M10,10 L90,10 L90,90 L10,90 Z" fill="none" stroke="%238d6e63" stroke-width="4"/></svg>') 8 round;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="user-header">
-            <h1><span>🏭</span> IT Производство</h1>
-            <div class="user-info">
-                <div class="user-avatar">👨‍💼</div>
-                <div class="save-controls">
-                    <button class="btn btn-help" onclick="showHelpModal()">
-                        <span>❓</span> Помощь
-                    </button>
-                    <button class="btn" onclick="showAchievementsModal()">
-                        <span>🏆</span> Достижения
-                    </button>
-                    <button class="btn" onclick="showExportModal()">
-                        <span>💾</span> Экспорт
-                    </button>
-                    <button class="btn" onclick="showImportModal()">
-                        <span>📥</span> Импорт
-                    </button>
-                    <button class="btn btn-reset" onclick="resetProgress()">
-                        <span>🔄</span> Сбросить
-                    </button>
+    <div id="game-container" class="medieval-border">
+        <canvas id="game-canvas" width="1200" height="800"></canvas>
+        
+        <!-- Главное меню -->
+        <div id="main-menu" class="screen">
+            <h1>🤖 Программирование Робота</h1>
+            <p class="parchment">Программируйте робота для выполнения заданий на различных уровнях</p>
+            
+            <div class="menu-buttons">
+                <button class="button" id="levels-btn">📚 Уровни</button>
+                <button class="button" id="tutorial-btn">📖 Пособие</button>
+            </div>
+        </div>
+        
+        <!-- Экран уровней -->
+        <div id="levels-screen" class="screen hidden">
+            <h2>📚 Уровни</h2>
+            <p class="parchment">Выберите уровень для программирования робота</p>
+            
+            <button class="button" id="levels-back-btn">← Назад</button>
+            
+            <div class="card-grid" id="levels-container">
+                <!-- Карточки уровней будут добавлены через JavaScript -->
+            </div>
+        </div>
+        
+        <!-- Экран пособия -->
+        <div id="tutorial-screen" class="screen hidden">
+            <h2>📖 Пособие</h2>
+            
+            <button class="button" id="tutorial-back-btn">← Назад</button>
+            
+            <div class="tutorial-content">
+                <div class="tutorial-section">
+                    <h3>Основы программирования робота</h3>
+                    <p>В этой игре вы будете программировать робота для выполнения различных заданий. Робот может выполнять следующие команды:</p>
+                    <ul>
+                        <li><strong>Идти вперед</strong> - робот перемещается на одну клетку вперед</li>
+                        <li><strong>Идти назад</strong> - робот перемещается на одну клетку назад</li>
+                        <li><strong>Идти вправо</strong> - робот перемещается на одну клетку вправо</li>
+                        <li><strong>Идти влево</strong> - робот перемещается на одну клетку влево</li>
+                        <li><strong>Атаковать ближайшего врага</strong> - робот атакует врага, если тот находится в радиусе атаки</li>
+                    </ul>
+                </div>
+                
+                <div class="tutorial-section">
+                    <h3>Как программировать робота</h3>
+                    <p>Чтобы запрограммировать робота:</p>
+                    <ol>
+                        <li>Выберите уровень из меню "Уровни"</li>
+                        <li>Изучите задание и расположение объектов на поле</li>
+                        <li>Перетащите команды из панели команд в область программы</li>
+                        <li>Расположите команды в правильном порядке</li>
+                        <li>Нажмите кнопку "Запуск программы" для выполнения программы</li>
+                    </ol>
+                </div>
+                
+                <div class="tutorial-section">
+                    <h3>Пример программы</h3>
+                    <p>Пример программы для перемещения робота к врагу и атаки:</p>
+                    <div class="code-example">
+                        1. Идти вперед<br>
+                        2. Идти вперед<br>
+                        3. Идти вправо<br>
+                        4. Атаковать ближайшего врага
+                    </div>
+                </div>
+                
+                <div class="tutorial-section">
+                    <h3>Советы</h3>
+                    <ul>
+                        <li>Планируйте маршрут робота заранее</li>
+                        <li>Учитывайте препятствия на пути</li>
+                        <li>Помните, что команда атаки работает только если враг в радиусе атаки</li>
+                        <li>Используйте кнопку "Сброс программы" для очистки программы</li>
+                        <li>Если программа не работает как ожидалось, проверьте порядок команд</li>
+                    </ul>
                 </div>
             </div>
         </div>
         
-        <div class="stats" id="resources-panel">
-            <!-- Ресурсы будут добавлены через JS -->
+        <!-- Игровой UI (отображается поверх игрового экрана) -->
+        <div id="game-ui" class="game-ui hidden">
+            <div class="ui-panel">
+                Уровень: <span id="current-level">1</span>
+            </div>
+            <div class="ui-panel">
+                Задание: <span id="current-task">Дойти до цели</span>
+            </div>
+            <button class="button" id="game-back-btn">← Назад</button>
         </div>
         
-        <div class="tabs">
-            <button class="tab-btn factory-btn active" data-tab="factory">
-                <span>🏭</span> Завод
-            </button>
-            <button class="tab-btn school-btn" data-tab="school">
-                <span>🏫</span> Училище
-            </button>
-            <button class="tab-btn assembly-btn" data-tab="assembly">
-                <span>🔧</span> Сборка
-            </button>
-            <button class="tab-btn market-btn" data-tab="market">
-                <span>🏪</span> Рынок
-            </button>
-        </div>
-        
-        <!-- Локация: Завод -->
-        <div id="factory" class="tab-content active factory">
-            <div class="location-header">
-                <div class="location-icon">🏭</div>
-                <div class="location-title">Производство деталей</div>
-            </div>
-            <div class="location-description">
-                Здесь вы производите детали для сборки IT-продуктов. Покупайте станки для производства шестеренок, светодиодов, микросхем и датчиков. Каждый станок автоматически производит ресурсы через определенное время.
-            </div>
-            <div class="buildings" id="factory-buildings">
-                <!-- Карточки станков будут добавлены через JS -->
-            </div>
-        </div>
-        
-        <!-- Локация: Училище -->
-        <div id="school" class="tab-content school">
-            <div class="location-header">
-                <div class="location-icon">🏫</div>
-                <div class="location-title">Обучение специалистов</div>
-            </div>
-            <div class="location-description">
-                Обучайте IT-специалистов: учеников, выпускников, джуниоров и сеньоров. Они необходимы для сборки сложных продуктов. Каждое здание автоматически производит специалистов через определенное время.
-            </div>
-            <div class="buildings" id="school-buildings">
-                <!-- Карточки зданий будут добавлены через JS -->
-            </div>
-        </div>
-        
-        <!-- Локация: Сборка -->
-        <div id="assembly" class="tab-content assembly">
-            <div class="location-header">
-                <div class="location-icon">🔧</div>
-                <div class="location-title">Сборка продуктов</div>
-            </div>
-            <div class="location-description">
-                Используйте детали и специалистов для сборки IT-продуктов: ноутбуков, ПК, игровых систем и роботов. Сначала купите филиал, затем используйте кнопку "Произвести" для запуска сборки.
-            </div>
-            <div class="buildings" id="assembly-buildings">
-                <!-- Карточки филиалов будут добавлены через JS -->
-            </div>
-        </div>
-        
-        <!-- Локация: Рынок -->
-        <div id="market" class="tab-content market">
-            <div class="location-header">
-                <div class="location-icon">🏪</div>
-                <div class="location-title">Продажа продукции</div>
-            </div>
-            <div class="location-description">
-                Продавайте собранные IT-продукты на рынке. Цены постоянно меняются в зависимости от спроса и предложения. Следите за трендом цены (📈 рост, 📉 падение) и продавайте в удачное время, чтобы получить максимальную прибыль!
-            </div>
-            <div class="market-items" id="market-items">
-                <!-- Товары для продажи будут добавлены через JS -->
-            </div>
-        </div>
-    </div>
-
-    <!-- Модальное окно экспорта -->
-    <div id="exportModal" class="modal">
-        <div class="modal-content">
-            <h2 class="modal-title"><span>💾</span> Экспорт сохранения</h2>
-            <p>Скопируйте этот код и сохраните его. Вы сможете использовать его для восстановления прогресса на другом устройстве.</p>
-            <textarea id="exportData" class="save-textarea" readonly></textarea>
-            <div class="save-controls">
-                <button class="btn" onclick="copyExportData()">
-                    <span>📋</span> Копировать
-                </button>
-                <button class="btn" onclick="closeExportModal()">
-                    <span>✕</span> Закрыть
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Модальное окно импорта -->
-    <div id="importModal" class="modal">
-        <div class="modal-content">
-            <h2 class="modal-title"><span>📥</span> Импорт сохранения</h2>
-            <p>Вставьте код сохранения в поле ниже:</p>
-            <textarea id="importData" class="save-textarea" placeholder="Вставьте сюда код сохранения..."></textarea>
-            <div class="save-controls">
-                <button class="btn" onclick="loadGameData()">
-                    <span>🔄</span> Загрузить
-                </button>
-                <button class="btn" onclick="closeImportModal()">
-                    <span>✕</span> Закрыть
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Модальное окно достижений -->
-    <div id="achievementsModal" class="modal">
-        <div class="modal-content">
-            <h2 class="modal-title"><span>🏆</span> Достижения</h2>
-            <p>Выполняйте производственные задачи, чтобы получать достижения!</p>
-            <div class="achievements-container" id="achievements-container">
-                <!-- Достижения будут здесь -->
-            </div>
-            <div class="save-controls">
-                <button class="btn" onclick="closeAchievementsModal()">
-                    <span>✕</span> Закрыть
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Модальное окно помощи -->
-    <div id="helpModal" class="modal">
-        <div class="modal-content">
-            <h2 class="modal-title"><span>❓</span> Помощь по игре</h2>
-            
-            <div class="tabs">
-                <button class="tab-btn help-tab active" data-tab="tutorial">Обучение</button>
-                <button class="tab-btn help-tab" data-tab="faq">FAQ</button>
+        <!-- Область программирования -->
+        <div id="programming-area" class="programming-area hidden">
+            <div class="commands-panel">
+                <div class="command" draggable="true" data-command="forward">Идти вперед</div>
+                <div class="command" draggable="true" data-command="backward">Идти назад</div>
+                <div class="command" draggable="true" data-command="right">Идти вправо</div>
+                <div class="command" draggable="true" data-command="left">Идти влево</div>
+                <div class="command" draggable="true" data-command="attack">Атаковать ближайшего врага</div>
             </div>
             
-            <div id="tutorial" class="help-tab-content active">
-                <div class="tutorial-content">
-                    <div class="tutorial-step">
-                        <div class="step-title">
-                            <span>🎯</span> Цель игры
-                        </div>
-                        <div class="step-content">
-                            <p>Создайте успешное IT-производство! Производите детали, обучайте специалистов, собирайте продукты и продавайте их на рынке для получения прибыли.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="tutorial-step">
-                        <div class="step-title">
-                            <span>🏭</span> Производство деталей
-                        </div>
-                        <div class="step-content">
-                            <p>На вкладке "Завод" покупайте станки для производства деталей. Каждый станок автоматически производит ресурсы через определенное время.</p>
-                            <p>Начните с покупки станка шестеренок,светодидов и микросхем, чтобы производить базовые детали.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="tutorial-step">
-                        <div class="step-title">
-                            <span>🏫</span> Обучение специалистов
-                        </div>
-                        <div class="step-content">
-                            <p>На вкладке "Училище" покупайте здания для обучения специалистов. Каждое здание автоматически производит специалистов через определенное время.</p>
-                            <p>Для обучения выпускников вам понадобятся ученики, для джуниоров - выпускники и т.д.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="tutorial-step">
-                        <div class="step-title">
-                            <span>🔧</span> Сборка продуктов
-                        </div>
-                        <div class="step-content">
-                            <p>На вкладке "Сборка" покупайте филиалы для производства IT-продуктов. После покупки филиала используйте кнопку "Произвести" для запуска сборки.</p>
-                            <p>Для сборки каждого продукта требуются определенные детали и специалисты.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="tutorial-step">
-                        <div class="step-title">
-                            <span>🏪</span> Продажа продукции
-                        </div>
-                        <div class="step-content">
-                            <p>На вкладке "Рынок" продавайте собранные продукты. Цены постоянно меняются - следите за трендом (📈 рост, 📉 падение).</p>
-                            <p>Продавайте товары, когда цена высока, чтобы максимизировать прибыль!</p>
-                        </div>
-                    </div>
-                </div>
+            <div class="program-panel" id="program-slots">
+                <!-- Слоты программы будут добавлены через JavaScript -->
             </div>
             
-            <div id="faq" class="help-tab-content">
-                <div class="faq-container">
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            <span>❓</span> Как начать игру?
-                        </div>
-                        <div class="faq-answer">
-                            <p>Начните с вкладки "Завод". Купите станок шестеренок, который будет автоматически производить шестеренки. Используйте их для покупки других станков и зданий.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            <span>❓</span> Почему я не могу купить здание?
-                        </div>
-                        <div class="faq-answer">
-                            <p>Для покупки здания вам не хватает одного или нескольких ресурсов. Проверьте стоимость здания в его описании и убедитесь, что у вас достаточно всех необходимых ресурсов.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            <span>❓</span> Как производить товары?
-                        </div>
-                        <div class="faq-answer">
-                            <p>1. Перейдите на вкладку "Сборка"<br>2. Купите филиал для нужного товара<br>3. Нажмите кнопку "Произвести"<br>4. Дождитесь завершения производства</p>
-                        </div>
-                    </div>
-                    
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            <span>❓</span> Когда лучше продавать товары?
-                        </div>
-                        <div class="faq-answer">
-                            <p>Следите за трендом цены на рынке. Зеленый тренд (📈) означает рост цены, красный (📉) - падение. Старайтесь продавать товары, когда цена высока и растет.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            <span>❓</span> Как сохранить прогресс?
-                        </div>
-                        <div class="faq-answer">
-                            <p>Игра автоматически сохраняется в вашем браузере. Для ручного сохранения или переноса прогресса используйте:<br>1. "Экспорт" - сохраните код игры<br>2. "Импорт" - загрузите сохранение с помощью кода</p>
-                        </div>
-                    </div>
-                    
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            <span>❓</span> Что такое достижения?
-                        </div>
-                        <div class="faq-answer">
-                            <p>Достижения - это награды за выполнение определенных задач в игре (например, производство первого товара или заработок миллиона). Открывайте их для дополнительного удовольствия от игры!</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="save-controls">
-                <button class="btn" onclick="closeHelpModal()">
-                    <span>✕</span> Закрыть
-                </button>
+            <div class="controls-panel">
+                <button class="button" id="run-program-btn">Запуск программы</button>
+                <button class="button" id="reset-program-btn">Сброс программы</button>
             </div>
         </div>
-    </div>
-
-    <div id="notification" class="notification">
-        <div class="notification-content" id="notification-content"></div>
+        
+        <!-- Результат игры -->
+        <div id="game-result" class="game-result hidden">
+            <h2 id="result-title">УРОВЕНЬ ПРОЙДЕН!</h2>
+            <p id="result-message">Поздравляем! Вы успешно запрограммировали робота.</p>
+            <button class="button" id="next-level-btn">Следующий уровень</button>
+            <button class="button" id="levels-menu-btn">К выбору уровней</button>
+        </div>
     </div>
 
     <script>
-        // Конфигурация игры
-        const RESOURCES = {
-            money: { name: "Деньги", icon: "💰" },
-            gears: { name: "Шестеренки", icon: "⚙️" },
-            leds: { name: "Светодиоды", icon: "💡" },
-            chips: { name: "Микросхемы", icon: "🔌" },
-            sensors: { name: "Датчики", icon: "📡" },
-            students: { name: "Ученики", icon: "👨‍🎓" },
-            graduates: { name: "Выпускники", icon: "🎓" },
-            juniors: { name: "Джуниоры", icon: "👨‍💻" },
-            seniors: { name: "Сеньоры", icon: "👴‍💻" },
-            laptops: { name: "Ноутбуки", icon: "💻" },
-            powerful_laptops: { name: "Мощные ноутбуки", icon: "💻🔥" },
-            pcs: { name: "ПК", icon: "🖥️" },
-            gaming_pcs: { name: "Игровые ПК", icon: "🖥️🎮" },
-            robots: { name: "Роботы", icon: "🤖" }
+        // Константы игры
+        const SCREEN_WIDTH = 1200;
+        const SCREEN_HEIGHT = 800;
+        const GRID_SIZE = 80;
+        const GRID_WIDTH = Math.floor(SCREEN_WIDTH / GRID_SIZE);
+        const GRID_HEIGHT = Math.floor((SCREEN_HEIGHT - 200) / GRID_SIZE);
+
+        // Цвета в средневековом стиле
+        const COLORS = {
+            BACKGROUND: '#5d4037',
+            GRID: 'rgba(141, 110, 99, 0.3)',
+            ROBOT: '#f5e8c8',
+            ENEMY: '#ef5350',
+            TARGET: '#4caf50',
+            OBSTACLE: '#6d4c41',
+            TEXT: '#f5e8c8'
         };
 
-        const BUILDINGS = {
-            // Завод (производство деталей)
-            factory: {
-                gear_machine: {
-                    name: "Станок шестеренок",
-                    icon: "⚙️",
-                    description: "Производит шестеренки для механических частей. Автоматически производит 1 шестеренку каждые 10 секунд.",
-                    cost: { money: 500 },
-                    production: { gears: 1 },
-                    time: 10 // секунд
+        // Игровое состояние
+        let gameState = {
+            currentScreen: 'main_menu',
+            currentLevel: 1,
+            levels: [
+                {
+                    title: "Движение вперед",
+                    description: "Переместите робота к цели, используя команду 'Идти вперед'",
+                    robot: {x: 2, y: 4},
+                    target: {x: 2, y: 1},
+                    enemies: [],
+                    obstacles: [],
+                    program: []
                 },
-                led_machine: {
-                    name: "Станок светодиодов",
-                    icon: "💡",
-                    description: "Производит светодиоды для подсветки. Автоматически производит 1 светодиод каждые 12 секунд.",
-                    cost: { money: 800 },
-                    production: { leds: 1 },
-                    time: 12
+                {
+                    title: "Обход препятствия",
+                    description: "Обойдите препятствие, чтобы добраться до цели",
+                    robot: {x: 1, y: 4},
+                    target: {x: 5, y: 4},
+                    enemies: [],
+                    obstacles: [{x: 3, y: 4}],
+                    program: []
                 },
-                chip_machine: {
-                    name: "Станок микросхем",
-                    icon: "🔌",
-                    description: "Производит микросхемы для электронных устройств. Автоматически производит 1 микросхему каждые 15 секунд.",
-                    cost: { money: 1200 },
-                    production: { chips: 1 },
-                    time: 15
+                {
+                    title: "Движение в разных направлениях",
+                    description: "Используйте команды движения в разных направлениях",
+                    robot: {x: 1, y: 1},
+                    target: {x: 5, y: 5},
+                    enemies: [],
+                    obstacles: [],
+                    program: []
                 },
-                sensor_machine: {
-                    name: "Станок датчиков",
-                    icon: "📡",
-                    description: "Производит датчики для умных устройств. Автоматически производит 1 датчик каждые 20 секунд.",
-                    cost: { money: 2000 },
-                    production: { sensors: 1 },
-                    time: 20
+                {
+                    title: "Первая атака",
+                    description: "Атакуйте врага, чтобы очистить путь к цели",
+                    robot: {x: 1, y: 3},
+                    target: {x: 5, y: 3},
+                    enemies: [{x: 3, y: 3}],
+                    obstacles: [],
+                    program: []
+                },
+                {
+                    title: "Комбинированное движение",
+                    description: "Сочетайте разные команды движения для достижения цели",
+                    robot: {x: 1, y: 5},
+                    target: {x: 7, y: 1},
+                    enemies: [],
+                    obstacles: [{x: 3, y: 3}, {x: 4, y: 4}],
+                    program: []
+                },
+                {
+                    title: "Множественные враги",
+                    description: "Уничтожьте всех врагов на пути к цели",
+                    robot: {x: 1, y: 3},
+                    target: {x: 7, y: 3},
+                    enemies: [{x: 3, y: 3}, {x: 5, y: 3}],
+                    obstacles: [],
+                    program: []
+                },
+                {
+                    title: "Лабиринт",
+                    description: "Найдите путь через лабиринт к цели",
+                    robot: {x: 1, y: 1},
+                    target: {x: 7, y: 5},
+                    enemies: [],
+                    obstacles: [
+                        {x: 2, y: 1}, {x: 3, y: 1}, {x: 4, y: 1}, {x: 5, y: 1}, {x: 6, y: 1},
+                        {x: 1, y: 2}, {x: 3, y: 2}, {x: 5, y: 2}, {x: 7, y: 2},
+                        {x: 1, y: 3}, {x: 3, y: 3}, {x: 5, y: 3}, {x: 7, y: 3},
+                        {x: 1, y: 4}, {x: 3, y: 4}, {x: 5, y: 4}, {x: 7, y: 4},
+                        {x: 1, y: 5}, {x: 7, y: 5}
+                    ],
+                    program: []
+                },
+                {
+                    title: "Тактическая атака",
+                    description: "Подойдите к врагу с правильной стороны для атаки",
+                    robot: {x: 1, y: 3},
+                    target: {x: 7, y: 3},
+                    enemies: [{x: 4, y: 3}],
+                    obstacles: [{x: 4, y: 2}, {x: 4, y: 4}],
+                    program: []
+                },
+                {
+                    title: "Сложный маршрут",
+                    description: "Составьте сложную программу для достижения цели",
+                    robot: {x: 1, y: 5},
+                    target: {x: 7, y: 1},
+                    enemies: [{x: 3, y: 3}, {x: 5, y: 3}],
+                    obstacles: [
+                        {x: 2, y: 2}, {x: 2, y: 3}, {x: 2, y: 4},
+                        {x: 4, y: 1}, {x: 4, y: 2}, {x: 4, y: 4}, {x: 4, y: 5},
+                        {x: 6, y: 2}, {x: 6, y: 3}, {x: 6, y: 4}
+                    ],
+                    program: []
+                },
+                {
+                    title: "Финальное испытание",
+                    description: "Примените все полученные навыки в сложном уровне",
+                    robot: {x: 1, y: 1},
+                    target: {x: 9, y: 5},
+                    enemies: [{x: 3, y: 2}, {x: 5, y: 3}, {x: 7, y: 4}],
+                    obstacles: [
+                        {x: 2, y: 1}, {x: 3, y: 1}, {x: 4, y: 1}, {x: 5, y: 1}, {x: 6, y: 1}, {x: 7, y: 1}, {x: 8, y: 1},
+                        {x: 1, y: 2}, {x: 4, y: 2}, {x: 6, y: 2}, {x: 8, y: 2}, {x: 9, y: 2},
+                        {x: 1, y: 3}, {x: 2, y: 3}, {x: 4, y: 3}, {x: 6, y: 3}, {x: 8, y: 3},
+                        {x: 1, y: 4}, {x: 2, y: 4}, {x: 3, y: 4}, {x: 4, y: 4}, {x: 6, y: 4}, {x: 8, y: 4}, {x: 9, y: 4},
+                        {x: 1, y: 5}, {x: 3, y: 5}, {x: 5, y: 5}, {x: 7, y: 5}, {x: 8, y: 5}
+                    ],
+                    program: []
                 }
-            },
+            ],
+            program: [],
+            isRunning: false,
+            currentStep: 0,
+            gameOver: false,
+            gameResult: null
+        };
+
+        // Получение элементов DOM
+        const canvas = document.getElementById('game-canvas');
+        const ctx = canvas.getContext('2d');
+
+        const screens = {
+            main_menu: document.getElementById('main-menu'),
+            levels: document.getElementById('levels-screen'),
+            tutorial: document.getElementById('tutorial-screen'),
+            game: null // Игровой экран рисуется на canvas
+        };
+
+        // Кнопки
+        const buttons = {
+            // Главное меню
+            levels: document.getElementById('levels-btn'),
+            tutorial: document.getElementById('tutorial-btn'),
             
-            // Училище (производство специалистов)
-            school: {
-                student_building: {
-                    name: "Здание учеников",
-                    icon: "👨‍🎓",
-                    description: "Обучает новых IT-учеников. Автоматически производит 1 ученика каждые 15 секунд.",
-                    cost: { money: 1500 },
-                    production: { students: 1 },
-                    time: 15
-                },
-                graduate_building: {
-                    name: "Здание выпускников",
-                    icon: "🎓",
-                    description: "Выпускает квалифицированных IT-специалистов. Автоматически производит 1 выпускника каждые 20 секунд.",
-                    cost: { money: 3000, students: 2 },
-                    production: { graduates: 1 },
-                    time: 20
-                },
-                junior_building: {
-                    name: "Здание джуниоров",
-                    icon: "👨‍💻",
-                    description: "Готовит джуниор-разработчиков. Автоматически производит 1 джуниора каждые 25 секунд.",
-                    cost: { money: 6000, graduates: 3 },
-                    production: { juniors: 1 },
-                    time: 25
-                },
-                senior_building: {
-                    name: "Здание сеньоров",
-                    icon: "👴‍💻",
-                    description: "Обучает опытных IT-сеньоров. Автоматически производит 1 сеньора каждые 30 секунд.",
-                    cost: { money: 12000, juniors: 2 },
-                    production: { seniors: 1 },
-                    time: 30
-                }
-            },
+            // Назад
+            levelsBack: document.getElementById('levels-back-btn'),
+            tutorialBack: document.getElementById('tutorial-back-btn'),
+            gameBack: document.getElementById('game-back-btn'),
             
-            // Сборка (производство продуктов)
-            assembly: {
-                laptop_branch: {
-                    name: "Филиал ноутбуков",
-                    icon: "💻",
-                    description: "Собирает стандартные ноутбуки. Каждое производство занимает 20 секунд.",
-                    cost: { money: 5000 },
-                    requirements: { gears: 3, leds: 2, chips: 4, students: 2 },
-                    production: { laptops: 1 },
-                    time: 20
-                },
-                powerful_laptop_branch: {
-                    name: "Филиал мощных ноутбуков",
-                    icon: "💻🔥",
-                    description: "Собирает высокопроизводительные ноутбуки. Каждое производство занимает 30 секунд.",
-                    cost: { money: 10000 },
-                    requirements: { gears: 5, leds: 3, chips: 8, graduates: 3 },
-                    production: { powerful_laptops: 1 },
-                    time: 30
-                },
-                pc_branch: {
-                    name: "Филиал ПК",
-                    icon: "🖥️",
-                    description: "Собирает настольные компьютеры. Каждое производство занимает 40 секунд.",
-                    cost: { money: 15000 },
-                    requirements: { gears: 8, leds: 4, chips: 10, juniors: 2 },
-                    production: { pcs: 1 },
-                    time: 40
-                },
-                gaming_pc_branch: {
-                    name: "Филиал игровых ПК",
-                    icon: "🖥️🎮",
-                    description: "Собирает мощные игровые системы. Каждое производство занимает 50 секунд.",
-                    cost: { money: 25000 },
-                    requirements: { gears: 12, leds: 6, chips: 15, sensors: 4, juniors: 4 },
-                    production: { gaming_pcs: 1 },
-                    time: 50
-                },
-                robot_branch: {
-                    name: "Филиал роботов",
-                    icon: "🤖",
-                    description: "Собирает продвинутых IT-роботов. Каждое производство занимает 60 секунд.",
-                    cost: { money: 50000 },
-                    requirements: { gears: 20, leds: 10, chips: 25, sensors: 10, seniors: 3 },
-                    production: { robots: 1 },
-                    time: 60
-                }
-            }
+            // Программирование
+            runProgram: document.getElementById('run-program-btn'),
+            resetProgram: document.getElementById('reset-program-btn'),
+            
+            // Результат
+            nextLevel: document.getElementById('next-level-btn'),
+            levelsMenu: document.getElementById('levels-menu-btn')
         };
 
-        const MARKET_ITEMS = [
-            { id: "laptops", name: "Ноутбук", icon: "💻", basePrice: 2500 },
-            { id: "powerful_laptops", name: "Мощный ноутбук", icon: "💻🔥", basePrice: 6000 },
-            { id: "pcs", name: "ПК", icon: "🖥️", basePrice: 10000 },
-            { id: "gaming_pcs", name: "Игровой ПК", icon: "🖥️🎮", basePrice: 20000 },
-            { id: "robots", name: "Робот", icon: "🤖", basePrice: 50000 }
-        ];
-
-        const ACHIEVEMENTS = [
-            { id: "first_production", name: "Первое производство", description: "Произведите первую деталь", icon: "🏭", goal: 1 },
-            { id: "student_graduate", name: "Первый выпускник", description: "Обучите первого выпускника", icon: "🎓", goal: 1 },
-            { id: "laptop_production", name: "Ноутбук своими руками", description: "Соберите первый ноутбук", icon: "💻", goal: 1 },
-            { id: "millionaire", name: "Миллионер", description: "Заработайте 1,000,000 денег", icon: "💰", goal: 1000000 },
-            { id: "robot_master", name: "Мастер роботов", description: "Соберите 100 роботов", icon: "🤖", goal: 100 },
-            { id: "market_king", name: "Король рынка", description: "Продайте товаров на 500,000", icon: "👑", goal: 500000 }
-        ];
-
-        // Начальное состояние игры
-        const INITIAL_STATE = {
-            resources: {
-                money: 10000,
-                gears: 0,
-                leds: 0,
-                chips: 0,
-                sensors: 0,
-                students: 0,
-                graduates: 0,
-                juniors: 0,
-                seniors: 0,
-                laptops: 0,
-                powerful_laptops: 0,
-                pcs: 0,
-                gaming_pcs: 0,
-                robots: 0
-            },
-            buildings: {
-                // Завод
-                gear_machine: { count: 0, progress: 0 },
-                led_machine: { count: 0, progress: 0 },
-                chip_machine: { count: 0, progress: 0 },
-                sensor_machine: { count: 0, progress: 0 },
-                
-                // Училище
-                student_building: { count: 0, progress: 0 },
-                graduate_building: { count: 0, progress: 0 },
-                junior_building: { count: 0, progress: 0 },
-                senior_building: { count: 0, progress: 0 },
-                
-                // Сборка
-                laptop_branch: { count: 0, progress: 0 },
-                powerful_laptop_branch: { count: 0, progress: 0 },
-                pc_branch: { count: 0, progress: 0 },
-                gaming_pc_branch: { count: 0, progress: 0 },
-                robot_branch: { count: 0, progress: 0 }
-            },
-            market: {
-                laptops: { currentPrice: 2500, trend: 0 },
-                powerful_laptops: { currentPrice: 6000, trend: 0 },
-                pcs: { currentPrice: 10000, trend: 0 },
-                gaming_pcs: { currentPrice: 20000, trend: 0 },
-                robots: { currentPrice: 50000, trend: 0 }
-            },
-            achievements: {},
-            lastUpdate: Date.now(),
-            totalSales: 0,
-            tutorialCompleted: false
-        };
-
-        // Состояние игры
-        let gameState = JSON.parse(JSON.stringify(INITIAL_STATE));
-
-        // DOM элементы
-        const resourcesPanel = document.getElementById('resources-panel');
-        const factoryBuildings = document.getElementById('factory-buildings');
-        const schoolBuildings = document.getElementById('school-buildings');
-        const assemblyBuildings = document.getElementById('assembly-buildings');
-        const marketItems = document.getElementById('market-items');
-        const achievementsContainer = document.getElementById('achievements-container');
-        const notification = document.getElementById('notification');
-        const notificationContent = document.getElementById('notification-content');
-        const exportModal = document.getElementById('exportModal');
-        const importModal = document.getElementById('importModal');
-        const achievementsModal = document.getElementById('achievementsModal');
-        const helpModal = document.getElementById('helpModal');
-        const exportDataEl = document.getElementById('exportData');
-        const importDataEl = document.getElementById('importData');
-        const tabButtons = document.querySelectorAll('.tab-btn');
-        const helpTabs = document.querySelectorAll('.help-tab');
-
-        let productionInterval;
-        let marketInterval;
-        let achievementsEarned = false;
+        // UI элементы
+        const currentLevelElement = document.getElementById('current-level');
+        const currentTaskElement = document.getElementById('current-task');
+        const gameUI = document.getElementById('game-ui');
+        const programmingArea = document.getElementById('programming-area');
+        const programSlots = document.getElementById('program-slots');
+        const gameResultElement = document.getElementById('game-result');
+        const resultTitle = document.getElementById('result-title');
+        const resultMessage = document.getElementById('result-message');
 
         // Инициализация игры
-        function initGame() {
-            // Проверяем сохраненное состояние
-            const savedGame = localStorage.getItem('it_production_game');
-            if (savedGame) {
-                try {
-                    const parsed = JSON.parse(savedGame);
-                    gameState = parsed;
-                    initAchievements();
-                    renderGame();
-                    startProduction();
-                    startMarketFluctuations();
-                } catch (e) {
-                    console.error('Ошибка загрузки игры:', e);
-                    localStorage.removeItem('it_production_game');
-                    resetGameState();
+        function init() {
+            // Настройка кнопок
+            setupButtons();
+            
+            // Настройка перетаскивания команд
+            setupDragAndDrop();
+            
+            // Запуск игрового цикла
+            gameLoop();
+        }
+
+        // Настройка обработчиков кнопок
+        function setupButtons() {
+            // Главное меню
+            buttons.levels.addEventListener('click', () => showScreen('levels'));
+            buttons.tutorial.addEventListener('click', () => showScreen('tutorial'));
+            
+            // Кнопки назад
+            buttons.levelsBack.addEventListener('click', () => showScreen('main_menu'));
+            buttons.tutorialBack.addEventListener('click', () => showScreen('main_menu'));
+            buttons.gameBack.addEventListener('click', () => {
+                resetGame();
+                showScreen('levels');
+            });
+            
+            // Программирование
+            buttons.runProgram.addEventListener('click', runProgram);
+            buttons.resetProgram.addEventListener('click', resetProgram);
+            
+            // Результат
+            buttons.nextLevel.addEventListener('click', nextLevel);
+            buttons.levelsMenu.addEventListener('click', () => {
+                gameResultElement.classList.add('hidden');
+                showScreen('levels');
+            });
+        }
+
+        // Настройка перетаскивания команд
+        function setupDragAndDrop() {
+            const commands = document.querySelectorAll('.command');
+            
+            commands.forEach(command => {
+                command.addEventListener('dragstart', (e) => {
+                    e.dataTransfer.setData('text/plain', command.getAttribute('data-command'));
+                });
+            });
+            
+            programSlots.addEventListener('dragover', (e) => {
+                e.preventDefault();
+            });
+            
+            programSlots.addEventListener('drop', (e) => {
+                e.preventDefault();
+                const command = e.dataTransfer.getData('text/plain');
+                addCommandToProgram(command);
+            });
+        }
+
+        // Показать экран
+        function showScreen(screenName) {
+            // Скрыть все экраны
+            Object.values(screens).forEach(screen => {
+                if (screen) screen.classList.add('hidden');
+            });
+            
+            // Скрыть игровой UI и область программирования
+            gameUI.classList.add('hidden');
+            programmingArea.classList.add('hidden');
+            gameResultElement.classList.add('hidden');
+            
+            // Показать выбранный экран
+            if (screenName === 'game') {
+                // Игровой экран рисуется на canvas
+                gameUI.classList.remove('hidden');
+                programmingArea.classList.remove('hidden');
+                setupProgramSlots();
+            } else if (screens[screenName]) {
+                screens[screenName].classList.remove('hidden');
+            }
+            
+            gameState.currentScreen = screenName;
+            
+            // Обновление контента экрана
+            if (screenName === 'levels') {
+                renderLevelsScreen();
+            }
+        }
+
+        // Рендер экрана уровней
+        function renderLevelsScreen() {
+            const container = document.getElementById('levels-container');
+            container.innerHTML = '';
+            
+            gameState.levels.forEach((level, index) => {
+                const card = document.createElement('div');
+                card.className = 'level-card';
+                card.innerHTML = `
+                    <div class="level-number">${index + 1}</div>
+                    <div class="level-title">${level.title}</div>
+                    <div class="level-description">${level.description}</div>
+                `;
+                
+                card.addEventListener('click', () => {
+                    startLevel(index);
+                });
+                
+                container.appendChild(card);
+            });
+        }
+
+        // Начать уровень
+        function startLevel(levelIndex) {
+            gameState.currentLevel = levelIndex;
+            const level = gameState.levels[levelIndex];
+            
+            // Сброс состояния игры
+            gameState.program = [];
+            gameState.isRunning = false;
+            gameState.currentStep = 0;
+            gameState.gameOver = false;
+            gameState.gameResult = null;
+            
+            // Обновление UI
+            currentLevelElement.textContent = levelIndex + 1;
+            currentTaskElement.textContent = level.description;
+            
+            showScreen('game');
+            setupProgramSlots();
+        }
+
+        // Настройка слотов программы
+        function setupProgramSlots() {
+            programSlots.innerHTML = '';
+            
+            // Создаем 10 слотов для программы
+            for (let i = 0; i < 10; i++) {
+                const slot = document.createElement('div');
+                slot.className = 'program-slot';
+                slot.textContent = i + 1;
+                slot.dataset.index = i;
+                
+                slot.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                });
+                
+                slot.addEventListener('drop', (e) => {
+                    e.preventDefault();
+                    const command = e.dataTransfer.getData('text/plain');
+                    const index = parseInt(slot.dataset.index);
+                    addCommandToProgram(command, index);
+                });
+                
+                programSlots.appendChild(slot);
+            }
+            
+            updateProgramSlots();
+        }
+
+        // Добавить команду в программу
+        function addCommandToProgram(command, index = null) {
+            if (index === null) {
+                // Найти первый пустой слот
+                for (let i = 0; i < 10; i++) {
+                    if (!gameState.program[i]) {
+                        index = i;
+                        break;
+                    }
                 }
+            }
+            
+            if (index !== null && index < 10) {
+                gameState.program[index] = command;
+                updateProgramSlots();
+            }
+        }
+
+        // Обновить отображение слотов программы
+        function updateProgramSlots() {
+            const slots = document.querySelectorAll('.program-slot');
+            
+            slots.forEach((slot, index) => {
+                const command = gameState.program[index];
+                
+                if (command) {
+                    slot.classList.add('filled');
+                    slot.textContent = getCommandText(command);
+                } else {
+                    slot.classList.remove('filled');
+                    slot.textContent = index + 1;
+                }
+            });
+        }
+
+        // Получить текст команды
+        function getCommandText(command) {
+            const commandTexts = {
+                'forward': 'Вперед',
+                'backward': 'Назад',
+                'right': 'Вправо',
+                'left': 'Влево',
+                'attack': 'Атака'
+            };
+            
+            return commandTexts[command] || command;
+        }
+
+        // Запуск программы
+        function runProgram() {
+            if (gameState.isRunning || gameState.program.length === 0) return;
+            
+            gameState.isRunning = true;
+            gameState.currentStep = 0;
+            executeNextStep();
+        }
+
+        // Выполнить следующий шаг программы
+        function executeNextStep() {
+            if (!gameState.isRunning || gameState.currentStep >= gameState.program.length) {
+                gameState.isRunning = false;
+                checkGameResult();
+                return;
+            }
+            
+            const command = gameState.program[gameState.currentStep];
+            const level = gameState.levels[gameState.currentLevel];
+            
+            // Выполнение команды
+            switch (command) {
+                case 'forward':
+                    if (level.robot.y > 0 && !isObstacle(level.robot.x, level.robot.y - 1)) {
+                        level.robot.y--;
+                    }
+                    break;
+                case 'backward':
+                    if (level.robot.y < GRID_HEIGHT - 1 && !isObstacle(level.robot.x, level.robot.y + 1)) {
+                        level.robot.y++;
+                    }
+                    break;
+                case 'right':
+                    if (level.robot.x < GRID_WIDTH - 1 && !isObstacle(level.robot.x + 1, level.robot.y)) {
+                        level.robot.x++;
+                    }
+                    break;
+                case 'left':
+                    if (level.robot.x > 0 && !isObstacle(level.robot.x - 1, level.robot.y)) {
+                        level.robot.x--;
+                    }
+                    break;
+                case 'attack':
+                    // Атаковать ближайшего врага в радиусе 1 клетки
+                    const enemyIndex = level.enemies.findIndex(enemy => 
+                        Math.abs(enemy.x - level.robot.x) <= 1 && 
+                        Math.abs(enemy.y - level.robot.y) <= 1
+                    );
+                    
+                    if (enemyIndex !== -1) {
+                        level.enemies.splice(enemyIndex, 1);
+                    }
+                    break;
+            }
+            
+            gameState.currentStep++;
+            
+            // Задержка перед следующим шагом для визуализации
+            setTimeout(executeNextStep, 500);
+        }
+
+        // Проверить, является ли клетка препятствием
+        function isObstacle(x, y) {
+            const level = gameState.levels[gameState.currentLevel];
+            return level.obstacles.some(obstacle => obstacle.x === x && obstacle.y === y);
+        }
+
+        // Проверить результат игры
+        function checkGameResult() {
+            const level = gameState.levels[gameState.currentLevel];
+            
+            // Проверка достижения цели
+            if (level.robot.x === level.target.x && level.robot.y === level.target.y) {
+                gameState.gameResult = 'win';
+                showGameResult(true);
             } else {
-                resetGameState();
-            }
-            
-            setupEventListeners();
-            
-            // Показываем обучение при первом запуске
-            if (!gameState.tutorialCompleted) {
-                setTimeout(() => {
-                    showHelpModal();
-                    gameState.tutorialCompleted = true;
-                    saveGameState();
-                }, 1000);
+                gameState.gameResult = 'lose';
+                showGameResult(false);
             }
         }
 
-        // Сброс состояния игры
-        function resetGameState() {
-            gameState = JSON.parse(JSON.stringify(INITIAL_STATE));
-            initAchievements();
-            renderGame();
-            startProduction();
-            startMarketFluctuations();
-            saveGameState();
+        // Показать результат игры
+        function showGameResult(isWin) {
+            if (isWin) {
+                resultTitle.textContent = 'УРОВЕНЬ ПРОЙДЕН!';
+                resultMessage.textContent = 'Поздравляем! Вы успешно запрограммировали робота.';
+            } else {
+                resultTitle.textContent = 'ПОПРОБУЙТЕ СНОВА';
+                resultMessage.textContent = 'Робот не достиг цели. Попробуйте другую программу.';
+            }
+            
+            gameResultElement.classList.remove('hidden');
         }
 
-        // Инициализация достижений
-        function initAchievements() {
-            ACHIEVEMENTS.forEach(achievement => {
-                if (!gameState.achievements[achievement.id]) {
-                    gameState.achievements[achievement.id] = {
-                        progress: 0,
-                        earned: false
-                    };
-                }
-            });
+        // Следующий уровень
+        function nextLevel() {
+            gameResultElement.classList.add('hidden');
+            
+            if (gameState.currentLevel < gameState.levels.length - 1) {
+                startLevel(gameState.currentLevel + 1);
+            } else {
+                showScreen('levels');
+            }
         }
 
-        // Настройка обработчиков событий
-        function setupEventListeners() {
-            // Переключение вкладок
-            tabButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const tabId = button.dataset.tab;
-                    
-                    // Скрыть все вкладки
-                    document.querySelectorAll('.tab-content').forEach(tab => {
-                        tab.classList.remove('active');
-                    });
-                    
-                    // Убрать активный класс у всех кнопок
-                    tabButtons.forEach(btn => {
-                        btn.classList.remove('active');
-                    });
-                    
-                    // Показать выбранную вкладку
-                    document.getElementById(tabId).classList.add('active');
-                    button.classList.add('active');
-                });
-            });
+        // Сброс программы
+        function resetProgram() {
+            gameState.program = [];
+            updateProgramSlots();
+        }
+
+        // Сброс игры
+        function resetGame() {
+            const level = gameState.levels[gameState.currentLevel];
+            // Восстановление начального состояния уровня
+            level.robot = {...gameState.levels[gameState.currentLevel].robot};
+            level.enemies = [...gameState.levels[gameState.currentLevel].enemies];
+            level.obstacles = [...gameState.levels[gameState.currentLevel].obstacles];
             
-            // Переключение вкладок помощи
-            helpTabs.forEach(button => {
-                button.addEventListener('click', () => {
-                    const tabId = button.dataset.tab;
-                    
-                    // Убрать активный класс у всех кнопок
-                    helpTabs.forEach(btn => {
-                        btn.classList.remove('active');
-                    });
-                    
-                    // Скрыть все вкладки помощи
-                    document.querySelectorAll('.help-tab-content').forEach(tab => {
-                        tab.classList.remove('active');
-                    });
-                    
-                    // Показать выбранную вкладку
-                    document.getElementById(tabId).classList.add('active');
-                    button.classList.add('active');
-                });
-            });
+            gameState.program = [];
+            gameState.isRunning = false;
+            gameState.currentStep = 0;
+            gameState.gameOver = false;
+            gameState.gameResult = null;
             
-            // Закрытие модальных окон при клике вне контента
-            document.addEventListener('click', (e) => {
-                if (e.target === exportModal) closeExportModal();
-                if (e.target === importModal) closeImportModal();
-                if (e.target === achievementsModal) closeAchievementsModal();
-                if (e.target === helpModal) closeHelpModal();
-            });
+            updateProgramSlots();
         }
 
         // Рендер игры
         function renderGame() {
-            renderResources();
-            renderFactory();
-            renderSchool();
-            renderAssembly();
-            renderMarket();
-            checkAchievements();
-        }
-
-        // Отображение ресурсов
-        function renderResources() {
-            resourcesPanel.innerHTML = '';
+            // Очистка canvas
+            ctx.fillStyle = COLORS.BACKGROUND;
+            ctx.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 200);
             
-            for (const [resourceKey, resource] of Object.entries(RESOURCES)) {
-                const value = gameState.resources[resourceKey] || 0;
-                const resourceEl = document.createElement('div');
-                resourceEl.className = 'resource';
-                resourceEl.innerHTML = `
-                    <span>${resource.icon}</span>
-                    <span>${resource.name}:</span>
-                    <strong>${value.toLocaleString()}</strong>
-                `;
-                resourcesPanel.appendChild(resourceEl);
-            }
-        }
-
-        // Отображение завода
-        function renderFactory() {
-            factoryBuildings.innerHTML = '';
+            // Отрисовка сетки
+            ctx.strokeStyle = COLORS.GRID;
+            ctx.lineWidth = 1;
             
-            for (const [buildingKey, buildingConfig] of Object.entries(BUILDINGS.factory)) {
-                const buildingState = gameState.buildings[buildingKey];
-                const buildingEl = createBuildingCard(buildingConfig, buildingState, buildingKey, 'factory');
-                factoryBuildings.appendChild(buildingEl);
-            }
-        }
-
-        // Отображение училища
-        function renderSchool() {
-            schoolBuildings.innerHTML = '';
-            
-            for (const [buildingKey, buildingConfig] of Object.entries(BUILDINGS.school)) {
-                const buildingState = gameState.buildings[buildingKey];
-                const buildingEl = createBuildingCard(buildingConfig, buildingState, buildingKey, 'school');
-                schoolBuildings.appendChild(buildingEl);
-            }
-        }
-
-        // Отображение сборки
-        function renderAssembly() {
-            assemblyBuildings.innerHTML = '';
-            
-            for (const [buildingKey, buildingConfig] of Object.entries(BUILDINGS.assembly)) {
-                const buildingState = gameState.buildings[buildingKey];
-                const buildingEl = createBuildingCard(buildingConfig, buildingState, buildingKey, 'assembly');
-                assemblyBuildings.appendChild(buildingEl);
-            }
-        }
-
-        // Отображение рынка
-        function renderMarket() {
-            marketItems.innerHTML = '';
-            
-            MARKET_ITEMS.forEach(item => {
-                const marketState = gameState.market[item.id];
-                const quantity = gameState.resources[item.id] || 0;
-                
-                // Определение тренда цены
-                let trendIcon = '➖';
-                let trendClass = 'trend-stable';
-                let trendText = 'Стабильно';
-                
-                if (marketState.trend > 0) {
-                    trendIcon = '📈';
-                    trendClass = 'trend-up';
-                    trendText = `Рост +${marketState.trend}%`;
-                } else if (marketState.trend < 0) {
-                    trendIcon = '📉';
-                    trendClass = 'trend-down';
-                    trendText = `Падение ${marketState.trend}%`;
-                }
-                
-                const itemEl = document.createElement('div');
-                itemEl.className = 'market-item';
-                
-                itemEl.innerHTML = `
-                    <div class="market-icon">${item.icon}</div>
-                    <div class="market-title">${item.name}</div>
-                    <div class="market-price">${marketState.currentPrice.toLocaleString()} <span class="tooltip">💰<span class="tooltiptext">Текущая цена за единицу</span></span></div>
-                    <div class="price-trend ${trendClass}">${trendIcon} ${trendText}</div>
-                    <div class="market-quantity">У вас: ${quantity.toLocaleString()} шт.</div>
-                    <div class="market-actions">
-                        <button class="sell-btn" onclick="sellProduct('${item.id}', 1)" ${quantity < 1 ? 'disabled' : ''}>
-                            <span>💰</span> Продать 1
-                        </button>
-                        <button class="sell-all-btn" onclick="sellProduct('${item.id}', 'all')" ${quantity < 1 ? 'disabled' : ''}>
-                            <span>💵</span> Продать все
-                        </button>
-                    </div>
-                `;
-                
-                marketItems.appendChild(itemEl);
-            });
-        }
-
-        // Создание карточки здания/станка/филиала
-        function createBuildingCard(config, state, key, type) {
-            const card = document.createElement('div');
-            card.className = 'building-card';
-            
-            // Отображение прогресса производства
-            const progressPercent = state.progress > 0 ? (state.progress / config.time) * 100 : 0;
-            const progressBar = progressPercent > 0 ? 
-                `<div class="progress-bar" style="width: ${progressPercent}%"></div>` : '';
-            
-            // Кнопки действий
-            let buyButton = '';
-            let produceButton = '';
-            
-            if (type === 'assembly') {
-                if (state.count === 0) {
-                    // Кнопка покупки для филиала сборки
-                    const canBuy = canAfford(config.cost);
-                    buyButton = `
-                        <button class="building-btn buy-btn" ${!canBuy ? 'disabled' : ''}
-                            onclick="buyBuilding('${key}')">
-                            <span>🏭</span> Купить (${formatCost(config.cost)})
-                        </button>
-                    `;
-                } else {
-                    // Кнопка производства для филиала сборки
-                    const canProduce = canAfford(config.requirements);
-                    produceButton = `
-                        <button class="building-btn produce-btn" ${!canProduce ? 'disabled' : ''}
-                            onclick="produceProduct('${key}')">
-                            <span>⚙️</span> Произвести (${formatCost(config.requirements)})
-                        </button>
-                    `;
-                }
-            } else {
-                // Кнопка покупки для завода и училища
-                const canBuy = canAfford(config.cost);
-                buyButton = `
-                    <button class="building-btn buy-btn" ${!canBuy ? 'disabled' : ''}
-                        onclick="buyBuilding('${key}')">
-                        <span>🏭</span> Купить (${formatCost(config.cost)})
-                    </button>
-                `;
+            for (let x = 0; x <= GRID_WIDTH; x++) {
+                ctx.beginPath();
+                ctx.moveTo(x * GRID_SIZE, 0);
+                ctx.lineTo(x * GRID_SIZE, SCREEN_HEIGHT - 200);
+                ctx.stroke();
             }
             
-            // Требования для сборки
-            let requirements = '';
-            if (type === 'assembly' && state.count > 0) {
-                requirements = `
-                    <div class="building-requirements">
-                        <strong>Требуется для производства:</strong>
-                        ${Object.entries(config.requirements).map(([res, amount]) => `
-                            <div class="requirement-item">
-                                <span>${RESOURCES[res].icon} ${RESOURCES[res].name}</span>
-                                <span>${amount}</span>
-                            </div>
-                        `).join('')}
-                    </div>
-                `;
+            for (let y = 0; y <= GRID_HEIGHT; y++) {
+                ctx.beginPath();
+                ctx.moveTo(0, y * GRID_SIZE);
+                ctx.lineTo(SCREEN_WIDTH, y * GRID_SIZE);
+                ctx.stroke();
             }
             
-            // Статус производства
-            let productionStatus = '';
-            if (state.progress > 0) {
-                const timeLeft = Math.ceil(state.progress);
-                productionStatus = `
-                    <div class="building-stats">
-                        <div>Производство:</div>
-                        <div>${timeLeft} сек</div>
-                    </div>
-                `;
-            }
+            const level = gameState.levels[gameState.currentLevel];
             
-            card.innerHTML = `
-                <div class="building-icon">${config.icon}</div>
-                <div class="building-title">${config.name}</div>
-                <div class="building-info">${config.description}</div>
-                
-                <div class="building-stats">
-                    <div>Количество:</div>
-                    <div class="building-count">${state.count}</div>
-                </div>
-                
-                ${type !== 'assembly' ? `
-                <div class="building-stats">
-                    <div>Производительность:</div>
-                    <div>${formatProduction(config.production)} / ${config.time} сек</div>
-                </div>
-                ` : ''}
-                
-                ${productionStatus}
-                ${requirements}
-                
-                <div class="building-actions">
-                    ${buyButton}
-                    ${produceButton}
-                </div>
-                ${progressBar}
-            `;
-            
-            return card;
-        }
-
-        // Проверка, достаточно ли ресурсов
-        function canAfford(cost) {
-            for (const [resource, amount] of Object.entries(cost)) {
-                if ((gameState.resources[resource] || 0) < amount) {
-                    return false;
-                }
-            }
-            return true;
-        }
-
-        // Форматирование стоимости
-        function formatCost(cost) {
-            return Object.entries(cost).map(([res, amount]) => 
-                `${RESOURCES[res].icon} ${amount}`
-            ).join(' + ');
-        }
-
-        // Форматирование производства
-        function formatProduction(production) {
-            return Object.entries(production).map(([res, amount]) => 
-                `${RESOURCES[res].icon} ${amount}`
-            ).join(' + ');
-        }
-
-        // Покупка здания/станка
-        function buyBuilding(buildingKey) {
-            let config;
-            if (BUILDINGS.factory[buildingKey]) config = BUILDINGS.factory[buildingKey];
-            else if (BUILDINGS.school[buildingKey]) config = BUILDINGS.school[buildingKey];
-            else if (BUILDINGS.assembly[buildingKey]) config = BUILDINGS.assembly[buildingKey];
-            
-            if (!config || !canAfford(config.cost)) return;
-            
-            // Списываем стоимость
-            for (const [resource, amount] of Object.entries(config.cost)) {
-                gameState.resources[resource] = (gameState.resources[resource] || 0) - amount;
-            }
-            
-            // Увеличиваем количество
-            gameState.buildings[buildingKey].count++;
-            
-            // Обновляем интерфейс
-            saveGameState();
-            renderGame();
-            
-            showNotification(`Куплено: ${config.name}!`, 'success');
-        }
-
-        // Производство продукта (для сборки)
-        function produceProduct(buildingKey) {
-            const config = BUILDINGS.assembly[buildingKey];
-            if (!config || !canAfford(config.requirements)) return;
-            
-            // Списываем стоимость
-            for (const [resource, amount] of Object.entries(config.requirements)) {
-                gameState.resources[resource] = (gameState.resources[resource] || 0) - amount;
-            }
-            
-            // Устанавливаем прогресс производства
-            gameState.buildings[buildingKey].progress = config.time;
-            
-            // Обновляем интерфейс
-            saveGameState();
-            renderGame();
-            
-            showNotification(`Начато производство: ${config.name}!`, 'success');
-        }
-
-        // Продажа товара на рынке
-        function sellProduct(productId, amount) {
-            const marketItem = gameState.market[productId];
-            const currentQuantity = gameState.resources[productId] || 0;
-            
-            // Определяем количество для продажи
-            let sellAmount = amount;
-            if (amount === 'all') {
-                sellAmount = currentQuantity;
-            }
-            
-            // Проверяем, есть ли товар
-            if (currentQuantity < sellAmount || sellAmount <= 0) {
-                showNotification('Недостаточно товара для продажи!', 'error');
-                return;
-            }
-            
-            // Рассчитываем выручку
-            const totalRevenue = Math.round(sellAmount * marketItem.currentPrice);
-            
-            // Уменьшаем количество товара
-            gameState.resources[productId] -= sellAmount;
-            
-            // Увеличиваем деньги
-            gameState.resources.money = (gameState.resources.money || 0) + totalRevenue;
-            
-            // Обновляем общий объем продаж
-            gameState.totalSales += totalRevenue;
-            
-            // Обновляем достижение "Король рынка"
-            updateAchievement('market_king', totalRevenue);
-            
-            // Обновляем интерфейс
-            saveGameState();
-            renderGame();
-            
-            showNotification(`Продано ${sellAmount} ${RESOURCES[productId].name} за ${totalRevenue.toLocaleString()} 💰!`, 'success');
-        }
-
-        // Запуск производства
-        function startProduction() {
-            if (productionInterval) clearInterval(productionInterval);
-            
-            productionInterval = setInterval(() => {
-                const now = Date.now();
-                const deltaTime = (now - gameState.lastUpdate) / 1000; // в секундах
-                gameState.lastUpdate = now;
-                
-                // Производство на заводе
-                for (const [key, config] of Object.entries(BUILDINGS.factory)) {
-                    const state = gameState.buildings[key];
-                    if (state.count > 0) {
-                        state.progress += deltaTime;
-                        
-                        if (state.progress >= config.time) {
-                            state.progress = 0;
-                            
-                            // Добавляем произведенные ресурсы
-                            for (const [resource, amount] of Object.entries(config.production)) {
-                                gameState.resources[resource] = (gameState.resources[resource] || 0) + amount * state.count;
-                            }
-                            
-                            // Обновляем достижение "Первое производство"
-                            if (key === 'gear_machine' && gameState.resources.gears > 0 && !gameState.achievements.first_production.earned) {
-                                updateAchievement('first_production', 1);
-                            }
-                        }
-                    }
-                }
-                
-                // Производство в училище
-                for (const [key, config] of Object.entries(BUILDINGS.school)) {
-                    const state = gameState.buildings[key];
-                    if (state.count > 0) {
-                        state.progress += deltaTime;
-                        
-                        if (state.progress >= config.time) {
-                            state.progress = 0;
-                            
-                            // Добавляем произведенных специалистов
-                            for (const [resource, amount] of Object.entries(config.production)) {
-                                gameState.resources[resource] = (gameState.resources[resource] || 0) + amount * state.count;
-                            }
-                            
-                            // Обновляем достижение "Первый выпускник"
-                            if (key === 'graduate_building' && gameState.resources.graduates > 0 && !gameState.achievements.student_graduate.earned) {
-                                updateAchievement('student_graduate', 1);
-                            }
-                        }
-                    }
-                }
-                
-                // Производство на сборке
-                for (const [key, config] of Object.entries(BUILDINGS.assembly)) {
-                    const state = gameState.buildings[key];
-                    if (state.progress > 0) {
-                        state.progress -= deltaTime;
-                        
-                        if (state.progress <= 0) {
-                            state.progress = 0;
-                            
-                            // Добавляем произведенный товар
-                            for (const [resource, amount] of Object.entries(config.production)) {
-                                gameState.resources[resource] = (gameState.resources[resource] || 0) + amount;
-                            }
-                            
-                            // Обновляем достижения
-                            if (key === 'laptop_branch') {
-                                updateAchievement('laptop_production', 1);
-                            } else if (key === 'robot_branch') {
-                                updateAchievement('robot_master', 1);
-                            }
-                            
-                            showNotification(`Произведен: ${config.name}!`, 'success');
-                        }
-                    }
-                }
-                
-                // Обновляем достижение "Миллионер"
-                if ((gameState.resources.money || 0) >= 1000000) {
-                    updateAchievement('millionaire', 1000000);
-                }
-                
-                saveGameState();
-                renderGame();
-            }, 1000);
-        }
-
-        // Запуск колебаний рынка
-        function startMarketFluctuations() {
-            if (marketInterval) clearInterval(marketInterval);
-            
-            marketInterval = setInterval(() => {
-                // Обновляем цены на все товары
-                MARKET_ITEMS.forEach(item => {
-                    const marketState = gameState.market[item.id];
-                    
-                    // Генерируем случайное колебание от -10% до +15%
-                    const fluctuation = (Math.random() * 25 - 10) / 100;
-                    
-                    // Рассчитываем новую цену
-                    const newPrice = Math.round(marketState.currentPrice * (1 + fluctuation));
-                    
-                    // Устанавливаем новый тренд в процентах
-                    marketState.trend = Math.round(fluctuation * 100);
-                    
-                    // Убеждаемся, что цена не опустится ниже 10% от базовой
-                    marketState.currentPrice = Math.max(newPrice, item.basePrice * 0.1);
-                });
-                
-                saveGameState();
-                renderMarket();
-            }, 30000); // Обновление каждые 30 секунд
-        }
-
-        // Проверка достижений
-        function checkAchievements() {
-            // Обновляем достижение "Король рынка"
-            if (gameState.totalSales >= 500000 && !gameState.achievements.market_king.earned) {
-                updateAchievement('market_king', 500000);
-            }
-        }
-
-        // Обновление достижения
-        function updateAchievement(achievementId, progress) {
-            const achievement = gameState.achievements[achievementId];
-            if (!achievement) return;
-            
-            achievement.progress += progress;
-            
-            const achievementConfig = ACHIEVEMENTS.find(a => a.id === achievementId);
-            if (!achievementConfig) return;
-            
-            if (achievement.progress >= achievementConfig.goal && !achievement.earned) {
-                achievement.earned = true;
-                achievementsEarned = true;
-                showNotification(`Достижение получено: ${achievementConfig.name}!`, 'success');
-            }
-        }
-
-        // Показать достижения
-        function showAchievements() {
-            achievementsContainer.innerHTML = '';
-            
-            ACHIEVEMENTS.forEach(achievement => {
-                const achievementState = gameState.achievements[achievement.id] || { progress: 0, earned: false };
-                const progress = Math.min(100, (achievementState.progress / achievement.goal) * 100);
-                
-                const card = document.createElement('div');
-                card.className = `achievement-card ${achievementState.earned ? 'unlocked' : ''}`;
-                
-                card.innerHTML = `
-                    ${achievementState.earned ? '<div class="medal">🏅</div>' : ''}
-                    <div class="achievement-emoji">${achievement.icon}</div>
-                    <div class="achievement-title">${achievement.name}</div>
-                    <div class="achievement-description">${achievement.description}</div>
-                    <div class="achievement-progress">
-                        <div class="achievement-progress-bar" style="width: ${progress}%"></div>
-                    </div>
-                    <div class="achievement-count">${achievementState.progress.toLocaleString()}/${achievement.goal.toLocaleString()}</div>
-                `;
-                
-                achievementsContainer.appendChild(card);
+            // Отрисовка препятствий
+            ctx.fillStyle = COLORS.OBSTACLE;
+            level.obstacles.forEach(obstacle => {
+                ctx.fillRect(obstacle.x * GRID_SIZE, obstacle.y * GRID_SIZE, GRID_SIZE, GRID_SIZE);
             });
             
-            achievementsModal.style.display = 'flex';
+            // Отрисовка цели
+            ctx.fillStyle = COLORS.TARGET;
+            ctx.fillRect(level.target.x * GRID_SIZE, level.target.y * GRID_SIZE, GRID_SIZE, GRID_SIZE);
+            ctx.strokeStyle = '#fff';
+            ctx.lineWidth = 2;
+            ctx.strokeRect(level.target.x * GRID_SIZE, level.target.y * GRID_SIZE, GRID_SIZE, GRID_SIZE);
+            
+            // Отрисовка врагов
+            ctx.fillStyle = COLORS.ENEMY;
+            level.enemies.forEach(enemy => {
+                ctx.fillRect(enemy.x * GRID_SIZE, enemy.y * GRID_SIZE, GRID_SIZE, GRID_SIZE);
+                
+                // Отображение радиуса атаки
+                ctx.strokeStyle = 'rgba(239, 83, 80, 0.5)';
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.arc(
+                    enemy.x * GRID_SIZE + GRID_SIZE / 2,
+                    enemy.y * GRID_SIZE + GRID_SIZE / 2,
+                    GRID_SIZE * 1.5,
+                    0,
+                    Math.PI * 2
+                );
+                ctx.stroke();
+            });
+            
+            // Отрисовка робота
+            ctx.fillStyle = COLORS.ROBOT;
+            ctx.fillRect(level.robot.x * GRID_SIZE, level.robot.y * GRID_SIZE, GRID_SIZE, GRID_SIZE);
+            
+            // Добавление деталей роботу
+            ctx.fillStyle = '#5d4037';
+            ctx.fillRect(
+                level.robot.x * GRID_SIZE + 10,
+                level.robot.y * GRID_SIZE + 10,
+                GRID_SIZE - 20,
+                GRID_SIZE - 20
+            );
+            
+            // Глаза робота
+            ctx.fillStyle = '#4fc3f7';
+            ctx.fillRect(
+                level.robot.x * GRID_SIZE + 15,
+                level.robot.y * GRID_SIZE + 20,
+                10,
+                10
+            );
+            ctx.fillRect(
+                level.robot.x * GRID_SIZE + GRID_SIZE - 25,
+                level.robot.y * GRID_SIZE + 20,
+                10,
+                10
+            );
         }
 
-        // Показать уведомление
-        function showNotification(message, type = 'success') {
-            notificationContent.innerHTML = message;
-            notification.className = `notification ${type}`;
-            notification.classList.add('show');
-            
-            setTimeout(() => {
-                notification.classList.remove('show');
-            }, 3000);
-        }
-
-        // ====================
-        // Система сохранения
-        // ====================
-        
-        // Сохранить состояние игры
-        function saveGameState() {
-            localStorage.setItem('it_production_game', JSON.stringify(gameState));
-        }
-        
-        // Показать модальное окно экспорта
-        function showExportModal() {
-            // Генерируем код сохранения
-            const saveData = generateSaveCode();
-            exportDataEl.value = saveData;
-            exportModal.style.display = 'flex';
-        }
-        
-        // Закрыть модальное окно экспорта
-        function closeExportModal() {
-            exportModal.style.display = 'none';
-        }
-        
-        // Показать модальное окно импорта
-        function showImportModal() {
-            importDataEl.value = '';
-            importModal.style.display = 'flex';
-        }
-        
-        // Закрыть модальное окно импорта
-        function closeImportModal() {
-            importModal.style.display = 'none';
-        }
-        
-        // Показать модальное окно достижений
-        function showAchievementsModal() {
-            showAchievements();
-        }
-        
-        // Закрыть модальное окно достижений
-        function closeAchievementsModal() {
-            achievementsModal.style.display = 'none';
-        }
-        
-        // Показать модальное окно помощи
-        function showHelpModal() {
-            helpModal.style.display = 'flex';
-        }
-        
-        // Закрыть модальное окно помощи
-        function closeHelpModal() {
-            helpModal.style.display = 'none';
-        }
-        
-        // Сгенерировать код сохранения
-        function generateSaveCode() {
-            const saveData = {
-                version: 1,
-                state: gameState
-            };
-            return btoa(encodeURIComponent(JSON.stringify(saveData)));
-        }
-        
-        // Загрузить игру из кода
-        function loadGameData() {
-            const saveCode = importDataEl.value.trim();
-            
-            if (!saveCode) {
-                showNotification('Введите код сохранения', 'error');
-                return;
-            }
-            
-            try {
-                // Декодируем данные
-                const decoded = JSON.parse(decodeURIComponent(atob(saveCode)));
-                
-                // Проверяем версию
-                if (decoded.version !== 1) {
-                    showNotification('Неверная версия сохранения', 'error');
-                    return;
-                }
-                
-                // Загружаем состояние
-                gameState = decoded.state;
-                
-                // Сохраняем в localStorage
-                saveGameState();
-                
-                // Перезагружаем интерфейс
+        // Игровой цикл
+        function gameLoop() {
+            if (gameState.currentScreen === 'game') {
                 renderGame();
-                
-                // Перезапускаем интервалы
-                startProduction();
-                startMarketFluctuations();
-                
-                // Закрываем модальное окно
-                closeImportModal();
-                
-                showNotification('Игра успешно загружена!', 'success');
-            } catch (e) {
-                console.error('Ошибка загрузки:', e);
-                showNotification('Неверный формат сохранения', 'error');
             }
-        }
-        
-        // Скопировать код сохранения в буфер обмена
-        function copyExportData() {
-            exportDataEl.select();
-            document.execCommand('copy');
-            showNotification('Код сохранения скопирован!', 'success');
-        }
-        
-        // Сброс прогресса
-        function resetProgress() {
-            if (confirm("Вы уверены, что хотите сбросить весь прогресс? Это действие нельзя отменить.")) {
-                resetGameState();
-                showNotification('Прогресс успешно сброшен!', 'success');
-            }
+            
+            requestAnimationFrame(gameLoop);
         }
 
-        // Инициализация при загрузке
-        window.addEventListener('DOMContentLoaded', initGame);
+        // Запуск игры
+        init();
     </script>
 </body>
 </html>
-
